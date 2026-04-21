@@ -1,0 +1,41 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "stats": {
+      "type": "stats-strip",
+      "blocks": {
+        "stat1": { "type": "stat", "settings": { "number": "12+", "label": "Unikátních her" } },
+        "stat2": { "type": "stat", "settings": { "number": "3 000+", "label": "Spokojených hráčů" } },
+        "stat3": { "type": "stat", "settings": { "number": "4.9", "label": "Průměrné hodnocení" } },
+        "stat4": { "type": "stat", "settings": { "number": "Online", "label": "i papírové verze" } }
+      },
+      "block_order": ["stat1","stat2","stat3","stat4"]
+    },
+    "products": {
+      "type": "products-grid",
+      "settings": {}
+    },
+    "how": {
+      "type": "how-it-works",
+      "blocks": {
+        "step1": { "type": "step", "settings": { "title": "Vyber a zaplať online", "description": "Vyber hru, zaplať kartou nebo přes PayPal. Celý proces trvá méně než 2 minuty." } },
+        "step2": { "type": "step", "settings": { "title": "Dostaneš voucher e-mailem", "description": "Okamžitě po platbě ti přijde e-mail s PDF voucherem a QR kódem." } },
+        "step3": { "type": "step", "settings": { "title": "Unikni a vyhraj", "description": "Vyraz ven, řeš šifry, spolupracuj s týmem. Platnost voucheru 12 měsíců." } }
+      },
+      "block_order": ["step1","step2","step3"]
+    },
+    "reviews": {
+      "type": "reviews",
+      "blocks": {
+        "r1": { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop.", "author": "Markéta H. · Děčín" } },
+        "r2": { "type": "review", "settings": { "text": "Perfektní teambuilding! Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem.", "author": "Tomáš B. · Praha" } },
+        "r3": { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Bavily se i děti.", "author": "Jana K. · Liberec" } }
+      },
+      "block_order": ["r1","r2","r3"]
+    }
+  },
+  "order": ["hero","stats","products","how","reviews"]
+}

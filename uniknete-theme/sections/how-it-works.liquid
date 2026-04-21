@@ -1,0 +1,88 @@
+<style>
+.un-how-wrap {
+  background: var(--dark-3);
+  border-top: 1px solid var(--cream-08);
+  border-bottom: 1px solid var(--cream-08);
+}
+.un-how-top { padding: 72px 48px 40px; }
+.un-how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.un-how-step {
+  padding: 40px 48px 60px;
+  border-right: 1px solid var(--cream-08);
+}
+.un-how-step:last-child { border-right: none; }
+.un-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--gold-20);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+.un-step-title {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.un-step-desc {
+  font-size: 13px;
+  color: var(--cream-40);
+  line-height: 1.7;
+  font-weight: 300;
+}
+@media (max-width: 768px) {
+  .un-how-top { padding: 56px 24px 32px; }
+  .un-how-grid { grid-template-columns: 1fr; }
+  .un-how-step { border-right: none; border-bottom: 1px solid var(--cream-08); padding: 32px 24px; }
+}
+</style>
+
+<div class="un-how-wrap" id="jak">
+  <div class="un-how-top">
+    <span class="section-label">{{ section.settings.label }}</span>
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <p class="section-sub">{{ section.settings.subtitle }}</p>
+  </div>
+  <div class="un-how-grid">
+    {% for block in section.blocks %}
+      <div class="un-how-step" {{ block.shopify_attributes }}>
+        <div class="un-step-num">0{{ forloop.index }}</div>
+        <div class="un-step-title">{{ block.settings.title }}</div>
+        <p class="un-step-desc">{{ block.settings.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Jak to funguje",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Jak to funguje" },
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Tři kroky k dobrodružství" },
+    { "type": "text", "id": "subtitle", "label": "Podnadpis", "default": "Od objednávky ke hře za pár minut." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Krok",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Název kroku" },
+        { "type": "textarea", "id": "description", "label": "Popis" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Jak to funguje",
+    "blocks": [
+      { "type": "step", "settings": { "title": "Vyber a zaplať online", "description": "Vyber hru, zaplať kartou nebo přes PayPal. Celý proces trvá méně než 2 minuty." } },
+      { "type": "step", "settings": { "title": "Dostaneš voucher e-mailem", "description": "Okamžitě po platbě ti přijde e-mail s PDF voucherem a QR kódem." } },
+      { "type": "step", "settings": { "title": "Unikni a vyhraj", "description": "Vyraz ven, řeš šifry, spolupracuj s týmem. Platnost voucheru 12 měsíců." } }
+    ]
+  }]
+}
+{% endschema %}

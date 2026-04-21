@@ -1,0 +1,143 @@
+<style>
+.un-products-section {
+  padding: 88px 48px;
+}
+.un-products-header { margin-bottom: 52px; }
+.un-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.un-product-card {
+  background: var(--dark-2);
+  border: 1px solid var(--cream-08);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.25s;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.un-product-card:hover {
+  border-color: var(--gold-30);
+  transform: translateY(-4px);
+}
+.un-product-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  background: var(--dark-3);
+}
+.un-product-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--dark-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.un-product-img-placeholder svg { width: 40px; height: 40px; fill: var(--gold-30); }
+.un-product-body { padding: 28px; }
+.un-product-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+.un-product-desc {
+  font-size: 13px;
+  color: var(--cream-40);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.un-product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--cream-08);
+  padding-top: 16px;
+}
+.un-price {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--cream);
+}
+.un-price-suffix {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--cream-40);
+}
+
+@media (max-width: 900px) {
+  .un-products-section { padding: 56px 24px; }
+  .un-products-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<section class="un-products-section" id="hry">
+  <div class="un-products-header">
+    <span class="section-label">{{ section.settings.label }}</span>
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    <p class="section-sub">{{ section.settings.subtitle }}</p>
+  </div>
+
+  <div class="un-products-grid">
+    {% assign col = collections[section.settings.collection] %}
+    {% if col and col.products.size > 0 %}
+      {% for product in col.products limit: section.settings.products_count %}
+        <a href="{{ product.url }}" class="un-product-card">
+          {% if product.featured_image %}
+            <img
+              class="un-product-img"
+              src="{{ product.featured_image | img_url: '600x338', crop: 'center' }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              loading="lazy"
+            />
+          {% else %}
+            <div class="un-product-img-placeholder">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+          {% endif %}
+
+          <div class="un-product-body">
+            <div class="un-product-name">{{ product.title }}</div>
+            <p class="un-product-desc">{{ product.description | strip_html | truncate: 110 }}</p>
+            <div class="un-product-footer">
+              <div class="un-price">
+                {{ product.price | money }}
+                {% if product.price_varies %}
+                  <span class="un-price-suffix">a více</span>
+                {% endif %}
+              </div>
+              {% if product.available %}
+                <span class="badge">Dostupné</span>
+              {% else %}
+                <span class="badge" style="background:var(--cream-08);color:var(--cream-40);border-color:var(--cream-20);">Vyprodáno</span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    {% else %}
+      <p style="color:var(--cream-40); grid-column: 1/-1;">Žádné produkty. Přidej kolekci v nastavení sekce.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produkty – hry",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Naše hry" },
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Vyber svoji výzvu" },
+    { "type": "textarea", "id": "subtitle", "label": "Podnadpis", "default": "Každá hra je pečlivě navržená pro nezapomenutelný zážitek." },
+    { "type": "collection", "id": "collection", "label": "Kolekce produktů" },
+    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet produktů", "default": 3 }
+  ],
+  "presets": [{ "name": "Produkty – hry" }]
+}
+{% endschema %}

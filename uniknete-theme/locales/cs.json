@@ -1,0 +1,20 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Zadej heslo",
+      "login_form_password_label": "Heslo",
+      "login_form_password_placeholder": "Tvoje heslo",
+      "login_form_submit": "Vstoupit",
+      "signup_button_text": "Odebírat novinky",
+      "signup_form_email_label": "E-mail"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Košík",
+      "empty": "Košík je prázdný",
+      "checkout": "Objednat",
+      "subtotal": "Mezisoučet"
+    }
+  }
+}

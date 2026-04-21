@@ -1,0 +1,118 @@
+<style>
+.un-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 48px;
+  border-bottom: 1px solid var(--cream-08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(14,26,18,0.96);
+  backdrop-filter: blur(8px);
+}
+.un-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  align-items: center;
+}
+.nav-links a {
+  color: var(--cream-60);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--cream);
+  border-radius: 2px;
+}
+@media (max-width: 768px) {
+  .un-nav { padding: 16px 24px; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    flex-direction: column;
+    background: var(--dark-2);
+    padding: 20px 24px;
+    gap: 16px;
+    border-bottom: 1px solid var(--cream-08);
+  }
+  .nav-links.open { display: flex; }
+}
+</style>
+
+<nav class="un-nav">
+  <a href="/" class="un-logo">{{ section.settings.logo_text }}</a>
+
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links">
+    {% for link in linklists[section.settings.menu].links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+    <li>
+      <a href="{{ section.settings.cta_url }}" class="btn-primary">
+        {{ section.settings.cta_text }}
+      </a>
+    </li>
+  </ul>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "Unikněte!"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigační menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA tlačítko text",
+      "default": "Koupit voucher"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA tlačítko odkaz"
+    }
+  ]
+}
+{% endschema %}

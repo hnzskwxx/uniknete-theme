@@ -1,0 +1,149 @@
+<style>
+.product-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  padding: 72px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.product-img img {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--cream-08);
+}
+.product-img-placeholder {
+  aspect-ratio: 4/3;
+  background: var(--dark-2);
+  border-radius: 10px;
+  border: 1px solid var(--cream-08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-img-placeholder svg { width: 64px; height: 64px; fill: var(--gold-30); }
+.product-info { display: flex; flex-direction: column; gap: 20px; }
+.product-tag {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.product-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+}
+.product-price-wrap { display: flex; align-items: baseline; gap: 12px; }
+.product-price {
+  font-size: 32px;
+  font-weight: 500;
+  color: var(--cream);
+}
+.product-desc {
+  font-size: 15px;
+  color: var(--cream-60);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.product-desc p { margin-bottom: 12px; }
+.product-form { display: flex; flex-direction: column; gap: 12px; }
+.product-qty-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--cream-40);
+}
+.product-qty-wrap input {
+  width: 64px;
+  padding: 8px 12px;
+  background: var(--dark-2);
+  border: 1px solid var(--cream-20);
+  border-radius: 4px;
+  color: var(--cream);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  text-align: center;
+}
+.product-submit {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 16px 32px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
+  letter-spacing: 0.5px;
+}
+.product-submit:hover { background: var(--gold-light); }
+.product-note {
+  font-size: 12px;
+  color: var(--cream-40);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 900px) {
+  .product-page { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+  .product-title { font-size: 30px; }
+}
+</style>
+
+<div class="product-page">
+  <div class="product-img">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: '800x600', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" />
+    {% else %}
+      <div class="product-img-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="product-info">
+    <div class="product-tag">{{ product.type }}</div>
+    <h1 class="product-title">{{ product.title }}</h1>
+
+    <div class="product-price-wrap">
+      <span class="product-price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span style="font-size:18px;color:var(--cream-40);text-decoration:line-through;">{{ product.compare_at_price | money }}</span>
+      {% endif %}
+    </div>
+
+    <div class="product-desc">{{ product.description }}</div>
+
+    {% form 'product', product, class: 'product-form' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+
+      <div class="product-qty-wrap">
+        <label for="quantity">Počet voucherů:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="99" />
+      </div>
+
+      {% if product.available %}
+        <button type="submit" class="product-submit">Přidat do košíku</button>
+      {% else %}
+        <button type="submit" class="product-submit" disabled style="opacity:0.4;cursor:not-allowed;">Vyprodáno</button>
+      {% endif %}
+
+      <p class="product-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        Voucher dostaneš e-mailem ihned po platbě · Platnost 12 měsíců
+      </p>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Stránka produktu",
+  "settings": []
+}
+{% endschema %}
