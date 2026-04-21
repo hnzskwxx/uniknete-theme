@@ -117,3 +117,60 @@ a { color: inherit; }
   .container { padding: 0 24px; }
   .section-title { font-size: 28px; }
 }
+
+/* =============================================
+   VIDEO BACKGROUND – průhledné sekce
+   ============================================= */
+
+/* Všechny sekce průhledné aby video prosvítalo */
+.un-stats,
+.un-products-section,
+.un-how-bg,
+.un-how-wrap,
+.un-reviews-section,
+.un-reviews,
+.un-cta-strip,
+.un-footer {
+  background: transparent !important;
+}
+
+/* Jemné oddělení sekcí místo plného pozadí */
+.un-stats {
+  background: rgba(0,0,0,0.35) !important;
+  backdrop-filter: blur(2px);
+}
+.un-how-bg,
+.un-how-wrap {
+  background: rgba(0,0,0,0.3) !important;
+  backdrop-filter: blur(2px);
+}
+.un-reviews-section,
+.un-reviews {
+  background: rgba(0,0,0,0.25) !important;
+}
+.un-footer {
+  background: rgba(0,0,0,0.5) !important;
+  backdrop-filter: blur(4px);
+}
+
+/* Karty s jemným blur efektem */
+.un-product-card,
+.un-review-card,
+.un-hero-card,
+.un-partner-card,
+.un-feature,
+.un-how-step {
+  background: rgba(14,26,18,0.7) !important;
+  backdrop-filter: blur(8px);
+}
+
+/* Hero větší */
+.un-hero {
+  min-height: 100vh !important;
+}
+
+/* Nav průhledný */
+.un-nav {
+  background: rgba(14,26,18,0.6) !important;
+  backdrop-filter: blur(12px);
+}
