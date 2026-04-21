@@ -1,0 +1,127 @@
+<style>
+.un-hry-hero {
+  padding: 80px 48px 48px;
+  border-bottom: 1px solid var(--cream-08);
+}
+.un-hry-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.0;
+  margin-bottom: 16px;
+}
+.un-hry-title em { color: var(--gold); font-style: italic; }
+.un-hry-sub {
+  font-size: 16px;
+  color: var(--cream-40);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.7;
+}
+.un-hry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 56px 48px;
+}
+.un-hry-card {
+  background: var(--dark-2);
+  border: 1px solid var(--cream-08);
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: all 0.25s;
+}
+.un-hry-card:hover {
+  border-color: var(--gold-30);
+  transform: translateY(-4px);
+}
+.un-hry-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  background: var(--dark-3);
+}
+.un-hry-card-img-placeholder {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--dark-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.un-hry-card-img-placeholder svg { width: 40px; height: 40px; fill: var(--gold-30); }
+.un-hry-card-body { padding: 24px; }
+.un-hry-card-type {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+.un-hry-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.un-hry-card-desc {
+  font-size: 13px;
+  color: var(--cream-40);
+  line-height: 1.65;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.un-hry-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--cream-08);
+  padding-top: 16px;
+}
+.un-hry-price { font-size: 18px; font-weight: 500; color: var(--cream); }
+@media (max-width: 900px) {
+  .un-hry-hero { padding: 56px 24px 40px; }
+  .un-hry-title { font-size: 36px; }
+  .un-hry-grid { grid-template-columns: 1fr; padding: 40px 24px; }
+}
+</style>
+
+<div class="un-hry-hero">
+  <span class="section-label">Všechny hry</span>
+  <h1 class="un-hry-title">Vyber si<br>svoji <em>výzvu</em></h1>
+  <p class="un-hry-sub">Venkovní únikovky, papírové bojovky a firemní teambuildingy. Každý voucher dostaneš e-mailem ihned po platbě.</p>
+</div>
+
+<div class="un-hry-grid">
+  {% for product in collections.all.products %}
+    <a href="{{ product.url }}" class="un-hry-card">
+      {% if product.featured_image %}
+        <img class="un-hry-card-img" src="{{ product.featured_image | img_url: '600x338', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" />
+      {% else %}
+        <div class="un-hry-card-img-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+      {% endif %}
+      <div class="un-hry-card-body">
+        <span class="un-hry-card-type">{{ product.type | default: 'Hra' }}</span>
+        <div class="un-hry-card-name">{{ product.title }}</div>
+        <p class="un-hry-card-desc">{{ product.description | strip_html | truncate: 100 }}</p>
+        <div class="un-hry-card-footer">
+          <span class="un-hry-price">{{ product.price | money }}</span>
+          {% if product.available %}
+            <span class="badge">Dostupné</span>
+          {% else %}
+            <span class="badge" style="background:var(--cream-08);color:var(--cream-40);border-color:var(--cream-20);">Vyprodáno</span>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>

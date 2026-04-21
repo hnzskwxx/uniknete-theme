@@ -1,0 +1,60 @@
+<style>
+.un-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 48px;
+}
+.un-page-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+  display: block;
+}
+.un-page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+.un-page-content {
+  font-size: 16px;
+  color: var(--cream-60);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.un-page-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--cream);
+  margin: 48px 0 16px;
+}
+.un-page-content h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--cream);
+  margin: 32px 0 12px;
+}
+.un-page-content p { margin-bottom: 16px; }
+.un-page-content a { color: var(--gold); text-decoration: underline; }
+.un-page-content ul, .un-page-content ol {
+  margin: 16px 0 16px 24px;
+}
+.un-page-content li { margin-bottom: 8px; }
+@media (max-width: 768px) {
+  .un-page { padding: 48px 24px; }
+  .un-page-title { font-size: 32px; }
+}
+</style>
+
+<div class="un-page">
+  <span class="un-page-eyebrow">{{ page.title }}</span>
+  <h1 class="un-page-title">{{ page.title }}</h1>
+  <div class="un-page-content">
+    {{ page.content }}
+  </div>
+</div>

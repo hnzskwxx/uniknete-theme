@@ -1,0 +1,151 @@
+<style>
+.un-pruvodce {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+}
+.un-pruvodce-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--cream-08);
+}
+.un-pruvodce-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.un-pruvodce-title em { color: var(--gold); font-style: italic; }
+.un-pruvodce-desc {
+  font-size: 16px;
+  color: var(--cream-60);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+.un-pruvodce-card {
+  background: var(--dark-2);
+  border: 1px solid var(--gold-30);
+  border-radius: 10px;
+  padding: 40px;
+}
+.un-pruvodce-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 24px;
+}
+.un-pruvodce-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.un-pruvodce-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--cream-60);
+  padding: 12px 16px;
+  background: var(--dark-3);
+  border-radius: 6px;
+  border: 1px solid var(--cream-08);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.un-pruvodce-option:hover { border-color: var(--gold-30); color: var(--cream); }
+.un-pruvodce-option-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.un-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.un-feature {
+  background: var(--dark-2);
+  border: 1px solid var(--cream-08);
+  border-radius: 8px;
+  padding: 32px 24px;
+}
+.un-feature-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--gold-20);
+  margin-bottom: 12px;
+  display: block;
+}
+.un-feature-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.un-feature-desc {
+  font-size: 13px;
+  color: var(--cream-40);
+  line-height: 1.65;
+  font-weight: 300;
+}
+@media (max-width: 900px) {
+  .un-pruvodce { padding: 48px 24px; }
+  .un-pruvodce-hero { grid-template-columns: 1fr; gap: 40px; }
+  .un-pruvodce-title { font-size: 32px; }
+  .un-features { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="un-pruvodce">
+  <div class="un-pruvodce-hero">
+    <div>
+      <span class="section-label">Průvodce na míru</span>
+      <h1 class="un-pruvodce-title">Hra přesně<br>pro <em>váš tým</em></h1>
+      <p class="un-pruvodce-desc">
+        Navrhneme hru na míru vaší skupině — ať jde o rodinný výlet, firemní teambuilding nebo školní výlet. Stačí nám říct co potřebujete.
+      </p>
+      <a href="/pages/kontakt" class="btn-primary">Poptat průvodce na míru</a>
+    </div>
+    <div class="un-pruvodce-card">
+      <div class="un-pruvodce-card-title">Co vás zajímá?</div>
+      <div class="un-pruvodce-options">
+        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Rodinný výlet s dětmi</div>
+        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Firemní teambuilding</div>
+        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Školní výlet nebo třídní akce</div>
+        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Oslava narozenin nebo party</div>
+        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Jiná příležitost</div>
+      </div>
+      <a href="/pages/kontakt" class="btn-primary" style="width:100%;text-align:center;display:block;">Kontaktovat nás →</a>
+    </div>
+  </div>
+
+  <div class="un-features">
+    <div class="un-feature">
+      <span class="un-feature-num">01</span>
+      <div class="un-feature-title">Napíšete nám</div>
+      <p class="un-feature-desc">Řeknete nám o skupině, příležitosti a co očekáváte. Odpovíme do 24 hodin.</p>
+    </div>
+    <div class="un-feature">
+      <span class="un-feature-num">02</span>
+      <div class="un-feature-title">Navrhneme hru</div>
+      <p class="un-feature-desc">Připravíme koncept přesně na míru — lokalita, obtížnost, délka, počet hráčů.</p>
+    </div>
+    <div class="un-feature">
+      <span class="un-feature-num">03</span>
+      <div class="un-feature-title">Vyrazíte ven</div>
+      <p class="un-feature-desc">Dostanete kompletní materiály. My jsme k dispozici po celou dobu hry.</p>
+    </div>
+  </div>
+</div>

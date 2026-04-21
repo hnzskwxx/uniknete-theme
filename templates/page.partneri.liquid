@@ -1,0 +1,145 @@
+<style>
+.un-partneri {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+}
+.un-partneri-hero {
+  text-align: center;
+  margin-bottom: 80px;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--cream-08);
+}
+.un-partneri-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.un-partneri-title em { color: var(--gold); font-style: italic; }
+.un-partneri-desc {
+  font-size: 16px;
+  color: var(--cream-40);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+.un-partneri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 80px;
+}
+.un-partner-card {
+  background: var(--dark-2);
+  border: 1px solid var(--cream-08);
+  border-radius: 10px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.25s;
+}
+.un-partner-card:hover {
+  border-color: var(--gold-30);
+  transform: translateY(-3px);
+}
+.un-partner-logo {
+  width: 80px;
+  height: 80px;
+  background: var(--gold-10);
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+}
+.un-partner-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+.un-partner-desc {
+  font-size: 13px;
+  color: var(--cream-40);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.un-partneri-cta {
+  background: var(--dark-2);
+  border: 1px solid var(--gold-30);
+  border-radius: 10px;
+  padding: 56px;
+  text-align: center;
+}
+.un-partneri-cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.un-partneri-cta-desc {
+  font-size: 15px;
+  color: var(--cream-40);
+  font-weight: 300;
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+{{ page.content }}
+
+@media (max-width: 900px) {
+  .un-partneri { padding: 48px 24px; }
+  .un-partneri-title { font-size: 34px; }
+  .un-partneri-grid { grid-template-columns: 1fr; }
+  .un-partneri-cta { padding: 36px 24px; }
+}
+</style>
+
+<div class="un-partneri">
+  <div class="un-partneri-hero">
+    <span class="section-label">Naši partneři</span>
+    <h1 class="un-partneri-title">Spolupracujeme<br>s <em>těmi nejlepšími</em></h1>
+    <p class="un-partneri-desc">
+      Naše hry jsou možné díky skvělým partnerům z Děčína a okolí. Podporujeme lokální byznys a místní turistiku.
+    </p>
+  </div>
+
+  <div class="un-partneri-grid">
+    <!-- Přidej své partnery zde nebo přes Shopify page content -->
+    <div class="un-partner-card">
+      <div class="un-partner-logo">P1</div>
+      <div class="un-partner-name">Partner 1</div>
+      <p class="un-partner-desc">Popis partnera. Upravte tento obsah přes Shopify Admin → Pages.</p>
+    </div>
+    <div class="un-partner-card">
+      <div class="un-partner-logo">P2</div>
+      <div class="un-partner-name">Partner 2</div>
+      <p class="un-partner-desc">Popis partnera. Upravte tento obsah přes Shopify Admin → Pages.</p>
+    </div>
+    <div class="un-partner-card">
+      <div class="un-partner-logo">P3</div>
+      <div class="un-partner-name">Partner 3</div>
+      <p class="un-partner-desc">Popis partnera. Upravte tento obsah přes Shopify Admin → Pages.</p>
+    </div>
+  </div>
+
+  <div class="un-partneri-cta">
+    <div class="un-partneri-cta-title">Chcete se stát partnerem?</div>
+    <p class="un-partneri-cta-desc">Spolupracujeme s hotely, restauracemi, turistickými centry a dalšími místními podniky.</p>
+    <a href="/pages/kontakt" class="btn-primary">Kontaktovat nás →</a>
+  </div>
+</div>

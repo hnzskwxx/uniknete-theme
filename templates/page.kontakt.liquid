@@ -1,0 +1,170 @@
+<style>
+.un-kontakt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 48px;
+}
+.un-kontakt-left h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+.un-kontakt-left h1 em { color: var(--gold); font-style: italic; }
+.un-kontakt-desc {
+  font-size: 15px;
+  color: var(--cream-40);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 48px;
+}
+.un-kontakt-items { display: flex; flex-direction: column; gap: 24px; }
+.un-kontakt-item { display: flex; gap: 16px; align-items: flex-start; }
+.un-kontakt-icon {
+  width: 40px; height: 40px;
+  background: var(--gold-10);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.un-kontakt-icon svg { width: 18px; height: 18px; fill: var(--gold); }
+.un-kontakt-item-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cream-40);
+  margin-bottom: 4px;
+  display: block;
+}
+.un-kontakt-item-value {
+  font-size: 15px;
+  color: var(--cream);
+  font-weight: 400;
+  text-decoration: none;
+}
+.un-kontakt-item-value:hover { color: var(--gold); }
+
+.un-kontakt-form {
+  background: var(--dark-2);
+  border: 1px solid var(--cream-08);
+  border-radius: 10px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.un-form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.un-form-group { display: flex; flex-direction: column; gap: 8px; }
+.un-form-group label {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cream-40);
+}
+.un-form-group input,
+.un-form-group textarea,
+.un-form-group select {
+  background: var(--dark-3);
+  border: 1px solid var(--cream-20);
+  border-radius: 6px;
+  padding: 12px 16px;
+  color: var(--cream);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.un-form-group input:focus,
+.un-form-group textarea:focus,
+.un-form-group select:focus { border-color: var(--gold); }
+.un-form-group textarea { resize: vertical; min-height: 120px; }
+.un-form-group select option { background: var(--dark-2); }
+@media (max-width: 900px) {
+  .un-kontakt { grid-template-columns: 1fr; padding: 48px 24px; gap: 48px; }
+  .un-kontakt-left h1 { font-size: 32px; }
+}
+</style>
+
+<div class="un-kontakt">
+  <div class="un-kontakt-left">
+    <span class="section-label">Kontakt</span>
+    <h1>Pojďme si<br><em>napsat</em></h1>
+    <p class="un-kontakt-desc">
+      Máte dotaz k objednávce, chcete průvodce na míru nebo jen chcete vědět víc? Ozveme se do 24 hodin.
+    </p>
+    <div class="un-kontakt-items">
+      <div class="un-kontakt-item">
+        <div class="un-kontakt-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div>
+          <span class="un-kontakt-item-label">E-mail</span>
+          <a href="mailto:info@uniknete.com" class="un-kontakt-item-value">info@uniknete.com</a>
+        </div>
+      </div>
+      <div class="un-kontakt-item">
+        <div class="un-kontakt-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <span class="un-kontakt-item-label">Lokalita</span>
+          <span class="un-kontakt-item-value">Děčín, Ústecký kraj</span>
+        </div>
+      </div>
+      <div class="un-kontakt-item">
+        <div class="un-kontakt-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12a10 10 0 0010 10 10 10 0 0010-10A10 10 0 0012 2zm0 18a8 8 0 01-8-8 8 8 0 018-8 8 8 0 018 8 8 8 0 01-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <div>
+          <span class="un-kontakt-item-label">Odpovídáme</span>
+          <span class="un-kontakt-item-value">Do 24 hodin</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="un-kontakt-form">
+    <div class="un-form-title">Napište nám</div>
+    {% form 'contact' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p style="color:var(--gold);font-size:15px;">✓ Zpráva odeslána! Ozveme se brzy.</p>
+      {% endif %}
+      <div class="un-form-group">
+        <label for="contact-name">Jméno</label>
+        <input type="text" id="contact-name" name="contact[name]" placeholder="Vaše jméno" required />
+      </div>
+      <div class="un-form-group">
+        <label for="contact-email">E-mail</label>
+        <input type="email" id="contact-email" name="contact[email]" placeholder="vas@email.cz" required />
+      </div>
+      <div class="un-form-group">
+        <label for="contact-subject">Téma</label>
+        <select id="contact-subject" name="contact[body_subject]">
+          <option value="Dotaz k objednávce">Dotaz k objednávce</option>
+          <option value="Průvodce na míru">Průvodce na míru</option>
+          <option value="Firemní teambuilding">Firemní teambuilding</option>
+          <option value="Jiné">Jiné</option>
+        </select>
+      </div>
+      <div class="un-form-group">
+        <label for="contact-message">Zpráva</label>
+        <textarea id="contact-message" name="contact[body]" placeholder="Napište nám co potřebujete..."></textarea>
+      </div>
+      <button type="submit" class="btn-primary">Odeslat zprávu</button>
+    {% endform %}
+  </div>
+</div>
