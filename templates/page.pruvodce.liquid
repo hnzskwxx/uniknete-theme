@@ -1,151 +1,156 @@
 <style>
-.un-pruvodce {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 80px 48px;
+.un-pruvodce-page {
+  padding-top: 80px;
+  min-height: 100vh;
 }
+
+/* HERO */
 .un-pruvodce-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-  margin-bottom: 80px;
-  padding-bottom: 80px;
-  border-bottom: 1px solid var(--cream-08);
+  padding: 100px 64px 80px;
+  max-width: 760px;
 }
 .un-pruvodce-title {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 64px;
+  font-weight: 900;
   color: var(--cream);
-  line-height: 1.1;
-  margin-bottom: 20px;
+  line-height: 1.0;
+  margin-bottom: 28px;
 }
 .un-pruvodce-title em { color: var(--gold); font-style: italic; }
-.un-pruvodce-desc {
-  font-size: 16px;
+.un-pruvodce-intro {
+  font-size: 18px;
   color: var(--cream-60);
   line-height: 1.8;
   font-weight: 300;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  max-width: 560px;
+}
+.un-pruvodce-cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* SEKCE S KARTAMI */
+.un-pruvodce-cards {
+  padding: 0 4px 4px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  background: rgba(10,15,8,0.5);
 }
 .un-pruvodce-card {
-  background: var(--dark-2);
-  border: 1px solid var(--gold-30);
-  border-radius: 10px;
-  padding: 40px;
+  background: rgba(10,15,8,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--cream-08);
+  padding: 48px 40px;
+  transition: border-color 0.3s;
+}
+.un-pruvodce-card:hover { border-color: var(--gold-30); }
+.un-pruvodce-card-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(212,168,71,0.15);
+  line-height: 1;
+  margin-bottom: 24px;
+  display: block;
 }
 .un-pruvodce-card-title {
   font-family: 'Playfair Display', serif;
   font-size: 22px;
   font-weight: 700;
   color: var(--cream);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  line-height: 1.2;
 }
-.un-pruvodce-options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-.un-pruvodce-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.un-pruvodce-card-text {
   font-size: 14px;
-  color: var(--cream-60);
-  padding: 12px 16px;
-  background: var(--dark-3);
-  border-radius: 6px;
-  border: 1px solid var(--cream-08);
-  cursor: pointer;
-  transition: border-color 0.2s;
-}
-.un-pruvodce-option:hover { border-color: var(--gold-30); color: var(--cream); }
-.un-pruvodce-option-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
+  color: var(--cream-40);
+  line-height: 1.75;
+  font-weight: 300;
 }
 
-.un-features {
+/* CTA SPODEK */
+.un-pruvodce-bottom {
+  padding: 80px 64px;
+  background: rgba(10,15,8,0.8);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--cream-08);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
 }
-.un-feature {
-  background: var(--dark-2);
-  border: 1px solid var(--cream-08);
-  border-radius: 8px;
-  padding: 32px 24px;
-}
-.un-feature-num {
+.un-pruvodce-bottom-title {
   font-family: 'Playfair Display', serif;
   font-size: 36px;
   font-weight: 700;
-  color: var(--gold-20);
-  margin-bottom: 12px;
-  display: block;
-}
-.un-feature-title {
-  font-size: 16px;
-  font-weight: 500;
   color: var(--cream);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
-.un-feature-desc {
-  font-size: 13px;
+.un-pruvodce-bottom-text {
+  font-size: 15px;
   color: var(--cream-40);
-  line-height: 1.65;
   font-weight: 300;
+  line-height: 1.7;
+  max-width: 480px;
 }
+
 @media (max-width: 900px) {
-  .un-pruvodce { padding: 48px 24px; }
-  .un-pruvodce-hero { grid-template-columns: 1fr; gap: 40px; }
-  .un-pruvodce-title { font-size: 32px; }
-  .un-features { grid-template-columns: 1fr; }
+  .un-pruvodce-hero { padding: 72px 24px 56px; }
+  .un-pruvodce-title { font-size: 40px; }
+  .un-pruvodce-cards { grid-template-columns: 1fr; }
+  .un-pruvodce-bottom { padding: 56px 24px; grid-template-columns: 1fr; }
 }
 </style>
 
-<div class="un-pruvodce">
+<div class="un-pruvodce-page">
+
   <div class="un-pruvodce-hero">
-    <div>
-      <span class="section-label">Průvodce na míru</span>
-      <h1 class="un-pruvodce-title">Hra přesně<br>pro <em>váš tým</em></h1>
-      <p class="un-pruvodce-desc">
-        Navrhneme hru na míru vaší skupině — ať jde o rodinný výlet, firemní teambuilding nebo školní výlet. Stačí nám říct co potřebujete.
-      </p>
-      <a href="/pages/kontakt" class="btn-primary">Poptat průvodce na míru</a>
-    </div>
-    <div class="un-pruvodce-card">
-      <div class="un-pruvodce-card-title">Co vás zajímá?</div>
-      <div class="un-pruvodce-options">
-        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Rodinný výlet s dětmi</div>
-        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Firemní teambuilding</div>
-        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Školní výlet nebo třídní akce</div>
-        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Oslava narozenin nebo party</div>
-        <div class="un-pruvodce-option"><span class="un-pruvodce-option-dot"></span> Jiná příležitost</div>
-      </div>
-      <a href="/pages/kontakt" class="btn-primary" style="width:100%;text-align:center;display:block;">Kontaktovat nás →</a>
+    <span class="section-label">Průvodce na míru</span>
+    <h1 class="un-pruvodce-title">{{ page.title }}</h1>
+    <p class="un-pruvodce-intro">
+      Chcete se o Děčíně dozvědět více? Máte tu rodinné kořeny a rádi byste se o svém původu dozvěděli více? Naše služba je v tomto zcela unikátní — ušijeme vám prohlídku města i okolí na míru!
+    </p>
+    <div class="un-pruvodce-cta-row">
+      <a href="/pages/kontakt" class="btn-primary">Kontaktujte nás →</a>
+      <a href="#moznosti" class="btn-ghost">Možnosti prohlídek</a>
     </div>
   </div>
 
-  <div class="un-features">
-    <div class="un-feature">
-      <span class="un-feature-num">01</span>
-      <div class="un-feature-title">Napíšete nám</div>
-      <p class="un-feature-desc">Řeknete nám o skupině, příležitosti a co očekáváte. Odpovíme do 24 hodin.</p>
+  <div class="un-pruvodce-cards" id="moznosti">
+    <div class="un-pruvodce-card">
+      <span class="un-pruvodce-card-num">01</span>
+      <div class="un-pruvodce-card-title">To nejkrásnější z Českého Švýcarska</div>
+      <p class="un-pruvodce-card-text">
+        Chcete se projít po stezkách národního parku a přitom nejen obdivovat zdejší unikátní přírodu, ale dozvědět se také něco z historie a místních příběhů?
+      </p>
     </div>
-    <div class="un-feature">
-      <span class="un-feature-num">02</span>
-      <div class="un-feature-title">Navrhneme hru</div>
-      <p class="un-feature-desc">Připravíme koncept přesně na míru — lokalita, obtížnost, délka, počet hráčů.</p>
+    <div class="un-pruvodce-card">
+      <span class="un-pruvodce-card-num">02</span>
+      <div class="un-pruvodce-card-title">Hledání kořenů</div>
+      <p class="un-pruvodce-card-text">
+        Chcete se projít po místech, kudy chodili vaši předkové? Pak nás neváhejte kontaktovat — zjistíme maximum informací a provedeme vás po místech, která vaši předkové dobře znali.
+      </p>
     </div>
-    <div class="un-feature">
-      <span class="un-feature-num">03</span>
-      <div class="un-feature-title">Vyrazíte ven</div>
-      <p class="un-feature-desc">Dostanete kompletní materiály. My jsme k dispozici po celou dobu hry.</p>
+    <div class="un-pruvodce-card">
+      <span class="un-pruvodce-card-num">03</span>
+      <div class="un-pruvodce-card-title">Děčín a jeho příběhy</div>
+      <p class="un-pruvodce-card-text">
+        Máte zájem prozkoumat i méně známá zákoutí města? Napište nám a připravíme prohlídku přesně podle vašich přání.
+      </p>
     </div>
   </div>
+
+  <div class="un-pruvodce-bottom">
+    <div>
+      <div class="un-pruvodce-bottom-title">Podrobnosti domluvíme individuálně</div>
+      <p class="un-pruvodce-bottom-text">Kontaktujte nás a řekneme vám vše potřebné. Každá prohlídka je jedinečná — přizpůsobíme ji vašim zájmům, tempu i skupině.</p>
+    </div>
+    <a href="/pages/kontakt" class="btn-primary">Napsat nám →</a>
+  </div>
+
 </div>
