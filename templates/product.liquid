@@ -1,149 +1,270 @@
 <style>
-.product-page {
+.un-product-page {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+.un-product-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  padding: 72px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: calc(100vh - 80px);
 }
-.product-img img {
+
+/* LEVÁ STRANA - fotka */
+.un-product-img-wrap {
+  position: relative;
+  overflow: hidden;
+  background: rgba(10,15,8,0.8);
+}
+.un-product-img-wrap img {
   width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--cream-08);
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85) saturate(0.9);
 }
-.product-img-placeholder {
-  aspect-ratio: 4/3;
-  background: var(--dark-2);
-  border-radius: 10px;
-  border: 1px solid var(--cream-08);
+.un-product-img-placeholder {
+  width: 100%; height: 100%;
+  min-height: 500px;
+  background: rgba(212,168,71,0.04);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.product-img-placeholder svg { width: 64px; height: 64px; fill: var(--gold-30); }
-.product-info { display: flex; flex-direction: column; gap: 20px; }
-.product-tag {
+.un-product-img-placeholder svg { width: 64px; height: 64px; fill: rgba(212,168,71,0.15); }
+
+/* PRAVÁ STRANA - info */
+.un-product-info {
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(10,15,8,0.8);
+  backdrop-filter: blur(12px);
+  border-left: 1px solid var(--cream-08);
+}
+.un-product-type {
   font-size: 10px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.product-title {
+.un-product-type::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+.un-product-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.05;
+  margin-bottom: 28px;
+}
+.un-product-desc {
+  font-size: 15px;
+  color: var(--cream-60);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 36px;
+}
+.un-product-desc p { margin-bottom: 12px; }
+
+/* Meta info */
+.un-product-meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 36px;
+  padding: 24px 0;
+  border-top: 1px solid var(--cream-08);
+  border-bottom: 1px solid var(--cream-08);
+}
+.un-product-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.un-product-meta-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream-40);
+}
+.un-product-meta-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--cream);
+}
+
+/* Cena a formulář */
+.un-product-buy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.un-product-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.un-product-price {
   font-family: 'Playfair Display', serif;
   font-size: 40px;
   font-weight: 700;
   color: var(--cream);
-  line-height: 1.1;
 }
-.product-price-wrap { display: flex; align-items: baseline; gap: 12px; }
-.product-price {
-  font-size: 32px;
-  font-weight: 500;
-  color: var(--cream);
+.un-product-price-old {
+  font-size: 20px;
+  color: var(--cream-40);
+  text-decoration: line-through;
 }
-.product-desc {
-  font-size: 15px;
-  color: var(--cream-60);
-  line-height: 1.75;
-  font-weight: 300;
-}
-.product-desc p { margin-bottom: 12px; }
-.product-form { display: flex; flex-direction: column; gap: 12px; }
-.product-qty-wrap {
+.un-product-qty {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 14px;
-  color: var(--cream-40);
+  gap: 16px;
 }
-.product-qty-wrap input {
-  width: 64px;
-  padding: 8px 12px;
-  background: var(--dark-2);
+.un-product-qty label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream-40);
+  flex-shrink: 0;
+}
+.un-product-qty input {
+  width: 72px;
+  padding: 10px 14px;
+  background: rgba(240,235,224,0.06);
   border: 1px solid var(--cream-20);
-  border-radius: 4px;
+  border-radius: 2px;
   color: var(--cream);
-  font-size: 14px;
+  font-size: 15px;
   font-family: 'DM Sans', sans-serif;
   text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
 }
-.product-submit {
+.un-product-qty input:focus { border-color: var(--gold); }
+.un-product-submit {
   background: var(--gold);
-  color: var(--dark);
+  color: #0A0F08;
   border: none;
-  padding: 16px 32px;
-  border-radius: 4px;
-  font-size: 15px;
+  padding: 18px 40px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+  border-radius: 2px;
+  width: 100%;
 }
-.product-submit:hover { background: var(--gold-light); }
-.product-note {
+.un-product-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.un-product-submit:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+}
+.un-product-note {
   font-size: 12px;
   color: var(--cream-40);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  line-height: 1.5;
 }
+.un-product-note-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
 @media (max-width: 900px) {
-  .product-page { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
-  .product-title { font-size: 30px; }
+  .un-product-hero { grid-template-columns: 1fr; }
+  .un-product-img-wrap { min-height: 320px; max-height: 420px; }
+  .un-product-info { padding: 40px 24px; border-left: none; border-top: 1px solid var(--cream-08); }
+  .un-product-title { font-size: 36px; }
+  .un-product-meta { gap: 20px; flex-wrap: wrap; }
 }
 </style>
 
-<div class="product-page">
-  <div class="product-img">
-    {% if product.featured_image %}
-      <img src="{{ product.featured_image | img_url: '800x600', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" />
-    {% else %}
-      <div class="product-img-placeholder">
-        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-      </div>
-    {% endif %}
-  </div>
+<div class="un-product-page">
+  <div class="un-product-hero">
 
-  <div class="product-info">
-    <div class="product-tag">{{ product.type }}</div>
-    <h1 class="product-title">{{ product.title }}</h1>
-
-    <div class="product-price-wrap">
-      <span class="product-price">{{ product.price | money }}</span>
-      {% if product.compare_at_price > product.price %}
-        <span style="font-size:18px;color:var(--cream-40);text-decoration:line-through;">{{ product.compare_at_price | money }}</span>
+    <!-- FOTKA -->
+    <div class="un-product-img-wrap">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | img_url: '1200x1200', crop: 'center' }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          loading="eager"
+        />
+      {% else %}
+        <div class="un-product-img-placeholder">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
       {% endif %}
     </div>
 
-    <div class="product-desc">{{ product.description }}</div>
+    <!-- INFO -->
+    <div class="un-product-info">
+      <div class="un-product-type">{{ product.type | default: 'Venkovní hra' }}</div>
+      <h1 class="un-product-title">{{ product.title }}</h1>
 
-    {% form 'product', product, class: 'product-form' %}
-      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
-
-      <div class="product-qty-wrap">
-        <label for="quantity">Počet voucherů:</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" max="99" />
+      <div class="un-product-meta">
+        <div class="un-product-meta-item">
+          <span class="un-product-meta-label">Hráči</span>
+          <span class="un-product-meta-value">2–8 osob</span>
+        </div>
+        <div class="un-product-meta-item">
+          <span class="un-product-meta-label">Délka</span>
+          <span class="un-product-meta-value">60–120 min</span>
+        </div>
+        <div class="un-product-meta-item">
+          <span class="un-product-meta-label">Platnost</span>
+          <span class="un-product-meta-value">12 měsíců</span>
+        </div>
+        <div class="un-product-meta-item">
+          <span class="un-product-meta-label">Doručení</span>
+          <span class="un-product-meta-value">E-mailem</span>
+        </div>
       </div>
 
-      {% if product.available %}
-        <button type="submit" class="product-submit">Přidat do košíku</button>
-      {% else %}
-        <button type="submit" class="product-submit" disabled style="opacity:0.4;cursor:not-allowed;">Vyprodáno</button>
-      {% endif %}
+      <div class="un-product-desc">{{ product.description }}</div>
 
-      <p class="product-note">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-        Voucher dostaneš e-mailem ihned po platbě · Platnost 12 měsíců
-      </p>
-    {% endform %}
+      {% form 'product', product, class: 'un-product-buy' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+
+        <div class="un-product-price-row">
+          <span class="un-product-price">{{ product.price | money }}</span>
+          {% if product.compare_at_price > product.price %}
+            <span class="un-product-price-old">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+
+        <div class="un-product-qty">
+          <label for="qty">Počet voucherů</label>
+          <input type="number" id="qty" name="quantity" value="1" min="1" max="20" />
+        </div>
+
+        {% if product.available %}
+          <button type="submit" class="un-product-submit">Přidat do košíku</button>
+        {% else %}
+          <button class="un-product-submit" disabled>Vyprodáno</button>
+        {% endif %}
+
+        <p class="un-product-note">
+          <span class="un-product-note-dot"></span>
+          Voucher (PDF + QR kód) přijde e-mailem ihned po zaplacení
+        </p>
+        <p class="un-product-note">
+          <span class="un-product-note-dot"></span>
+          Platnost 12 měsíců od zakoupení, termín si vybereš sám
+        </p>
+      {% endform %}
+    </div>
+
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Stránka produktu",
-  "settings": []
-}
-{% endschema %}
