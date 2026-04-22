@@ -2,21 +2,26 @@
 .un-kontakt-page {
   padding-top: 80px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
 }
-.un-kontakt-wrap {
+
+.un-kontakt-inner {
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
+  gap: 64px;
+  align-items: start;
 }
 
 /* LEVÁ STRANA */
 .un-kontakt-left {
-  padding: 80px 64px;
-  background: transparent;
-  border-right: 1px solid var(--cream-08);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding-top: 16px;
 }
 .un-kontakt-title {
   font-family: 'Playfair Display', serif;
@@ -24,29 +29,28 @@
   font-weight: 900;
   color: var(--cream);
   line-height: 1.0;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 .un-kontakt-title em { color: var(--gold); font-style: italic; }
 .un-kontakt-sub {
   font-size: 16px;
-  color: var(--cream-40);
+  color: var(--cream-60);
   font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 56px;
-  max-width: 400px;
+  line-height: 1.75;
+  margin-bottom: 48px;
 }
 .un-kontakt-items {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
 .un-kontakt-item {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 .un-kontakt-icon {
-  width: 48px; height: 48px;
+  width: 44px; height: 44px;
   background: rgba(212,168,71,0.1);
   border: 1px solid var(--gold-30);
   border-radius: 2px;
@@ -54,18 +58,18 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 .un-kontakt-item-label {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--cream-40);
+  color: var(--gold);
   margin-bottom: 4px;
   display: block;
 }
 .un-kontakt-item-value {
-  font-size: 17px;
+  font-size: 16px;
   color: var(--cream);
   font-weight: 400;
   text-decoration: none;
@@ -74,86 +78,89 @@
 .un-kontakt-item-value:hover { color: var(--gold); }
 
 /* PRAVÁ STRANA - formulář */
-.un-kontakt-right {
-  padding: 80px 64px;
-  background: rgba(10,15,8,0.85);
-  backdrop-filter: blur(12px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
+.un-kontakt-form-wrap {
+  background: rgba(10,15,8,0.82);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--cream-08);
+  border-radius: 4px;
+  padding: 48px 40px;
 }
 .un-kontakt-form-title {
   font-family: 'Playfair Display', serif;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--cream);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   line-height: 1.2;
 }
 .un-kontakt-form-title em { color: var(--gold); font-style: italic; }
 .un-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
+}
+.un-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 .un-form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 .un-form-group label {
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--cream-40);
-  font-weight: 500;
 }
 .un-form-group input,
-.un-form-group textarea,
-.un-form-group select {
-  background: rgba(240,235,224,0.05);
-  border: 1px solid var(--cream-20);
+.un-form-group textarea {
+  background: rgba(240,235,224,0.04);
+  border: 1px solid rgba(240,235,224,0.12);
   border-radius: 2px;
-  padding: 14px 18px;
+  padding: 12px 16px;
   color: var(--cream);
-  font-size: 15px;
+  font-size: 14px;
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   outline: none;
   width: 100%;
 }
 .un-form-group input::placeholder,
-.un-form-group textarea::placeholder { color: var(--cream-40); }
+.un-form-group textarea::placeholder { color: rgba(240,235,224,0.25); }
 .un-form-group input:focus,
-.un-form-group textarea:focus { border-color: var(--gold); background: rgba(212,168,71,0.04); }
-.un-form-group textarea { resize: vertical; min-height: 130px; }
+.un-form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(212,168,71,0.04);
+}
+.un-form-group textarea { resize: vertical; min-height: 110px; }
 .un-form-success {
   color: var(--gold);
-  font-size: 15px;
-  padding: 16px;
+  font-size: 14px;
+  padding: 14px 16px;
   border: 1px solid var(--gold-30);
   border-radius: 2px;
-  background: rgba(212,168,71,0.08);
+  background: rgba(212,168,71,0.06);
 }
 
 @media (max-width: 900px) {
-  .un-kontakt-wrap { grid-template-columns: 1fr; }
-  .un-kontakt-left { padding: 64px 24px; }
-  .un-kontakt-right { padding: 48px 24px; }
+  .un-kontakt-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
   .un-kontakt-title { font-size: 40px; }
+  .un-form-row { grid-template-columns: 1fr; }
+  .un-kontakt-form-wrap { padding: 32px 24px; }
 }
 </style>
 
 <div class="un-kontakt-page">
-  <div class="un-kontakt-wrap">
+  <div class="un-kontakt-inner">
 
     <div class="un-kontakt-left">
       <span class="section-label">Kontakt</span>
       <h1 class="un-kontakt-title">Spojte se<br><em>s námi</em></h1>
-      <p class="un-kontakt-sub">Máte otázku, zájem o průvodce na míru nebo jen chcete vědět víc? Ozveme se co nejdříve.</p>
-
+      <p class="un-kontakt-sub">Máte otázku nebo zájem o průvodce na míru? Ozveme se co nejdříve.</p>
       <div class="un-kontakt-items">
         <div class="un-kontakt-item">
           <div class="un-kontakt-icon">📱</div>
@@ -172,32 +179,32 @@
       </div>
     </div>
 
-    <div class="un-kontakt-right">
+    <div class="un-kontakt-form-wrap">
       <h2 class="un-kontakt-form-title">Kontaktujte <em>nás!</em></h2>
-
       {% form 'contact', class: 'un-form' %}
         {{ form.errors | default_errors }}
         {% if form.posted_successfully? %}
           <p class="un-form-success">✓ Zpráva odeslána! Ozveme se co nejdříve.</p>
         {% endif %}
-
-        <div class="un-form-group">
-          <label for="contact-name">Jméno</label>
-          <input type="text" id="contact-name" name="contact[name]" placeholder="Vaše jméno" required />
+        <div class="un-form-row">
+          <div class="un-form-group">
+            <label>Jméno</label>
+            <input type="text" name="contact[name]" placeholder="Vaše jméno" required />
+          </div>
+          <div class="un-form-group">
+            <label>Telefon</label>
+            <input type="tel" name="contact[phone]" placeholder="+420 000 000 000" />
+          </div>
         </div>
         <div class="un-form-group">
-          <label for="contact-email">E-mail</label>
-          <input type="email" id="contact-email" name="contact[email]" placeholder="vas@email.cz" required />
+          <label>E-mail</label>
+          <input type="email" name="contact[email]" placeholder="vas@email.cz" required />
         </div>
         <div class="un-form-group">
-          <label for="contact-phone">Telefon</label>
-          <input type="tel" id="contact-phone" name="contact[phone]" placeholder="+420 000 000 000" />
+          <label>Zpráva</label>
+          <textarea name="contact[body]" placeholder="Napište nám co potřebujete..." required></textarea>
         </div>
-        <div class="un-form-group">
-          <label for="contact-message">Zpráva</label>
-          <textarea id="contact-message" name="contact[body]" placeholder="Napište nám co potřebujete..." required></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%;text-align:center;padding:16px;">Odeslat zprávu →</button>
+        <button type="submit" class="btn-primary" style="width:100%;text-align:center;padding:15px;">Odeslat zprávu →</button>
       {% endform %}
     </div>
 
