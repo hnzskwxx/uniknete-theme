@@ -1,24 +1,24 @@
 /* =============================================
-   UNIKNĚTE! – base.css
+   UNIKNĚTE! – base.css – Outdoor Adventure
    ============================================= */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --gold: #C8B97A;
-  --gold-light: #E0D09A;
-  --dark: #0E1A12;
-  --dark-2: #162019;
-  --dark-3: #0A1209;
-  --cream: #F2EDE3;
-  --cream-60: rgba(242,237,227,0.6);
-  --cream-40: rgba(242,237,227,0.4);
-  --cream-20: rgba(242,237,227,0.2);
-  --cream-08: rgba(242,237,227,0.08);
-  --gold-30: rgba(200,185,122,0.3);
-  --gold-20: rgba(200,185,122,0.2);
-  --gold-10: rgba(200,185,122,0.1);
-  --radius: 8px;
+  --gold: #D4A847;
+  --gold-light: #E8C170;
+  --gold-dark: #A8832E;
+  --dark: #0A0F08;
+  --dark-2: rgba(10,15,8,0.75);
+  --dark-3: rgba(10,15,8,0.92);
+  --cream: #F0EBE0;
+  --cream-60: rgba(240,235,224,0.6);
+  --cream-40: rgba(240,235,224,0.4);
+  --cream-20: rgba(240,235,224,0.15);
+  --cream-08: rgba(240,235,224,0.08);
+  --gold-30: rgba(212,168,71,0.3);
+  --gold-10: rgba(212,168,71,0.1);
+  --green: #2D4A1E;
 }
 
 html { scroll-behavior: smooth; }
@@ -37,61 +37,64 @@ a { color: inherit; }
 /* ---- BUTTONS ---- */
 .btn-primary {
   background: var(--gold);
-  color: var(--dark);
-  padding: 14px 30px;
-  border-radius: 4px;
-  font-size: 14px;
+  color: #0A0F08;
+  padding: 14px 32px;
+  border-radius: 3px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   border: none;
   text-decoration: none;
   display: inline-block;
-  letter-spacing: 0.5px;
-  transition: background 0.2s;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
   font-family: 'DM Sans', sans-serif;
 }
-.btn-primary:hover { background: var(--gold-light); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
 
 .btn-ghost {
   background: transparent;
   color: var(--cream);
-  padding: 14px 30px;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 3px;
+  font-size: 13px;
   font-weight: 400;
   cursor: pointer;
-  border: 1px solid var(--cream-20);
+  border: 1px solid var(--cream-40);
   text-decoration: none;
   display: inline-block;
-  letter-spacing: 0.5px;
-  transition: border-color 0.2s;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.2s;
   font-family: 'DM Sans', sans-serif;
 }
-.btn-ghost:hover { border-color: var(--cream-60); }
+.btn-ghost:hover { border-color: var(--cream); background: var(--cream-08); }
 
-/* ---- SECTION LABELS ---- */
+/* ---- LABELS ---- */
 .section-label {
   font-size: 10px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   display: block;
+  font-weight: 500;
 }
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: 40px;
+  font-size: 44px;
   font-weight: 700;
   color: var(--cream);
-  margin-bottom: 10px;
-  line-height: 1.15;
+  margin-bottom: 16px;
+  line-height: 1.1;
 }
 .section-sub {
-  font-size: 15px;
-  color: var(--cream-40);
+  font-size: 16px;
+  color: var(--cream-60);
   font-weight: 300;
-  max-width: 500px;
-  line-height: 1.7;
+  max-width: 520px;
+  line-height: 1.75;
 }
 
 /* ---- BADGE ---- */
@@ -99,78 +102,14 @@ a { color: inherit; }
   background: var(--gold-10);
   color: var(--gold);
   padding: 4px 12px;
-  border-radius: 3px;
-  font-size: 11px;
+  border-radius: 2px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   border: 1px solid var(--gold-30);
 }
 
-/* ---- CONTAINER ---- */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-
 @media (max-width: 768px) {
-  .container { padding: 0 24px; }
-  .section-title { font-size: 28px; }
-}
-
-/* =============================================
-   VIDEO BACKGROUND – průhledné sekce
-   ============================================= */
-
-/* Všechny sekce průhledné aby video prosvítalo */
-.un-stats,
-.un-products-section,
-.un-how-bg,
-.un-how-wrap,
-.un-reviews-section,
-.un-reviews,
-.un-cta-strip,
-.un-footer {
-  background: transparent !important;
-}
-
-/* Jemné oddělení sekcí místo plného pozadí */
-.un-stats {
-  background: rgba(0,0,0,0.35) !important;
-  backdrop-filter: blur(2px);
-}
-.un-how-bg,
-.un-how-wrap {
-  background: rgba(0,0,0,0.3) !important;
-  backdrop-filter: blur(2px);
-}
-.un-reviews-section,
-.un-reviews {
-  background: rgba(0,0,0,0.25) !important;
-}
-.un-footer {
-  background: rgba(0,0,0,0.5) !important;
-  backdrop-filter: blur(4px);
-}
-
-/* Karty s jemným blur efektem */
-.un-product-card,
-.un-review-card,
-.un-hero-card,
-.un-partner-card,
-.un-feature,
-.un-how-step {
-  background: rgba(14,26,18,0.7) !important;
-  backdrop-filter: blur(8px);
-}
-
-/* Hero větší */
-.un-hero {
-  min-height: 100vh !important;
-}
-
-/* Nav průhledný */
-.un-nav {
-  background: rgba(14,26,18,0.6) !important;
-  backdrop-filter: blur(12px);
+  .section-title { font-size: 30px; }
 }
