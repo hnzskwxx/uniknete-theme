@@ -1,117 +1,123 @@
 <style>
 .un-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 580px;
-}
-.un-hero-left {
-  padding: 80px 56px 80px 48px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 0 64px 80px;
+  position: relative;
+}
+.un-hero-content {
+  max-width: 720px;
+  position: relative;
+  z-index: 2;
 }
 .un-eyebrow {
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.un-eyebrow::before {
+  content: '';
   display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
 }
 .un-hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: 60px;
+  font-size: 88px;
   font-weight: 900;
-  line-height: 1.0;
+  line-height: 0.95;
   color: var(--cream);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
 }
-.un-hero-title em { color: var(--gold); font-style: italic; }
+.un-hero-title em {
+  color: var(--gold);
+  font-style: italic;
+  display: block;
+}
 .un-hero-desc {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 300;
   color: var(--cream-60);
   line-height: 1.75;
-  max-width: 400px;
-  margin-bottom: 44px;
+  max-width: 480px;
+  margin-bottom: 48px;
 }
-.un-hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.un-hero-right {
-  position: relative;
-  background: var(--dark-2);
+.un-hero-btns {
   display: flex;
+  gap: 16px;
   align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  flex-wrap: wrap;
 }
-.un-hero-grid-bg {
+.un-hero-scroll {
   position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, var(--gold-30) 0px, var(--gold-30) 1px, transparent 1px, transparent 60px),
-    repeating-linear-gradient(90deg, var(--gold-30) 0px, var(--gold-30) 1px, transparent 1px, transparent 60px);
-  opacity: 0.08;
-}
-.un-hero-card {
-  position: relative;
-  z-index: 2;
-  background: rgba(14,26,18,0.88);
-  border: 1px solid var(--gold-30);
-  border-radius: 10px;
-  padding: 36px;
-  width: 300px;
-}
-.un-card-tag {
+  bottom: 40px;
+  right: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--cream-40);
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-  display: block;
 }
-.un-card-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  color: var(--cream);
-  margin-bottom: 10px;
-  font-weight: 700;
-  line-height: 1.2;
+.un-scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
 }
-.un-card-loc {
-  font-size: 13px;
-  color: var(--cream-40);
-  margin-bottom: 22px;
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.1); }
+}
+.un-hero-stats {
+  position: absolute;
+  bottom: 80px;
+  right: 64px;
   display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.un-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; display: inline-block; }
-.un-card-meta {
-  display: flex;
+  flex-direction: column;
   gap: 20px;
-  font-size: 12px;
-  color: var(--cream-40);
-  border-top: 1px solid var(--cream-08);
-  padding-top: 18px;
+  text-align: right;
 }
-.un-meta-item strong { display: block; color: var(--cream); font-size: 15px; font-weight: 500; margin-bottom: 2px; }
-
+.un-hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+.un-hero-stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cream-40);
+}
 @media (max-width: 900px) {
-  .un-hero { grid-template-columns: 1fr; }
-  .un-hero-left { padding: 52px 24px; }
-  .un-hero-title { font-size: 40px; }
-  .un-hero-right { min-height: 300px; }
+  .un-hero { padding: 0 24px 64px; }
+  .un-hero-title { font-size: 52px; }
+  .un-hero-stats { display: none; }
+  .un-hero-scroll { right: 24px; }
 }
 </style>
 
 <section class="un-hero">
-  <div class="un-hero-left">
-    <span class="un-eyebrow">{{ section.settings.eyebrow }}</span>
+  <div class="un-hero-content">
+    <div class="un-eyebrow">{{ section.settings.eyebrow }}</div>
     <h1 class="un-hero-title">
-      {{ section.settings.title_line1 }}<br>
-      z <em>{{ section.settings.title_em }}</em>
+      {{ section.settings.title_line1 }}
+      <em>{{ section.settings.title_em }}</em>
     </h1>
     <p class="un-hero-desc">{{ section.settings.description }}</p>
     <div class="un-hero-btns">
@@ -120,18 +126,20 @@
     </div>
   </div>
 
-  <div class="un-hero-right">
-    <div class="un-hero-grid-bg"></div>
-    <div class="un-hero-card">
-      <span class="un-card-tag">{{ section.settings.card_tag }}</span>
-      <div class="un-card-title">{{ section.settings.card_title }}</div>
-      <div class="un-card-loc"><span class="un-dot"></span> {{ section.settings.card_location }}</div>
-      <div class="un-card-meta">
-        <div class="un-meta-item"><strong>{{ section.settings.card_players }}</strong>hráčů</div>
-        <div class="un-meta-item"><strong>{{ section.settings.card_duration }}</strong>délka</div>
-        <div class="un-meta-item"><strong>{{ section.settings.card_rating }}</strong>hodnocení</div>
-      </div>
+  <div class="un-hero-stats">
+    <div>
+      <span class="un-hero-stat-num">{{ section.settings.stat1_num }}</span>
+      <span class="un-hero-stat-label">{{ section.settings.stat1_label }}</span>
     </div>
+    <div>
+      <span class="un-hero-stat-num">{{ section.settings.stat2_num }}</span>
+      <span class="un-hero-stat-label">{{ section.settings.stat2_label }}</span>
+    </div>
+  </div>
+
+  <div class="un-hero-scroll">
+    <div class="un-scroll-line"></div>
+    Scroll
   </div>
 </section>
 
@@ -139,20 +147,18 @@
 {
   "name": "Hero",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Venkovní dobrodružství · Děčín" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Venkovní dobrodružství · Děčín" },
     { "type": "text", "id": "title_line1", "label": "Nadpis řádek 1", "default": "Unikni" },
-    { "type": "text", "id": "title_em", "label": "Nadpis zvýrazněné slovo", "default": "obyčejného" },
-    { "type": "textarea", "id": "description", "label": "Popis", "default": "Venkovní únikovky a bojovky, které prověří tvůj tým." },
-    { "type": "text", "id": "btn1_text", "label": "Tlačítko 1 text", "default": "Prozkoumat hry" },
+    { "type": "text", "id": "title_em", "label": "Nadpis kurzíva", "default": "z obyčejného" },
+    { "type": "textarea", "id": "description", "label": "Popis", "default": "Venkovní únikovky a bojovky, které prověří tvůj tým. Bez zámků, bez místnosti — celé město je tvoje herna." },
+    { "type": "text", "id": "btn1_text", "label": "Tlačítko 1", "default": "Prozkoumat hry" },
     { "type": "url", "id": "btn1_url", "label": "Tlačítko 1 odkaz" },
-    { "type": "text", "id": "btn2_text", "label": "Tlačítko 2 text", "default": "Jak to funguje" },
+    { "type": "text", "id": "btn2_text", "label": "Tlačítko 2", "default": "Jak to funguje" },
     { "type": "url", "id": "btn2_url", "label": "Tlačítko 2 odkaz" },
-    { "type": "text", "id": "card_tag", "label": "Karta – tag", "default": "Nová hra · 2025" },
-    { "type": "text", "id": "card_title", "label": "Karta – název", "default": "Případ ztracené mapy" },
-    { "type": "text", "id": "card_location", "label": "Karta – lokalita", "default": "Děčín, centrum" },
-    { "type": "text", "id": "card_players", "label": "Karta – hráči", "default": "2–8" },
-    { "type": "text", "id": "card_duration", "label": "Karta – délka", "default": "90 min" },
-    { "type": "text", "id": "card_rating", "label": "Karta – hodnocení", "default": "★ 4.9" }
+    { "type": "text", "id": "stat1_num", "label": "Stat 1 číslo", "default": "3 000+" },
+    { "type": "text", "id": "stat1_label", "label": "Stat 1 popisek", "default": "Spokojených hráčů" },
+    { "type": "text", "id": "stat2_num", "label": "Stat 2 číslo", "default": "★ 4.9" },
+    { "type": "text", "id": "stat2_label", "label": "Stat 2 popisek", "default": "Průměrné hodnocení" }
   ],
   "presets": [{ "name": "Hero" }]
 }

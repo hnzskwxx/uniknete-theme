@@ -1,44 +1,58 @@
 <style>
-.un-reviews-section {
-  padding: 88px 48px;
-  background: var(--dark-2);
-  border-top: 1px solid var(--cream-08);
+.un-reviews {
+  padding: 100px 64px;
+  background: rgba(10,15,8,0.6);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(240,235,224,0.06);
 }
-.un-reviews-header { margin-bottom: 48px; }
+.un-reviews-header { margin-bottom: 56px; }
 .un-reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .un-review-card {
-  background: var(--dark);
+  background: rgba(10,15,8,0.7);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--cream-08);
-  border-radius: 8px;
-  padding: 28px;
+  border-radius: 2px;
+  padding: 32px;
+  transition: border-color 0.3s;
 }
-.un-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+.un-review-card:hover { border-color: var(--gold-30); }
+.un-stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 18px; }
 .un-review-text {
-  font-size: 14px;
-  color: var(--cream-60);
-  line-height: 1.7;
+  font-size: 15px;
+  color: rgba(240,235,224,0.7);
+  line-height: 1.75;
   font-weight: 300;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   font-style: italic;
 }
 .un-review-author {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--cream-40);
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.un-review-author::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
 }
 @media (max-width: 900px) {
-  .un-reviews-section { padding: 56px 24px; }
+  .un-reviews { padding: 64px 24px; }
   .un-reviews-grid { grid-template-columns: 1fr; }
 }
 </style>
 
-<section class="un-reviews-section" id="recenze">
+<section class="un-reviews" id="recenze">
   <div class="un-reviews-header">
     <span class="section-label">{{ section.settings.label }}</span>
     <h2 class="section-title">{{ section.settings.title }}</h2>
@@ -63,10 +77,9 @@
   ],
   "blocks": [
     {
-      "type": "review",
-      "name": "Recenze",
+      "type": "review", "name": "Recenze",
       "settings": [
-        { "type": "textarea", "id": "text", "label": "Text recenze" },
+        { "type": "textarea", "id": "text", "label": "Text" },
         { "type": "text", "id": "author", "label": "Autor" }
       ]
     }
@@ -74,9 +87,9 @@
   "presets": [{
     "name": "Recenze",
     "blocks": [
-      { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop.", "author": "Markéta H. · Děčín" } },
-      { "type": "review", "settings": { "text": "Perfektní teambuilding! Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem.", "author": "Tomáš B. · Praha" } },
-      { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Bavily se i děti.", "author": "Jana K. · Liberec" } }
+      { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop po celém centru.", "author": "Markéta H. · Děčín" } },
+      { "type": "review", "settings": { "text": "Perfektní teambuilding! Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem. Příští rok zase.", "author": "Tomáš B. · Praha" } },
+      { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Šifry byly přiměřeně těžké, bavily se i děti.", "author": "Jana K. · Liberec" } }
     ]
   }]
 }

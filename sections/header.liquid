@@ -3,20 +3,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 48px;
-  border-bottom: 1px solid var(--cream-08);
-  position: sticky;
-  top: 0;
+  padding: 20px 48px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  background: rgba(14,26,18,0.96);
-  backdrop-filter: blur(8px);
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+.un-nav.scrolled {
+  background: rgba(10,15,8,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(240,235,224,0.06);
 }
 .un-logo {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 900;
   color: var(--gold);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -27,12 +30,27 @@
   align-items: center;
 }
 .nav-links a {
-  color: var(--cream-60);
+  color: rgba(240,235,224,0.75);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   transition: color 0.2s;
+  position: relative;
 }
-.nav-links a:hover { color: var(--gold); }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  transform-origin: left;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover::after { transform: scaleX(1); }
 .nav-toggle {
   display: none;
   background: none;
@@ -45,74 +63,59 @@
 .nav-toggle span {
   display: block;
   width: 22px;
-  height: 2px;
+  height: 1.5px;
   background: var(--cream);
-  border-radius: 2px;
+  transition: all 0.3s;
 }
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .un-nav { padding: 16px 24px; }
   .nav-toggle { display: flex; }
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0; right: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
     flex-direction: column;
-    background: var(--dark-2);
-    padding: 20px 24px;
-    gap: 16px;
-    border-bottom: 1px solid var(--cream-08);
+    justify-content: center;
+    background: rgba(10,15,8,0.97);
+    gap: 32px;
+    font-size: 18px;
   }
   .nav-links.open { display: flex; }
+  .nav-links a { font-size: 14px; }
 }
 </style>
 
-<nav class="un-nav">
+<nav class="un-nav" id="un-nav">
   <a href="/" class="un-logo">{{ section.settings.logo_text }}</a>
-
-  <button class="nav-toggle" aria-label="Menu">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-
-  <ul class="nav-links">
+  <ul class="nav-links" id="nav-links">
     {% for link in linklists[section.settings.menu].links %}
       <li><a href="{{ link.url }}">{{ link.title }}</a></li>
     {% endfor %}
-    <li>
-      <a href="{{ section.settings.cta_url }}" class="btn-primary">
-        {{ section.settings.cta_text }}
-      </a>
-    </li>
+    <li><a href="{{ section.settings.cta_url }}" class="btn-primary">{{ section.settings.cta_text }}</a></li>
   </ul>
 </nav>
+
+<script>
+  const nav = document.getElementById('un-nav');
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
-    {
-      "type": "text",
-      "id": "logo_text",
-      "label": "Logo text",
-      "default": "Unikněte!"
-    },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "Navigační menu",
-      "default": "main-menu"
-    },
-    {
-      "type": "text",
-      "id": "cta_text",
-      "label": "CTA tlačítko text",
-      "default": "Koupit voucher"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "CTA tlačítko odkaz"
-    }
+    { "type": "text", "id": "logo_text", "label": "Logo", "default": "Unikněte!" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Koupit voucher" },
+    { "type": "url", "id": "cta_url", "label": "CTA odkaz" }
   ]
 }
 {% endschema %}
