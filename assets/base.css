@@ -113,3 +113,16 @@ a { color: inherit; }
 @media (max-width: 768px) {
   .section-title { font-size: 30px; }
 }
+
+/* FIX – žádné černé okraje */
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#shopify-section-header,
+#shopify-section-footer,
+.shopify-section {
+  display: block;
+  width: 100%;
+}

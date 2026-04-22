@@ -4,7 +4,6 @@
   min-height: 100vh;
 }
 
-/* HERO */
 .un-pruvodce-hero {
   padding: 100px 64px 80px;
   max-width: 760px;
@@ -32,22 +31,19 @@
   flex-wrap: wrap;
 }
 
-/* SEKCE S KARTAMI */
 .un-pruvodce-cards {
-  padding: 0 4px 4px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  background: rgba(10,15,8,0.5);
+  gap: 1px;
+  background: rgba(240,235,224,0.06);
 }
 .un-pruvodce-card {
   background: rgba(10,15,8,0.75);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--cream-08);
   padding: 48px 40px;
-  transition: border-color 0.3s;
+  transition: background 0.3s;
 }
-.un-pruvodce-card:hover { border-color: var(--gold-30); }
+.un-pruvodce-card:hover { background: rgba(10,15,8,0.9); }
 .un-pruvodce-card-num {
   font-family: 'Playfair Display', serif;
   font-size: 52px;
@@ -72,7 +68,6 @@
   font-weight: 300;
 }
 
-/* CTA SPODEK */
 .un-pruvodce-bottom {
   padding: 80px 64px;
   background: rgba(10,15,8,0.8);
@@ -111,7 +106,7 @@
 
   <div class="un-pruvodce-hero">
     <span class="section-label">Průvodce na míru</span>
-    <h1 class="un-pruvodce-title">{{ page.title }}</h1>
+    <h1 class="un-pruvodce-title">Průvodce<br><em>na míru</em></h1>
     <p class="un-pruvodce-intro">
       Chcete se o Děčíně dozvědět více? Máte tu rodinné kořeny a rádi byste se o svém původu dozvěděli více? Naše služba je v tomto zcela unikátní — ušijeme vám prohlídku města i okolí na míru!
     </p>
@@ -125,23 +120,17 @@
     <div class="un-pruvodce-card">
       <span class="un-pruvodce-card-num">01</span>
       <div class="un-pruvodce-card-title">To nejkrásnější z Českého Švýcarska</div>
-      <p class="un-pruvodce-card-text">
-        Chcete se projít po stezkách národního parku a přitom nejen obdivovat zdejší unikátní přírodu, ale dozvědět se také něco z historie a místních příběhů?
-      </p>
+      <p class="un-pruvodce-card-text">Chcete se projít po stezkách národního parku a přitom nejen obdivovat zdejší unikátní přírodu, ale dozvědět se také něco z historie a místních příběhů?</p>
     </div>
     <div class="un-pruvodce-card">
       <span class="un-pruvodce-card-num">02</span>
       <div class="un-pruvodce-card-title">Hledání kořenů</div>
-      <p class="un-pruvodce-card-text">
-        Chcete se projít po místech, kudy chodili vaši předkové? Pak nás neváhejte kontaktovat — zjistíme maximum informací a provedeme vás po místech, která vaši předkové dobře znali.
-      </p>
+      <p class="un-pruvodce-card-text">Chcete se projít po místech, kudy chodili vaši předkové? Pak nás neváhejte kontaktovat — zjistíme maximum informací a provedeme vás po místech, která vaši předkové dobře znali.</p>
     </div>
     <div class="un-pruvodce-card">
       <span class="un-pruvodce-card-num">03</span>
       <div class="un-pruvodce-card-title">Děčín a jeho příběhy</div>
-      <p class="un-pruvodce-card-text">
-        Máte zájem prozkoumat i méně známá zákoutí města? Napište nám a připravíme prohlídku přesně podle vašich přání.
-      </p>
+      <p class="un-pruvodce-card-text">Máte zájem prozkoumat i méně známá zákoutí města? Napište nám a připravíme prohlídku přesně podle vašich přání.</p>
     </div>
   </div>
 
