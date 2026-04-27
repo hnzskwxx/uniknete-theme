@@ -3,140 +3,104 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 64px 80px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
   position: relative;
 }
 .un-hero-content {
-  max-width: 720px;
-  position: relative;
-  z-index: 2;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
-.un-eyebrow {
+.un-hero-tag {
   font-size: 11px;
-  font-weight: 500;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 24px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 28px;
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.un-eyebrow::before {
+.un-hero-tag::before,
+.un-hero-tag::after {
   content: '';
   display: block;
-  width: 32px;
+  width: 28px;
   height: 1px;
-  background: var(--gold);
+  background: var(--accent);
 }
 .un-hero-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 88px;
-  font-weight: 900;
-  line-height: 0.95;
-  color: var(--cream);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.0;
   margin-bottom: 28px;
   letter-spacing: -1px;
 }
-.un-hero-title em {
-  color: var(--gold);
-  font-style: italic;
-  display: block;
-}
-.un-hero-desc {
-  font-size: 17px;
+.un-hero-sub {
+  font-size: 18px;
+  color: var(--white-60);
   font-weight: 300;
-  color: var(--cream-60);
-  line-height: 1.75;
-  max-width: 480px;
+  line-height: 1.7;
   margin-bottom: 48px;
+  max-width: 480px;
 }
-.un-hero-btns {
+.un-hero-cta {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  gap: 16px;
+}
+.un-hero-hint {
+  font-size: 12px;
+  color: var(--white-30);
+  letter-spacing: 1px;
 }
 .un-hero-scroll {
   position: absolute;
   bottom: 40px;
-  right: 64px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: var(--cream-40);
+  color: var(--white-30);
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 .un-scroll-line {
   width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: pulse 2s ease-in-out infinite;
 }
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; transform: scaleY(1); }
-  50% { opacity: 1; transform: scaleY(1.1); }
-}
-.un-hero-stats {
-  position: absolute;
-  bottom: 80px;
-  right: 64px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  text-align: right;
-}
-.un-hero-stat-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--gold);
-  display: block;
-  line-height: 1;
-}
-.un-hero-stat-label {
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--cream-40);
-}
-@media (max-width: 900px) {
-  .un-hero { padding: 0 24px 64px; }
-  .un-hero-title { font-size: 52px; }
-  .un-hero-stats { display: none; }
-  .un-hero-scroll { right: 24px; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
 }
 </style>
 
 <section class="un-hero">
   <div class="un-hero-content">
-    <div class="un-eyebrow">{{ section.settings.eyebrow }}</div>
-    <h1 class="un-hero-title">
-      {{ section.settings.title_line1 }}
-      <em>{{ section.settings.title_em }}</em>
-    </h1>
-    <p class="un-hero-desc">{{ section.settings.description }}</p>
-    <div class="un-hero-btns">
-      <a href="{{ section.settings.btn1_url }}" class="btn-primary">{{ section.settings.btn1_text }}</a>
-      <a href="{{ section.settings.btn2_url }}" class="btn-ghost">{{ section.settings.btn2_text }}</a>
+    <div class="un-hero-tag">{{ section.settings.tag }}</div>
+    <h1 class="un-hero-title">{{ section.settings.title }}</h1>
+    <p class="un-hero-sub">{{ section.settings.subtitle }}</p>
+    <div class="un-hero-cta">
+      <a href="{{ section.settings.cta_url }}" class="btn-primary" style="font-size:14px;padding:18px 48px;">
+        {{ section.settings.cta_text }}
+      </a>
+      <span class="un-hero-hint">{{ section.settings.hint }}</span>
     </div>
   </div>
-
-  <div class="un-hero-stats">
-    <div>
-      <span class="un-hero-stat-num">{{ section.settings.stat1_num }}</span>
-      <span class="un-hero-stat-label">{{ section.settings.stat1_label }}</span>
-    </div>
-    <div>
-      <span class="un-hero-stat-num">{{ section.settings.stat2_num }}</span>
-      <span class="un-hero-stat-label">{{ section.settings.stat2_label }}</span>
-    </div>
-  </div>
-
   <div class="un-hero-scroll">
     <div class="un-scroll-line"></div>
     Scroll
@@ -147,18 +111,12 @@
 {
   "name": "Hero",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Venkovní dobrodružství · Děčín" },
-    { "type": "text", "id": "title_line1", "label": "Nadpis řádek 1", "default": "Unikni" },
-    { "type": "text", "id": "title_em", "label": "Nadpis kurzíva", "default": "z obyčejného" },
-    { "type": "textarea", "id": "description", "label": "Popis", "default": "Venkovní únikovky a bojovky, které prověří tvůj tým. Bez zámků, bez místnosti — celé město je tvoje herna." },
-    { "type": "text", "id": "btn1_text", "label": "Tlačítko 1", "default": "Prozkoumat hry" },
-    { "type": "url", "id": "btn1_url", "label": "Tlačítko 1 odkaz" },
-    { "type": "text", "id": "btn2_text", "label": "Tlačítko 2", "default": "Jak to funguje" },
-    { "type": "url", "id": "btn2_url", "label": "Tlačítko 2 odkaz" },
-    { "type": "text", "id": "stat1_num", "label": "Stat 1 číslo", "default": "3 000+" },
-    { "type": "text", "id": "stat1_label", "label": "Stat 1 popisek", "default": "Spokojených hráčů" },
-    { "type": "text", "id": "stat2_num", "label": "Stat 2 číslo", "default": "★ 4.9" },
-    { "type": "text", "id": "stat2_label", "label": "Stat 2 popisek", "default": "Průměrné hodnocení" }
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Venkovní únikovky" },
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Zažij příběh, ve kterém jsi hlavní postava." },
+    { "type": "textarea", "id": "subtitle", "label": "Podnadpis", "default": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času." },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
+    { "type": "url", "id": "cta_url", "label": "CTA odkaz" },
+    { "type": "text", "id": "hint", "label": "Hint pod CTA", "default": "Voucher dorazí e-mailem ihned po platbě" }
   ],
   "presets": [{ "name": "Hero" }]
 }

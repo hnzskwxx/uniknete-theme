@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 48px;
+  padding: 24px 48px;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
@@ -11,47 +11,36 @@
   transition: background 0.4s, backdrop-filter 0.4s;
 }
 .un-nav.scrolled {
-  background: rgba(10,15,8,0.97);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(240,235,224,0.06);
+  background: rgba(8,11,8,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--white-10);
 }
 .un-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--gold);
-  letter-spacing: 3px;
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 2px;
   text-transform: uppercase;
   text-decoration: none;
 }
+.un-logo span { color: var(--accent); }
 .nav-links {
   display: flex;
-  gap: 36px;
+  gap: 40px;
   list-style: none;
   align-items: center;
 }
 .nav-links a {
-  color: rgba(240,235,224,0.75);
+  color: var(--white-60);
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 1.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   transition: color 0.2s;
-  position: relative;
 }
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0; right: 0;
-  height: 1px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transition: transform 0.25s;
-  transform-origin: left;
-}
-.nav-links a:hover { color: var(--cream); }
-.nav-links a:hover::after { transform: scaleX(1); }
+.nav-links a:hover { color: var(--white); }
 .nav-toggle {
   display: none;
   background: none;
@@ -65,11 +54,10 @@
   display: block;
   width: 22px;
   height: 1.5px;
-  background: var(--cream);
-  transition: all 0.3s;
+  background: var(--white);
 }
 @media (max-width: 900px) {
-  .un-nav { padding: 16px 24px; }
+  .un-nav { padding: 20px 24px; }
   .nav-toggle { display: flex; }
   .nav-links {
     display: none;
@@ -77,17 +65,17 @@
     top: 0; left: 0; right: 0; bottom: 0;
     flex-direction: column;
     justify-content: center;
-    background: rgba(10,15,8,0.97);
-    gap: 32px;
-    font-size: 18px;
+    background: rgba(8,11,8,0.98);
+    gap: 28px;
+    z-index: 99;
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 14px; }
+  .nav-links a { font-size: 16px; }
 }
 </style>
 
 <nav class="un-nav" id="un-nav">
-  <a href="/" class="un-logo">{{ section.settings.logo_text }}</a>
+  <a href="/" class="un-logo">Unikněte<span>!</span></a>
   <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -95,7 +83,7 @@
     {% for link in linklists[section.settings.menu].links %}
       <li><a href="{{ link.url }}">{{ link.title }}</a></li>
     {% endfor %}
-    <li><a href="{{ section.settings.cta_url }}" class="btn-primary">{{ section.settings.cta_text }}</a></li>
+    <li><a href="{{ section.settings.cta_url }}" class="btn-primary" style="padding:12px 24px;">{{ section.settings.cta_text }}</a></li>
   </ul>
 </nav>
 
@@ -103,19 +91,18 @@
   const nav = document.getElementById('un-nav');
   const toggle = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
+  if (window.scrollY > 40) nav.classList.add('scrolled');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
   toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 </script>
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo", "default": "Unikněte!" },
     { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
-    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Koupit voucher" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
     { "type": "url", "id": "cta_url", "label": "CTA odkaz" }
   ]
 }

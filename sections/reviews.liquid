@@ -1,39 +1,58 @@
 <style>
 .un-reviews {
-  padding: 100px 64px;
-  background: rgba(10,15,8,0.6);
-  backdrop-filter: blur(4px);
-  border-top: 1px solid rgba(240,235,224,0.06);
+  padding: 100px 48px;
+  background: rgba(8,11,8,0.75);
+  border-top: 1px solid var(--white-10);
 }
-.un-reviews-header { margin-bottom: 56px; }
+.un-reviews-inner { max-width: 1100px; margin: 0 auto; }
+.un-reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.un-reviews-count {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.un-reviews-count-label {
+  font-size: 13px;
+  color: var(--white-60);
+  font-weight: 300;
+}
 .un-reviews-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 2px;
+  background: var(--white-10);
 }
 .un-review-card {
-  background: rgba(10,15,8,0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--cream-08);
-  border-radius: 2px;
+  background: var(--dark);
   padding: 32px;
-  transition: border-color 0.3s;
 }
-.un-review-card:hover { border-color: var(--gold-30); }
-.un-stars { color: var(--gold); font-size: 13px; letter-spacing: 3px; margin-bottom: 18px; }
+.un-stars {
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
 .un-review-text {
   font-size: 15px;
-  color: rgba(240,235,224,0.7);
+  color: var(--white-60);
   line-height: 1.75;
   font-weight: 300;
-  margin-bottom: 24px;
-  font-style: italic;
+  margin-bottom: 20px;
 }
 .un-review-author {
-  font-size: 11px;
+  font-size: 12px;
+  color: var(--white-30);
   font-weight: 500;
-  color: var(--cream-40);
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   text-transform: uppercase;
   display: flex;
   align-items: center;
@@ -42,9 +61,9 @@
 .un-review-author::before {
   content: '';
   display: block;
-  width: 20px;
+  width: 16px;
   height: 1px;
-  background: var(--gold);
+  background: var(--accent);
 }
 @media (max-width: 900px) {
   .un-reviews { padding: 64px 24px; }
@@ -53,18 +72,26 @@
 </style>
 
 <section class="un-reviews" id="recenze">
-  <div class="un-reviews-header">
-    <span class="section-label">{{ section.settings.label }}</span>
-    <h2 class="section-title">{{ section.settings.title }}</h2>
-  </div>
-  <div class="un-reviews-grid">
-    {% for block in section.blocks %}
-      <div class="un-review-card" {{ block.shopify_attributes }}>
-        <div class="un-stars">★★★★★</div>
-        <p class="un-review-text">"{{ block.settings.text }}"</p>
-        <div class="un-review-author">{{ block.settings.author }}</div>
+  <div class="un-reviews-inner">
+    <div class="un-reviews-header">
+      <div>
+        <span class="section-label">{{ section.settings.label }}</span>
+        <h2 class="section-title" style="margin-bottom:0;">{{ section.settings.title }}</h2>
       </div>
-    {% endfor %}
+      <div style="text-align:right;">
+        <div class="un-reviews-count">{{ section.settings.count }}</div>
+        <div class="un-reviews-count-label">spokojených hráčů</div>
+      </div>
+    </div>
+    <div class="un-reviews-grid">
+      {% for block in section.blocks %}
+        <div class="un-review-card" {{ block.shopify_attributes }}>
+          <div class="un-stars">★★★★★</div>
+          <p class="un-review-text">{{ block.settings.text }}</p>
+          <div class="un-review-author">{{ block.settings.author }}</div>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -72,14 +99,15 @@
 {
   "name": "Recenze",
   "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Recenze" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Co říkají hráči" }
+    { "type": "text", "id": "label", "label": "Label", "default": "Sociální důkaz" },
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Co říkají hráči" },
+    { "type": "text", "id": "count", "label": "Počet hráčů", "default": "3 000+" }
   ],
   "blocks": [
     {
       "type": "review", "name": "Recenze",
       "settings": [
-        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "textarea", "id": "text", "label": "Text recenze" },
         { "type": "text", "id": "author", "label": "Autor" }
       ]
     }
@@ -88,8 +116,8 @@
     "name": "Recenze",
     "blocks": [
       { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop po celém centru.", "author": "Markéta H. · Děčín" } },
-      { "type": "review", "settings": { "text": "Perfektní teambuilding! Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem. Příští rok zase.", "author": "Tomáš B. · Praha" } },
-      { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Šifry byly přiměřeně těžké, bavily se i děti.", "author": "Jana K. · Liberec" } }
+      { "type": "review", "settings": { "text": "Perfektní teambuilding. Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem.", "author": "Tomáš B. · Praha" } },
+      { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Bavily se i děti.", "author": "Jana K. · Liberec" } }
     ]
   }]
 }

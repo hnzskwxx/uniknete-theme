@@ -1,76 +1,97 @@
 <style>
 .un-how {
-  padding: 100px 64px;
-  background: rgba(10,15,8,0.85);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(240,235,224,0.06);
+  padding: 100px 48px;
+  background: rgba(8,11,8,0.9);
+  border-top: 1px solid var(--white-10);
 }
 .un-how-inner {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.un-how-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 64px;
 }
 .un-how-steps {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
-  counter-reset: steps;
+  position: relative;
+}
+.un-how-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(16% + 16px);
+  right: calc(16% + 16px);
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent, var(--accent));
+  opacity: 0.3;
 }
 .un-how-step {
-  padding: 32px 0;
-  border-bottom: 1px solid var(--cream-08);
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  gap: 20px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 0 24px;
 }
-.un-how-step:first-child { padding-top: 0; }
-.un-how-step:last-child { border-bottom: none; }
-.un-step-num {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
+.un-how-step-num {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--dark);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.un-how-step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 1px;
-  padding-top: 3px;
+  color: var(--white);
 }
-.un-step-title {
-  font-size: 17px;
-  font-weight: 500;
-  color: var(--cream);
-  margin-bottom: 8px;
-}
-.un-step-desc {
-  font-size: 13px;
-  color: var(--cream-40);
-  line-height: 1.7;
+.un-how-step-desc {
+  font-size: 14px;
+  color: var(--white-60);
+  line-height: 1.65;
   font-weight: 300;
 }
-@media (max-width: 900px) {
+.un-how-cta {
+  margin-top: 64px;
+}
+@media (max-width: 768px) {
   .un-how { padding: 64px 24px; }
-  .un-how-inner { grid-template-columns: 1fr; gap: 48px; }
+  .un-how-steps { grid-template-columns: 1fr; gap: 40px; }
+  .un-how-steps::before { display: none; }
 }
 </style>
 
 <section class="un-how" id="jak">
   <div class="un-how-inner">
-    <div>
-      <span class="section-label">{{ section.settings.label }}</span>
-      <h2 class="section-title">{{ section.settings.title }}</h2>
-      <p class="section-sub" style="margin-top:16px;">{{ section.settings.subtitle }}</p>
-      <a href="/collections/all" class="btn-primary" style="margin-top:40px;">Začít teď</a>
-    </div>
+    <h2 class="un-how-title">{{ section.settings.title }}</h2>
     <div class="un-how-steps">
       {% for block in section.blocks %}
         <div class="un-how-step" {{ block.shopify_attributes }}>
-          <div class="un-step-num">0{{ forloop.index }}</div>
-          <div>
-            <div class="un-step-title">{{ block.settings.title }}</div>
-            <p class="un-step-desc">{{ block.settings.description }}</p>
-          </div>
+          <div class="un-how-step-num">{{ forloop.index }}</div>
+          <div class="un-how-step-title">{{ block.settings.title }}</div>
+          <p class="un-how-step-desc">{{ block.settings.desc }}</p>
         </div>
       {% endfor %}
+    </div>
+    <div class="un-how-cta">
+      <a href="/collections/all" class="btn-primary">Vybrat hru →</a>
     </div>
   </div>
 </section>
@@ -79,25 +100,23 @@
 {
   "name": "Jak to funguje",
   "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Jak to funguje" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Tři kroky k dobrodružství" },
-    { "type": "text", "id": "subtitle", "label": "Podnadpis", "default": "Od objednávky ke hře za pár minut. Žádná registrace, žádné čekání." }
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Jak to funguje" }
   ],
   "blocks": [
     {
       "type": "step", "name": "Krok",
       "settings": [
         { "type": "text", "id": "title", "label": "Název" },
-        { "type": "textarea", "id": "description", "label": "Popis" }
+        { "type": "textarea", "id": "desc", "label": "Popis" }
       ]
     }
   ],
   "presets": [{
     "name": "Jak to funguje",
     "blocks": [
-      { "type": "step", "settings": { "title": "Vyber a zaplať online", "description": "Vyber hru, zaplať kartou nebo přes PayPal. Celý proces trvá méně než 2 minuty." } },
-      { "type": "step", "settings": { "title": "Dostaneš voucher e-mailem", "description": "Okamžitě po platbě ti přijde PDF s QR kódem. Vytiskni nebo ukaž v telefonu." } },
-      { "type": "step", "settings": { "title": "Unikni a vyhraj", "description": "Vyraz ven, řeš šifry, spolupracuj s týmem. Platnost voucheru 12 měsíců." } }
+      { "type": "step", "settings": { "title": "Koupíš hru", "desc": "Vyber hru, zaplať online. Hotovo za 2 minuty." } },
+      { "type": "step", "settings": { "title": "Dostaneš instrukce", "desc": "Na mail přijde PDF s QR kódem a vším co potřebuješ." } },
+      { "type": "step", "settings": { "title": "Hraješ", "desc": "Vyraz ven. Řeš šifry, hledej stopy, dokončete příběh." } }
     ]
   }]
 }

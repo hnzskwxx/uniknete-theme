@@ -1,41 +1,22 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero",
-      "settings": {}
-    },
-    "stats": {
-      "type": "stats-strip",
-      "blocks": {
-        "stat1": { "type": "stat", "settings": { "number": "12+", "label": "Unikátních her" } },
-        "stat2": { "type": "stat", "settings": { "number": "3 000+", "label": "Spokojených hráčů" } },
-        "stat3": { "type": "stat", "settings": { "number": "4.9", "label": "Průměrné hodnocení" } },
-        "stat4": { "type": "stat", "settings": { "number": "Online", "label": "i papírové verze" } }
-      },
-      "block_order": ["stat1","stat2","stat3","stat4"]
-    },
-    "products": {
-      "type": "products-grid",
-      "settings": {}
-    },
-    "how": {
-      "type": "how-it-works",
-      "blocks": {
-        "step1": { "type": "step", "settings": { "title": "Vyber a zaplať online", "description": "Vyber hru, zaplať kartou nebo přes PayPal. Celý proces trvá méně než 2 minuty." } },
-        "step2": { "type": "step", "settings": { "title": "Dostaneš voucher e-mailem", "description": "Okamžitě po platbě ti přijde e-mail s PDF voucherem a QR kódem." } },
-        "step3": { "type": "step", "settings": { "title": "Unikni a vyhraj", "description": "Vyraz ven, řeš šifry, spolupracuj s týmem. Platnost voucheru 12 měsíců." } }
-      },
-      "block_order": ["step1","step2","step3"]
-    },
-    "reviews": {
-      "type": "reviews",
-      "blocks": {
-        "r1": { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop.", "author": "Markéta H. · Děčín" } },
-        "r2": { "type": "review", "settings": { "text": "Perfektní teambuilding! Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem.", "author": "Tomáš B. · Praha" } },
-        "r3": { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Bavily se i děti.", "author": "Jana K. · Liberec" } }
-      },
-      "block_order": ["r1","r2","r3"]
-    }
+    "hero": { "type": "hero", "settings": {} },
+    "features": { "type": "features", "blocks": {
+      "f1": { "type": "feature", "settings": { "icon": "🧠", "title": "Řešení hádanek", "desc": "Šifry, tajné kódy a záhady, které prověří tvůj mozek i instinkty." } },
+      "f2": { "type": "feature", "settings": { "icon": "👥", "title": "Týmová hra", "desc": "Hraješ s přáteli. Každý přináší něco jiného — jen spolu uspějete." } },
+      "f3": { "type": "feature", "settings": { "icon": "🌍", "title": "Reálné prostředí", "desc": "Žádná místnost. Celé město nebo les je tvoje herní plocha." } }
+    }, "block_order": ["f1","f2","f3"] },
+    "catalog": { "type": "products-grid", "settings": {} },
+    "how": { "type": "how-it-works", "blocks": {
+      "s1": { "type": "step", "settings": { "title": "Koupíš hru", "desc": "Vyber hru, zaplať online. Hotovo za 2 minuty." } },
+      "s2": { "type": "step", "settings": { "title": "Dostaneš instrukce", "desc": "Na mail přijde PDF s QR kódem a vším co potřebuješ." } },
+      "s3": { "type": "step", "settings": { "title": "Hraješ", "desc": "Vyraz ven. Řeš šifry, hledej stopy, dokončete příběh." } }
+    }, "block_order": ["s1","s2","s3"] },
+    "reviews": { "type": "reviews", "blocks": {
+      "r1": { "type": "review", "settings": { "text": "Naprosto skvělý zážitek! Strávili jsme s rodinou skoro 2 hodiny hledáním stop.", "author": "Markéta H. · Děčín" } },
+      "r2": { "type": "review", "settings": { "text": "Perfektní teambuilding. Kolektiv se skvěle sehrál, hry jsou vymyšlené s citem.", "author": "Tomáš B. · Praha" } },
+      "r3": { "type": "review", "settings": { "text": "Papírovou verzi jsme hráli na chalupě — geniální nápad. Bavily se i děti.", "author": "Jana K. · Liberec" } }
+    }, "block_order": ["r1","r2","r3"] }
   },
-  "order": ["hero","stats","products","how","reviews"]
+  "order": ["hero","features","catalog","how","reviews"]
 }

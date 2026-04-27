@@ -1,122 +1,61 @@
 <style>
 .un-footer {
-  padding: 56px 64px 40px;
-  background: rgba(10,15,8,0.95);
-  backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(240,235,224,0.06);
-}
-.un-footer-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--cream-08);
-}
-.un-footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--gold);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 16px;
-}
-.un-footer-tagline {
-  font-size: 13px;
-  color: var(--cream-40);
-  font-weight: 300;
-  line-height: 1.6;
-}
-.un-footer-col-title {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-.un-footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  list-style: none;
-}
-.un-footer-links a {
-  font-size: 13px;
-  color: var(--cream-40);
-  text-decoration: none;
-  transition: color 0.2s;
-  font-weight: 300;
-}
-.un-footer-links a:hover { color: var(--cream); }
-.un-footer-bottom {
+  padding: 40px 48px;
+  background: rgba(8,11,8,0.97);
+  border-top: 1px solid var(--white-10);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
 }
-.un-footer-copy { font-size: 12px; color: rgba(240,235,224,0.2); }
-.un-footer-legal { display: flex; gap: 24px; }
-.un-footer-legal a {
+.un-footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.un-footer-logo span { color: var(--accent); }
+.un-footer-links {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.un-footer-links a {
   font-size: 12px;
-  color: rgba(240,235,224,0.2);
+  color: var(--white-30);
   text-decoration: none;
   transition: color 0.2s;
+  letter-spacing: 0.5px;
 }
-.un-footer-legal a:hover { color: var(--cream-40); }
+.un-footer-links a:hover { color: var(--white-60); }
+.un-footer-copy {
+  font-size: 12px;
+  color: var(--white-30);
+}
 @media (max-width: 768px) {
-  .un-footer { padding: 40px 24px 32px; }
-  .un-footer-top { grid-template-columns: 1fr; gap: 32px; }
-  .un-footer-bottom { flex-direction: column; align-items: flex-start; }
+  .un-footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
 }
 </style>
 
 <footer class="un-footer">
-  <div class="un-footer-top">
-    <div>
-      <a href="/" class="un-footer-logo">{{ section.settings.logo_text }}</a>
-      <p class="un-footer-tagline">Venkovní únikovky a bojovky.<br>Celé město je tvoje herna.</p>
-    </div>
-    <div>
-      <div class="un-footer-col-title">Navigace</div>
-      <ul class="un-footer-links">
-        {% for link in linklists[section.settings.footer_menu].links %}
-          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    <div>
-      <div class="un-footer-col-title">Kontakt</div>
-      <ul class="un-footer-links">
-        <li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
-        <li><a href="{{ section.settings.instagram }}" target="_blank">Instagram</a></li>
-        <li><a href="{{ section.settings.facebook }}" target="_blank">Facebook</a></li>
-      </ul>
-    </div>
+  <a href="/" class="un-footer-logo">Unikněte<span>!</span></a>
+  <div class="un-footer-links">
+    <a href="/pages/kontakt">Kontakt</a>
+    <a href="mailto:uniknete@gmail.com">uniknete@gmail.com</a>
+    <a href="tel:+420728984126">+420 728 984 126</a>
+    <a href="{{ shop.url }}/policies/privacy-policy">Ochrana dat</a>
+    <a href="{{ shop.url }}/policies/refund-policy">Reklamace</a>
   </div>
-  <div class="un-footer-bottom">
-    <div class="un-footer-copy">© {{ 'now' | date: '%Y' }} {{ shop.name }} · Děčín</div>
-    <div class="un-footer-legal">
-      <a href="{{ shop.url }}/policies/privacy-policy">Ochrana dat</a>
-      <a href="{{ shop.url }}/policies/refund-policy">Reklamace</a>
-      <a href="{{ shop.url }}/policies/terms-of-service">Podmínky</a>
-    </div>
-  </div>
+  <div class="un-footer-copy">© {{ 'now' | date: '%Y' }} Unikněte!</div>
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
-  "settings": [
-    { "type": "text", "id": "logo_text", "label": "Logo", "default": "Unikněte!" },
-    { "type": "link_list", "id": "footer_menu", "label": "Footer menu", "default": "footer" },
-    { "type": "text", "id": "email", "label": "E-mail", "default": "info@uniknete.com" },
-    { "type": "url", "id": "instagram", "label": "Instagram URL" },
-    { "type": "url", "id": "facebook", "label": "Facebook URL" }
-  ]
+  "settings": []
 }
 {% endschema %}

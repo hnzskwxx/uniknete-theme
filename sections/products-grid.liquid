@@ -1,158 +1,195 @@
 <style>
-.un-products-section {
-  padding: 100px 64px;
-  background: rgba(10,15,8,0.7);
-  backdrop-filter: blur(4px);
-  border-top: 1px solid rgba(240,235,224,0.06);
+.un-catalog {
+  padding: 100px 48px;
+  background: rgba(8,11,8,0.7);
+  border-top: 1px solid var(--white-10);
 }
-.un-products-header {
+.un-catalog-header {
+  max-width: 1200px;
+  margin: 0 auto 56px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 56px;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
 }
-.un-products-grid {
+.un-catalog-grid {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2px;
+  background: var(--white-10);
 }
-.un-product-card {
-  background: rgba(10,15,8,0.6);
-  backdrop-filter: blur(8px);
-  border: none;
-  overflow: hidden;
+.un-game-card {
+  background: var(--dark);
   text-decoration: none;
-  display: block;
   color: inherit;
-  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+.un-game-card:hover { background: var(--dark-2); }
+.un-game-card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.7);
+  transition: filter 0.4s, transform 0.5s;
+}
+.un-game-card:hover .un-game-card-img {
+  filter: brightness(0.95) saturate(1);
+  transform: scale(1.03);
+}
+.un-game-card-img-wrap {
+  overflow: hidden;
   position: relative;
 }
-.un-product-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(212,168,71,0.05);
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 1;
-}
-.un-product-card:hover::before { opacity: 1; }
-.un-product-card:hover { transform: scale(1.01); z-index: 2; }
-.un-product-img {
+.un-game-card-img-placeholder {
   width: 100%;
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.8) brightness(0.8);
-  transition: filter 0.4s;
-}
-.un-product-card:hover .un-product-img { filter: saturate(1) brightness(0.9); }
-.un-product-img-placeholder {
-  width: 100%;
-  aspect-ratio: 4/3;
-  background: rgba(212,168,71,0.05);
+  aspect-ratio: 16/9;
+  background: var(--dark-2);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed rgba(212,168,71,0.2);
+  font-size: 48px;
+  opacity: 0.3;
 }
-.un-product-img-placeholder svg { width: 40px; height: 40px; fill: rgba(212,168,71,0.3); }
-.un-product-body {
-  padding: 28px 24px 24px;
-  border-top: 2px solid transparent;
-  transition: border-color 0.3s;
-  position: relative;
-  z-index: 2;
+.un-game-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
 }
-.un-product-card:hover .un-product-body { border-top-color: var(--gold); }
-.un-product-type {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-  display: block;
-}
-.un-product-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-.un-product-desc {
-  font-size: 13px;
-  color: var(--cream-40);
-  line-height: 1.65;
-  font-weight: 300;
-  margin-bottom: 20px;
-}
-.un-product-footer {
+.un-game-card-top {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
 }
-.un-price { font-size: 20px; font-weight: 500; color: var(--cream); }
+.un-game-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+.un-game-card-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.un-game-card-hook {
+  font-size: 13px;
+  color: var(--white-60);
+  line-height: 1.6;
+  font-weight: 300;
+  font-style: italic;
+}
+.un-game-card-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.un-game-meta-item {
+  font-size: 11px;
+  color: var(--white-30);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.5px;
+}
+.un-game-meta-item strong { color: var(--white-60); font-weight: 500; }
+.un-game-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--white-10);
+  display: flex;
+  justify-content: flex-end;
+}
+.un-game-card-btn {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.2s;
+}
+.un-game-card:hover .un-game-card-btn { gap: 12px; }
+
 @media (max-width: 900px) {
-  .un-products-section { padding: 64px 24px; }
-  .un-products-grid { grid-template-columns: 1fr; gap: 1px; }
+  .un-catalog { padding: 64px 24px; }
+  .un-catalog-grid { grid-template-columns: 1fr; }
 }
 </style>
 
-<section class="un-products-section" id="hry">
-  <div class="un-products-header">
+<section class="un-catalog" id="hry">
+  <div class="un-catalog-header">
     <div>
       <span class="section-label">{{ section.settings.label }}</span>
-      <h2 class="section-title">{{ section.settings.title }}</h2>
+      <h2 class="section-title" style="margin-bottom:0;">{{ section.settings.title }}</h2>
     </div>
-    <a href="/collections/all" class="btn-ghost">Všechny hry →</a>
+    <a href="/collections/all" class="btn-ghost" style="padding:12px 24px;font-size:12px;">Všechny hry →</a>
   </div>
 
-  <div class="un-products-grid">
+  <div class="un-catalog-grid">
     {% assign col = collections[section.settings.collection] %}
     {% if col and col.products.size > 0 %}
       {% for product in col.products limit: section.settings.products_count %}
-        <a href="{{ product.url }}" class="un-product-card">
-          {% if product.featured_image %}
-            <img class="un-product-img"
-              src="{{ product.featured_image | img_url: '600x450', crop: 'center' }}"
-              alt="{{ product.featured_image.alt | escape }}"
-              loading="lazy" />
-          {% else %}
-            <div class="un-product-img-placeholder">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <a href="{{ product.url }}" class="un-game-card">
+          <div class="un-game-card-img-wrap">
+            {% if product.featured_image %}
+              <img class="un-game-card-img"
+                src="{{ product.featured_image | img_url: '800x450', crop: 'center' }}"
+                alt="{{ product.title | escape }}"
+                loading="lazy" />
+            {% else %}
+              <div class="un-game-card-img-placeholder">🗺</div>
+            {% endif %}
+          </div>
+          <div class="un-game-card-body">
+            <div class="un-game-card-top">
+              <div class="un-game-card-name">{{ product.title }}</div>
+              <div class="un-game-card-price">{{ product.price | money }}</div>
             </div>
-          {% endif %}
-          <div class="un-product-body">
-            <span class="un-product-type">{{ product.type | default: 'Hra' }}</span>
-            <div class="un-product-name">{{ product.title }}</div>
-            <p class="un-product-desc">{{ product.description | strip_html | truncate: 100 }}</p>
-            <div class="un-product-footer">
-              <span class="un-price">{{ product.price | money }}</span>
-              {% if product.available %}<span class="badge">Dostupné</span>
-              {% else %}<span class="badge" style="opacity:0.5;">Vyprodáno</span>{% endif %}
+            {% if product.description != blank %}
+              <div class="un-game-card-hook">{{ product.description | strip_html | truncate: 80 }}</div>
+            {% endif %}
+            <div class="un-game-card-meta">
+              <span class="un-game-meta-item">👥 <strong>2–8</strong> hráčů</span>
+              <span class="un-game-meta-item">⏱ <strong>90 min</strong></span>
+              {% if product.available %}
+                <span class="badge" style="font-size:9px;">Dostupné</span>
+              {% endif %}
+            </div>
+            <div class="un-game-card-footer">
+              <span class="un-game-card-btn">Koupit voucher →</span>
             </div>
           </div>
         </a>
       {% endfor %}
     {% else %}
-      <p style="color:var(--cream-40);grid-column:1/-1;padding:40px 0;">Přidej kolekci v nastavení sekce.</p>
+      <p style="color:var(--white-30);grid-column:1/-1;padding:48px;text-align:center;">Přidej kolekci v nastavení sekce.</p>
     {% endif %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Produkty",
+  "name": "Katalog her",
   "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Naše hry" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Vyber svoji výzvu" },
+    { "type": "text", "id": "label", "label": "Label", "default": "Katalog her" },
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Vyber svůj příběh" },
     { "type": "collection", "id": "collection", "label": "Kolekce" },
-    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet produktů", "default": 3 }
+    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet her", "default": 6 }
   ],
-  "presets": [{ "name": "Produkty" }]
+  "presets": [{ "name": "Katalog her" }]
 }
 {% endschema %}
