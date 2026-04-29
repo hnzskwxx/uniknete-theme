@@ -1,13 +1,15 @@
 <style>
 .un-hry {
-  background: #0D110D;
   min-height: 100vh;
   padding-top: 80px;
+  position: relative;
 }
 
 .un-hry-hero {
   padding: 64px 48px 48px;
   border-bottom: 1px solid var(--white-10);
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(4px);
 }
 .un-hry-title {
   font-family: 'Syne', sans-serif;
@@ -41,8 +43,10 @@
   position: relative;
   overflow: hidden;
   transition: background 0.3s;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(6px);
 }
-.un-hry-item:hover { background: #111811; }
+.un-hry-item:hover { background: rgba(8,11,8,0.75); }
 
 /* Každá druhá karta — foto vpravo */
 .un-hry-item:nth-child(even) { direction: rtl; }
@@ -99,6 +103,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  background: rgba(8,11,8,0.4);
 }
 .un-hry-item-type {
   font-size: 10px;
