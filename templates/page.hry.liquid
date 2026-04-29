@@ -1,190 +1,202 @@
 <style>
 .un-hry {
   padding-top: 80px;
+  min-height: 100vh;
 }
+
+/* HERO */
 .un-hry-hero {
-  padding: 80px 64px 64px;
+  padding: 80px 48px 64px;
   text-align: center;
-  background: rgba(10,15,8,0.65);
-  backdrop-filter: blur(6px);
+  max-width: 700px;
+  margin: 0 auto;
 }
 .un-hry-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 72px;
-  font-weight: 900;
-  color: var(--cream);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  color: var(--white);
   line-height: 1.0;
   margin-bottom: 20px;
+  letter-spacing: -1px;
 }
-.un-hry-title em { color: var(--gold); font-style: italic; }
+.un-hry-title span { color: var(--accent); }
 .un-hry-sub {
-  font-size: 16px;
-  color: var(--cream-60);
+  font-size: 17px;
+  color: var(--white-60);
   font-weight: 300;
-  max-width: 480px;
-  margin: 0 auto;
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 /* GRID */
 .un-hry-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 4px;
-  padding: 4px;
-  background: rgba(10,15,8,0.4);
+  gap: 3px;
+  padding: 0 3px 3px;
+}
+.un-hry-card.featured {
+  grid-column: 1 / -1;
 }
 
-/* První karta přes celou šířku */
+/* KARTA */
 .un-hry-card {
   position: relative;
   display: block;
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  background: #0A0F08;
+  background: var(--dark);
+  cursor: pointer;
 }
-.un-hry-card.featured {
-  grid-column: 1 / -1;
-  aspect-ratio: 21/9;
-}
-.un-hry-card:not(.featured) {
-  aspect-ratio: 4/3;
-}
+.un-hry-card.featured { aspect-ratio: 21/8; }
+.un-hry-card:not(.featured) { aspect-ratio: 4/3; }
 
-/* Fotka */
 .un-hry-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94),
-              filter 0.5s ease;
-  filter: brightness(0.85) saturate(0.85);
+  filter: brightness(0.7) saturate(0.75);
+  transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s;
+  position: absolute;
+  inset: 0;
 }
 .un-hry-card:hover .un-hry-card-img {
-  transform: scale(1.06);
-  filter: brightness(1) saturate(1.1);
+  transform: scale(1.05);
+  filter: brightness(0.5) saturate(0.9);
 }
 
-/* Overlay */
+.un-hry-card-placeholder {
+  position: absolute;
+  inset: 0;
+  background: var(--dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  opacity: 0.2;
+}
+
+/* Overlay gradient */
 .un-hry-card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    160deg,
-    transparent 30%,
-    rgba(10,15,8,0.85) 100%
+    to top,
+    rgba(8,11,8,0.95) 0%,
+    rgba(8,11,8,0.3) 50%,
+    transparent 100%
   );
   transition: background 0.4s;
 }
 .un-hry-card:hover .un-hry-card-overlay {
   background: linear-gradient(
-    160deg,
-    rgba(10,15,8,0.1) 0%,
-    rgba(10,15,8,0.75) 100%
+    to top,
+    rgba(8,11,8,0.98) 0%,
+    rgba(8,11,8,0.6) 60%,
+    rgba(8,11,8,0.2) 100%
   );
 }
 
-/* Text */
+/* Obsah karty */
 .un-hry-card-body {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  padding: 36px;
+  padding: 32px;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 8px;
 }
 .un-hry-card-type {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transform: translateY(6px);
+  color: var(--accent);
+  font-weight: 500;
   opacity: 0;
-  transition: all 0.35s;
-}
-.un-hry-card-type::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--gold);
+  transform: translateY(6px);
+  transition: all 0.3s;
 }
 .un-hry-card:hover .un-hry-card-type {
   opacity: 1;
   transform: translateY(0);
 }
 .un-hry-card-name {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  color: var(--cream);
-  line-height: 1.15;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
 }
-.un-hry-card.featured .un-hry-card-name { font-size: 42px; }
-.un-hry-card:not(.featured) .un-hry-card-name { font-size: 26px; }
+.un-hry-card.featured .un-hry-card-name { font-size: 40px; }
+.un-hry-card:not(.featured) .un-hry-card-name { font-size: 24px; }
 
-.un-hry-card-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(212,168,71,0.12);
-  border: 1px solid var(--gold-30);
-  padding: 10px 20px;
-  border-radius: 2px;
-  transform: translateY(8px);
+.un-hry-card-hook {
+  font-size: 13px;
+  color: var(--white-60);
+  font-weight: 300;
+  font-style: italic;
   opacity: 0;
-  transition: all 0.35s 0.05s;
-  backdrop-filter: blur(4px);
+  transform: translateY(6px);
+  transition: all 0.3s 0.05s;
+  max-width: 480px;
 }
-.un-hry-card:hover .un-hry-card-cta {
+.un-hry-card:hover .un-hry-card-hook {
   opacity: 1;
   transform: translateY(0);
 }
-.un-hry-card-cta-arrow {
-  transition: transform 0.25s;
-}
-.un-hry-card:hover .un-hry-card-cta-arrow { transform: translateX(4px); }
 
-/* Placeholder */
-.un-hry-placeholder {
-  width: 100%; height: 100%;
-  min-height: 300px;
-  background: linear-gradient(135deg, rgba(212,168,71,0.04), rgba(10,15,8,0.9));
+.un-hry-card-footer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.3s 0.1s;
 }
-.un-hry-placeholder svg { width: 48px; height: 48px; fill: rgba(212,168,71,0.15); }
+.un-hry-card:hover .un-hry-card-footer {
+  opacity: 1;
+  transform: translateY(0);
+}
+.un-hry-card-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--white-30);
+}
+.un-hry-card-btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.un-hry-card:hover .un-hry-card-btn { background: #ff824d; }
 
+/* Na mobilu vždy viditelné */
 @media (max-width: 768px) {
-  .un-hry-hero { padding: 56px 24px 48px; }
-  .un-hry-title { font-size: 44px; }
+  .un-hry-hero { padding: 60px 24px 48px; }
   .un-hry-grid { grid-template-columns: 1fr; }
   .un-hry-card.featured { grid-column: 1; aspect-ratio: 4/3; }
   .un-hry-card.featured .un-hry-card-name { font-size: 28px; }
   .un-hry-card-type,
-  .un-hry-card-cta { opacity: 1; transform: none; }
+  .un-hry-card-hook,
+  .un-hry-card-footer { opacity: 1; transform: none; }
 }
 </style>
 
 <div class="un-hry">
   <div class="un-hry-hero">
-    <span class="section-label">Všechny hry</span>
-    <h1 class="un-hry-title">Vyber si<br><em>výzvu</em></h1>
-    <p class="un-hry-sub">Venkovní únikovky a bojovky v reálných lokacích. Voucher dostaneš e-mailem ihned po platbě.</p>
+    <span class="section-label">Katalog her</span>
+    <h1 class="un-hry-title">Vyber svůj<br><span>příběh</span></h1>
+    <p class="un-hry-sub">Každá hra je jiný svět. Koupíš voucher, dostaneš instrukce e-mailem a hraješ kdy chceš.</p>
   </div>
 
   <div class="un-hry-grid">
@@ -193,26 +205,29 @@
          class="un-hry-card{% if forloop.first %} featured{% endif %}">
 
         {% if product.featured_image %}
-          <img
-            class="un-hry-card-img"
-            src="{{ product.featured_image | img_url: '1400x1000', crop: 'center' }}"
+          <img class="un-hry-card-img"
+            src="{{ product.featured_image | img_url: '1400x900', crop: 'center' }}"
             alt="{{ product.title | escape }}"
-            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-          />
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" />
         {% else %}
-          <div class="un-hry-placeholder">
-            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          </div>
+          <div class="un-hry-card-placeholder">🗺</div>
         {% endif %}
 
         <div class="un-hry-card-overlay"></div>
         <div class="un-hry-card-body">
           <span class="un-hry-card-type">{{ product.type | default: 'Venkovní hra' }}</span>
           <div class="un-hry-card-name">{{ product.title }}</div>
-          <span class="un-hry-card-cta">
-            Koupit voucher
-            <span class="un-hry-card-cta-arrow">→</span>
-          </span>
+          <div class="un-hry-card-hook">
+            {{ product.description | strip_html | truncate: 80 }}
+          </div>
+          <div class="un-hry-card-footer">
+            <div class="un-hry-card-meta">
+              <span>👥 2–8 hráčů</span>
+              <span>⏱ 90 min</span>
+              <span>{{ product.price | money }}</span>
+            </div>
+            <span class="un-hry-card-btn">Koupit →</span>
+          </div>
         </div>
       </a>
     {% endfor %}
