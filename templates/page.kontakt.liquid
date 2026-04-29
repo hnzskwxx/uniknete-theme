@@ -1,6 +1,15 @@
 <style>
+/* Ztmavení videa na kontakt stránce */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(8,11,8,0.72);
+  z-index: -1;
+  pointer-events: none;
+}
+
 .un-kontakt-page {
-  background: var(--black);
   min-height: 100vh;
   padding-top: 80px;
   display: flex;
