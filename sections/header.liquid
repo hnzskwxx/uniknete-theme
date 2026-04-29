@@ -3,18 +3,33 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 48px;
+  padding: 20px 48px;
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
   background: transparent;
-  transition: background 0.4s, backdrop-filter 0.4s;
+  transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
 }
-.un-nav.scrolled {
+
+/* Homepage — průhledné, tmavé */
+.is-homepage .un-nav.scrolled {
   background: rgba(8,11,8,0.95);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--white-10);
+  border-color: rgba(255,255,255,0.06);
 }
+
+/* Ostatní stránky — bílé hned */
+body:not(.is-homepage) .un-nav {
+  background: #ffffff;
+  border-color: rgba(17,17,17,0.08);
+}
+body:not(.is-homepage) .un-logo { color: #111111; }
+body:not(.is-homepage) .un-logo span { color: var(--accent); }
+body:not(.is-homepage) .nav-links a { color: rgba(17,17,17,0.55); }
+body:not(.is-homepage) .nav-links a:hover { color: #111111; }
+body:not(.is-homepage) .nav-toggle span { background: #111111; }
+
 .un-logo {
   font-family: 'Syne', sans-serif;
   font-size: 18px;
@@ -25,6 +40,7 @@
   text-decoration: none;
 }
 .un-logo span { color: var(--accent); }
+
 .nav-links {
   display: flex;
   gap: 40px;
@@ -41,6 +57,7 @@
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--white); }
+
 .nav-toggle {
   display: none;
   background: none;
@@ -56,8 +73,9 @@
   height: 1.5px;
   background: var(--white);
 }
+
 @media (max-width: 900px) {
-  .un-nav { padding: 20px 24px; }
+  .un-nav { padding: 16px 24px; }
   .nav-toggle { display: flex; }
   .nav-links {
     display: none;
@@ -69,6 +87,8 @@
     gap: 28px;
     z-index: 99;
   }
+  body:not(.is-homepage) .nav-links { background: #ffffff; }
+  body:not(.is-homepage) .nav-links a { color: rgba(17,17,17,0.6); }
   .nav-links.open { display: flex; }
   .nav-links a { font-size: 16px; }
 }
@@ -100,9 +120,7 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
-    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
-    { "type": "url", "id": "cta_url", "label": "CTA odkaz" }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
   ]
 }
 {% endschema %}

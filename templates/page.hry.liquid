@@ -1,168 +1,108 @@
 <style>
-.un-hry {
-  min-height: 100vh;
-  padding-top: 80px;
-  position: relative;
-}
+.un-hry { padding-top: 80px; min-height: 100vh; }
 
 .un-hry-hero {
   padding: 64px 48px 48px;
-  border-bottom: 1px solid var(--white-10);
-  background: rgba(8,11,8,0.6);
-  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(17,17,17,0.08);
 }
 .un-hry-title {
   font-family: 'Syne', sans-serif;
   font-size: clamp(40px, 6vw, 72px);
   font-weight: 800;
-  color: var(--white);
+  color: #111111;
   line-height: 1.0;
   letter-spacing: -2px;
   margin-bottom: 12px;
 }
 .un-hry-title span { color: var(--accent); }
-.un-hry-sub {
-  font-size: 16px;
-  color: var(--white-60);
-  font-weight: 300;
-}
+.un-hry-sub { font-size: 16px; color: rgba(17,17,17,0.55); font-weight: 300; }
 
-/* SEZNAM HER */
-.un-hry-list {
-  display: flex;
-  flex-direction: column;
-}
+.un-hry-list { display: flex; flex-direction: column; }
 
 .un-hry-item {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 420px;
-  border-bottom: 1px solid var(--white-10);
+  min-height: 400px;
+  border-bottom: 1px solid rgba(17,17,17,0.08);
   text-decoration: none;
   color: inherit;
-  position: relative;
   overflow: hidden;
   transition: background 0.3s;
-  background: rgba(8,11,8,0.55);
-  backdrop-filter: blur(6px);
 }
-.un-hry-item:hover { background: rgba(8,11,8,0.75); }
-
-/* Každá druhá karta — foto vpravo */
+.un-hry-item:hover { background: #f8f8f6; }
 .un-hry-item:nth-child(even) { direction: rtl; }
 .un-hry-item:nth-child(even) > * { direction: ltr; }
 
-/* FOTO STRANA */
-.un-hry-item-img {
-  position: relative;
-  overflow: hidden;
-}
+.un-hry-item-img { position: relative; overflow: hidden; }
 .un-hry-item-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: brightness(0.8) saturate(0.85);
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: brightness(0.9) saturate(0.9);
   transition: transform 0.7s ease, filter 0.5s;
 }
 .un-hry-item:hover .un-hry-item-img img {
   transform: scale(1.04);
-  filter: brightness(0.95) saturate(1.1);
+  filter: brightness(1) saturate(1.1);
 }
 .un-hry-item-img-placeholder {
   width: 100%; height: 100%;
-  background: #1a201a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 64px;
-  opacity: 0.15;
+  background: #f0f0ee;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px; opacity: 0.3;
 }
-
-/* Číslo přes fotku */
 .un-hry-item-num {
-  position: absolute;
-  top: 24px;
-  left: 24px;
+  position: absolute; top: 20px; left: 20px;
   font-family: 'Syne', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 2px;
+  font-size: 11px; font-weight: 700;
+  color: #fff; letter-spacing: 2px;
   z-index: 2;
-  background: rgba(8,11,8,0.7);
-  padding: 6px 12px;
-  border-radius: 2px;
-  border: 1px solid var(--accent-border);
+  background: var(--accent);
+  padding: 5px 10px; border-radius: 2px;
 }
 
-/* TEXT STRANA */
 .un-hry-item-body {
   padding: 48px 56px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  background: rgba(8,11,8,0.4);
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 20px;
+  background: #ffffff;
 }
 .un-hry-item-type {
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 500;
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 500;
 }
 .un-hry-item-name {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(28px, 3vw, 40px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.05;
-  letter-spacing: -1px;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800; color: #111111;
+  line-height: 1.05; letter-spacing: -1px;
 }
 .un-hry-item-hook {
-  font-size: 16px;
-  color: var(--white-60);
-  font-weight: 300;
-  line-height: 1.7;
-  max-width: 380px;
+  font-size: 15px; color: rgba(17,17,17,0.55);
+  font-weight: 300; line-height: 1.7; max-width: 380px;
 }
 .un-hry-item-meta {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: flex; gap: 20px; flex-wrap: wrap;
 }
 .un-hry-meta-tag {
-  font-size: 12px;
-  color: var(--white-30);
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 12px; color: rgba(17,17,17,0.35);
+  display: flex; align-items: center; gap: 6px;
 }
-.un-hry-meta-tag strong { color: var(--white-60); font-weight: 500; }
+.un-hry-meta-tag strong { color: rgba(17,17,17,0.6); font-weight: 500; }
 .un-hry-item-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--accent);
-  color: #fff;
-  padding: 14px 28px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  border-radius: 2px;
-  width: fit-content;
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--accent); color: #fff;
+  padding: 14px 28px; font-size: 12px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 2px; width: fit-content;
   transition: background 0.2s, gap 0.2s;
 }
 .un-hry-item:hover .un-hry-item-btn { background: #ff824d; gap: 14px; }
 
 @media (max-width: 768px) {
   .un-hry-hero { padding: 48px 24px 36px; }
-  .un-hry-item { grid-template-columns: 1fr; min-height: auto; direction: ltr !important; }
+  .un-hry-item { grid-template-columns: 1fr; direction: ltr !important; }
   .un-hry-item-img { aspect-ratio: 16/9; }
   .un-hry-item-body { padding: 32px 24px; }
-  .un-hry-item-name { font-size: 28px; }
 }
 </style>
 
@@ -176,11 +116,9 @@
   <div class="un-hry-list">
     {% for product in collections.all.products %}
       <a href="{{ product.url }}" class="un-hry-item">
-
         <div class="un-hry-item-img">
           {% if product.featured_image %}
-            <img
-              src="{{ product.featured_image | img_url: '900x600', crop: 'center' }}"
+            <img src="{{ product.featured_image | img_url: '900x600', crop: 'center' }}"
               alt="{{ product.title | escape }}"
               loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" />
           {% else %}
@@ -188,7 +126,6 @@
           {% endif %}
           <span class="un-hry-item-num">0{{ forloop.index }}</span>
         </div>
-
         <div class="un-hry-item-body">
           <div class="un-hry-item-type">{{ product.type | default: 'Venkovní hra' }}</div>
           <div class="un-hry-item-name">{{ product.title }}</div>
@@ -202,11 +139,8 @@
               <span class="un-hry-meta-tag">💰 <strong>{{ product.price | money }}</strong></span>
             {% endif %}
           </div>
-          <div class="un-hry-item-btn">
-            Koupit voucher →
-          </div>
+          <div class="un-hry-item-btn">Koupit voucher →</div>
         </div>
-
       </a>
     {% endfor %}
   </div>

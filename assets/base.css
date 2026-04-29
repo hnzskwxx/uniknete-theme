@@ -114,3 +114,23 @@ a { color: inherit; }
 @media (max-width: 768px) {
   .section-title { font-size: 32px; }
 }
+
+/* =============================================
+   BÍLÉ STRÁNKY (vše kromě homepage)
+   ============================================= */
+body:not(.is-homepage) {
+  --white: #111111;
+  --white-60: rgba(17,17,17,0.6);
+  --white-40: rgba(17,17,17,0.4);
+  --white-30: rgba(17,17,17,0.3);
+  --white-10: rgba(17,17,17,0.08);
+  --white-06: rgba(17,17,17,0.05);
+  background: #ffffff;
+}
+body:not(.is-homepage) .btn-ghost {
+  border-color: rgba(17,17,17,0.2);
+  color: #111111;
+}
+body:not(.is-homepage) .btn-ghost:hover {
+  border-color: #111111;
+}
