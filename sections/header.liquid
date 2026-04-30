@@ -7,14 +7,9 @@
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  background: transparent;
-  transition: background 0.3s, border-color 0.3s;
-  border-bottom: 1px solid transparent;
-}
-.un-nav.scrolled {
   background: rgba(13,17,13,0.97);
   backdrop-filter: blur(12px);
-  border-color: var(--white-10);
+  border-bottom: 1px solid var(--white-10);
 }
 .un-logo {
   font-family: 'Syne', sans-serif;
@@ -67,11 +62,8 @@
 </nav>
 
 <script>
-  const nav = document.getElementById('un-nav');
   const toggle = document.getElementById('nav-toggle');
   const links = document.getElementById('nav-links');
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 </script>

@@ -14,98 +14,75 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
 }
 .un-hero-tag {
-  font-size: 11px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 500;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  font-size: 11px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--accent);
+  font-weight: 500; margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
 }
-.un-hero-tag::before,
-.un-hero-tag::after {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 1px;
-  background: var(--accent);
+.un-hero-tag::before, .un-hero-tag::after {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--accent);
 }
 .un-hero-title {
   font-family: 'Syne', sans-serif;
   font-size: clamp(48px, 8vw, 96px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.0;
-  margin-bottom: 28px;
-  letter-spacing: -1px;
+  font-weight: 800; color: var(--white);
+  line-height: 1.0; margin-bottom: 28px; letter-spacing: -1px;
 }
 .un-hero-sub {
-  font-size: 18px;
-  color: var(--white-60);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 48px;
-  max-width: 480px;
+  font-size: 18px; color: var(--white-60);
+  font-weight: 300; line-height: 1.7;
+  margin-bottom: 48px; max-width: 480px;
 }
-.un-hero-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-.un-hero-hint {
-  font-size: 12px;
-  color: var(--white-30);
-  letter-spacing: 1px;
-}
+.un-hero-hint { font-size: 12px; color: var(--white-30); letter-spacing: 1px; margin-top: 16px; }
 .un-hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
+  position: absolute; bottom: 40px; left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  color: var(--white-30);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  color: var(--white-30); font-size: 10px;
+  letter-spacing: 2px; text-transform: uppercase;
 }
 .un-scroll-line {
-  width: 1px;
-  height: 40px;
+  width: 1px; height: 40px;
   background: linear-gradient(to bottom, var(--accent), transparent);
   animation: pulse 2s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 </style>
 
-<section class="un-hero">
+<section class="un-hero" id="un-hero">
   <div class="un-hero-content">
     <div class="un-hero-tag">{{ section.settings.tag }}</div>
     <h1 class="un-hero-title">{{ section.settings.title }}</h1>
     <p class="un-hero-sub">{{ section.settings.subtitle }}</p>
-    <div class="un-hero-cta">
-      <a href="{{ section.settings.cta_url }}" class="btn-primary" style="font-size:14px;padding:18px 48px;">
-        {{ section.settings.cta_text }}
-      </a>
-      <span class="un-hero-hint">{{ section.settings.hint }}</span>
-    </div>
+    <a href="{{ section.settings.cta_url }}" class="btn-primary" style="font-size:14px;padding:18px 48px;">
+      {{ section.settings.cta_text }}
+    </a>
+    <p class="un-hero-hint">{{ section.settings.hint }}</p>
   </div>
   <div class="un-hero-scroll">
     <div class="un-scroll-line"></div>
     Scroll
   </div>
 </section>
+
+<script>
+  // Skryj video jakmile hero sekce zmizí z obrazovky
+  var hero = document.getElementById('un-hero');
+  var videobg = document.getElementById('un-videobg');
+  if (hero && videobg) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        videobg.style.opacity = e.isIntersecting ? '1' : '0';
+        videobg.style.transition = 'opacity 0.6s ease';
+      });
+    }, { threshold: 0 });
+    obs.observe(hero);
+  }
+</script>
 
 {% schema %}
 {
@@ -116,7 +93,7 @@
     { "type": "textarea", "id": "subtitle", "label": "Podnadpis", "default": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času." },
     { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
     { "type": "url", "id": "cta_url", "label": "CTA odkaz" },
-    { "type": "text", "id": "hint", "label": "Hint pod CTA", "default": "Voucher dorazí e-mailem ihned po platbě" }
+    { "type": "text", "id": "hint", "label": "Hint", "default": "Voucher dorazí e-mailem ihned po platbě" }
   ],
   "presets": [{ "name": "Hero" }]
 }
