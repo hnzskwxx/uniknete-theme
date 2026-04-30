@@ -86,3 +86,20 @@ a { color: inherit; }
   text-transform: uppercase;
   border: 1px solid var(--accent-border);
 }
+
+/* STATICKÉ POZADÍ pro podstránky */
+body:not(.is-homepage) {
+  background-image: url('https://cdn.shopify.com/s/files/1/1029/3008/8276/files/video.png?v=1777579166');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #0D110D;
+}
+body:not(.is-homepage)::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(8,11,8,0.78);
+  z-index: -1;
+  pointer-events: none;
+}
