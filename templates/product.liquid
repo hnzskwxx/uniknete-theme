@@ -1,218 +1,106 @@
 <style>
-.un-product-page {
-  padding-top: 80px;
-  min-height: 100vh;
-}
+.un-product { padding-top: 80px; }
 .un-product-hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr 1fr;
   min-height: calc(100vh - 80px);
 }
-
-/* LEVÁ STRANA - fotka */
-.un-product-img-wrap {
-  position: relative;
-  overflow: hidden;
-  background: rgba(10,15,8,0.8);
-}
-.un-product-img-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.85) saturate(0.9);
+.un-product-img { position: relative; overflow: hidden; background: var(--bg-2); }
+.un-product-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: brightness(0.9) saturate(0.9);
 }
 .un-product-img-placeholder {
-  width: 100%; height: 100%;
-  min-height: 500px;
-  background: rgba(212,168,71,0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%; height: 100%; min-height: 500px;
+  background: var(--bg-2); display: flex;
+  align-items: center; justify-content: center;
+  font-size: 80px; opacity: 0.1;
 }
-.un-product-img-placeholder svg { width: 64px; height: 64px; fill: rgba(212,168,71,0.15); }
-
-/* PRAVÁ STRANA - info */
-.un-product-info {
-  padding: 64px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: rgba(10,15,8,0.8);
-  backdrop-filter: blur(12px);
-  border-left: 1px solid var(--cream-08);
+.un-product-body {
+  padding: 64px 56px; display: flex; flex-direction: column;
+  justify-content: center; gap: 24px;
+  background: var(--bg); border-left: 1px solid var(--white-10);
 }
 .un-product-type {
-  font-size: 10px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.un-product-type::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--gold);
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 500;
 }
 .un-product-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 52px;
-  font-weight: 700;
-  color: var(--cream);
-  line-height: 1.05;
-  margin-bottom: 28px;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 4vw, 48px); font-weight: 800;
+  color: var(--white); line-height: 1.05; letter-spacing: -1px;
 }
-.un-product-desc {
-  font-size: 15px;
-  color: var(--cream-60);
-  line-height: 1.8;
-  font-weight: 300;
-  margin-bottom: 36px;
-}
-.un-product-desc p { margin-bottom: 12px; }
-
-/* Meta info */
 .un-product-meta {
-  display: flex;
-  gap: 32px;
-  margin-bottom: 36px;
-  padding: 24px 0;
-  border-top: 1px solid var(--cream-08);
-  border-bottom: 1px solid var(--cream-08);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  padding: 20px 0; border-top: 1px solid var(--white-10);
+  border-bottom: 1px solid var(--white-10);
 }
-.un-product-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.un-product-meta-item { display: flex; flex-direction: column; gap: 3px; }
 .un-product-meta-label {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--cream-40);
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--white-30);
 }
-.un-product-meta-value {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--cream);
-}
-
-/* Cena a formulář */
-.un-product-buy {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.un-product-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
+.un-product-meta-value { font-size: 14px; font-weight: 500; color: var(--white); }
+.un-product-desc {
+  font-size: 15px; color: var(--white-60);
+  line-height: 1.8; font-weight: 300;
 }
 .un-product-price {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-  font-weight: 700;
-  color: var(--cream);
+  font-family: 'Syne', sans-serif;
+  font-size: 40px; font-weight: 800; color: var(--white);
 }
 .un-product-price-old {
-  font-size: 20px;
-  color: var(--cream-40);
-  text-decoration: line-through;
+  font-size: 20px; color: var(--white-30); text-decoration: line-through; margin-left: 12px;
 }
 .un-product-qty {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  display: flex; align-items: center; gap: 12px;
 }
 .un-product-qty label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--cream-40);
-  flex-shrink: 0;
+  font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--white-30);
 }
 .un-product-qty input {
-  width: 72px;
-  padding: 10px 14px;
-  background: rgba(240,235,224,0.06);
-  border: 1px solid var(--cream-20);
-  border-radius: 2px;
-  color: var(--cream);
-  font-size: 15px;
-  font-family: 'DM Sans', sans-serif;
-  text-align: center;
-  outline: none;
+  width: 64px; padding: 10px; background: var(--white-06);
+  border: 1px solid var(--white-10); border-radius: 2px;
+  color: var(--white); font-size: 15px;
+  font-family: 'Inter', sans-serif; text-align: center; outline: none;
   transition: border-color 0.2s;
 }
-.un-product-qty input:focus { border-color: var(--gold); }
+.un-product-qty input:focus { border-color: var(--accent); }
 .un-product-submit {
-  background: var(--gold);
-  color: #0A0F08;
-  border: none;
-  padding: 18px 40px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: background 0.2s, transform 0.15s;
-  border-radius: 2px;
-  width: 100%;
+  background: var(--accent); color: #fff; border: none;
+  padding: 18px 40px; font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  letter-spacing: 2px; text-transform: uppercase;
+  transition: background 0.2s; border-radius: 2px; width: 100%;
 }
-.un-product-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
-.un-product-submit:disabled {
-  opacity: 0.35;
-  cursor: not-allowed;
-  transform: none;
-}
+.un-product-submit:hover { background: #ff824d; }
+.un-product-submit:disabled { opacity: 0.3; cursor: not-allowed; }
 .un-product-note {
-  font-size: 12px;
-  color: var(--cream-40);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.5;
+  font-size: 12px; color: var(--white-30);
+  display: flex; align-items: center; gap: 8px;
 }
-.un-product-note-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--gold);
-  flex-shrink: 0;
-}
+.un-product-note::before { content: '—'; color: var(--accent); }
 
 @media (max-width: 900px) {
   .un-product-hero { grid-template-columns: 1fr; }
-  .un-product-img-wrap { min-height: 320px; max-height: 420px; }
-  .un-product-info { padding: 40px 24px; border-left: none; border-top: 1px solid var(--cream-08); }
-  .un-product-title { font-size: 36px; }
-  .un-product-meta { gap: 20px; flex-wrap: wrap; }
+  .un-product-img { min-height: 320px; }
+  .un-product-body { padding: 40px 24px; border-left: none; border-top: 1px solid var(--white-10); }
 }
 </style>
 
-<div class="un-product-page">
+<div class="un-product">
   <div class="un-product-hero">
-
-    <!-- FOTKA -->
-    <div class="un-product-img-wrap">
+    <div class="un-product-img">
       {% if product.featured_image %}
-        <img
-          src="{{ product.featured_image | img_url: '1200x1200', crop: 'center' }}"
-          alt="{{ product.featured_image.alt | escape }}"
-          loading="eager"
-        />
+        <img src="{{ product.featured_image | img_url: '1000x1000', crop: 'center' }}"
+          alt="{{ product.featured_image.alt | escape }}" loading="eager" />
       {% else %}
-        <div class="un-product-img-placeholder">
-          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        </div>
+        <div class="un-product-img-placeholder">🗺</div>
       {% endif %}
     </div>
-
-    <!-- INFO -->
-    <div class="un-product-info">
+    <div class="un-product-body">
       <div class="un-product-type">{{ product.type | default: 'Venkovní hra' }}</div>
       <h1 class="un-product-title">{{ product.title }}</h1>
-
       <div class="un-product-meta">
         <div class="un-product-meta-item">
           <span class="un-product-meta-label">Hráči</span>
@@ -231,40 +119,27 @@
           <span class="un-product-meta-value">E-mailem</span>
         </div>
       </div>
-
       <div class="un-product-desc">{{ product.description }}</div>
-
-      {% form 'product', product, class: 'un-product-buy' %}
+      {% form 'product', product %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
-
-        <div class="un-product-price-row">
+        <div>
           <span class="un-product-price">{{ product.price | money }}</span>
           {% if product.compare_at_price > product.price %}
             <span class="un-product-price-old">{{ product.compare_at_price | money }}</span>
           {% endif %}
         </div>
-
         <div class="un-product-qty">
-          <label for="qty">Počet voucherů</label>
-          <input type="number" id="qty" name="quantity" value="1" min="1" max="20" />
+          <label>Počet</label>
+          <input type="number" name="quantity" value="1" min="1" max="20" />
         </div>
-
         {% if product.available %}
           <button type="submit" class="un-product-submit">Přidat do košíku</button>
         {% else %}
           <button class="un-product-submit" disabled>Vyprodáno</button>
         {% endif %}
-
-        <p class="un-product-note">
-          <span class="un-product-note-dot"></span>
-          Voucher (PDF + QR kód) přijde e-mailem ihned po zaplacení
-        </p>
-        <p class="un-product-note">
-          <span class="un-product-note-dot"></span>
-          Platnost 12 měsíců od zakoupení, termín si vybereš sám
-        </p>
+        <p class="un-product-note">Voucher přijde e-mailem ihned po zaplacení</p>
+        <p class="un-product-note">Platnost 12 měsíců, termín si vybereš sám</p>
       {% endform %}
     </div>
-
   </div>
 </div>

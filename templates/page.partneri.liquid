@@ -1,185 +1,97 @@
 <style>
-.un-partneri-page {
-  padding-top: 80px;
-  min-height: 100vh;
-}
+.un-partneri { padding-top: 80px; }
 .un-partneri-hero {
-  padding: 100px 64px 80px;
-  max-width: 700px;
+  padding: 64px 48px 48px; border-bottom: 1px solid var(--white-10);
 }
 .un-partneri-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 64px;
-  font-weight: 900;
-  color: var(--cream);
-  line-height: 1.0;
-  margin-bottom: 20px;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(36px, 5vw, 64px); font-weight: 800;
+  color: var(--white); line-height: 1.0;
+  letter-spacing: -1px; margin-bottom: 12px;
 }
-.un-partneri-title em { color: var(--gold); font-style: italic; }
-.un-partneri-sub {
-  font-size: 17px;
-  color: var(--cream-60);
-  font-weight: 300;
-  line-height: 1.75;
-}
+.un-partneri-title span { color: var(--accent); }
+.un-partneri-sub { font-size: 16px; color: var(--white-60); font-weight: 300; max-width: 520px; }
 
 .un-partneri-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(240,235,224,0.06);
-  margin-bottom: 1px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--white-10);
 }
-
 .un-partner-card {
-  background: rgba(10,15,8,0.78);
-  backdrop-filter: blur(10px);
-  padding: 48px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  transition: background 0.3s;
-  text-decoration: none;
-  color: inherit;
+  background: var(--bg); padding: 48px 40px;
+  display: flex; flex-direction: column; gap: 16px;
+  transition: background 0.25s; text-decoration: none; color: inherit;
 }
-.un-partner-card:hover {
-  background: rgba(10,15,8,0.92);
-}
-.un-partner-logo-wrap {
-  width: 80px;
-  height: 80px;
-  background: var(--cream);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.un-partner-logo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 8px;
-}
-.un-partner-logo-placeholder {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--gold);
-  background: rgba(212,168,71,0.1);
-  width: 80px;
-  height: 80px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid var(--gold-30);
+.un-partner-card:hover { background: var(--bg-2); }
+.un-partner-initial {
+  font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800;
+  color: var(--accent); width: 64px; height: 64px;
+  background: var(--accent-dim); border: 1px solid var(--accent-border);
+  border-radius: 2px; display: flex; align-items: center; justify-content: center;
 }
 .un-partner-type {
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 500;
 }
 .un-partner-name {
-  font-family: 'Playfair Display', serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--cream);
-  line-height: 1.2;
+  font-family: 'Syne', sans-serif; font-size: 22px;
+  font-weight: 800; color: var(--white); line-height: 1.2;
 }
-.un-partner-desc {
-  font-size: 14px;
-  color: var(--cream-40);
-  line-height: 1.7;
-  font-weight: 300;
-  flex: 1;
-}
+.un-partner-desc { font-size: 14px; color: var(--white-60); line-height: 1.7; font-weight: 300; flex: 1; }
 .un-partner-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  transition: gap 0.2s;
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--accent);
+  display: flex; align-items: center; gap: 8px; transition: gap 0.2s;
 }
 .un-partner-card:hover .un-partner-link { gap: 12px; }
 
 .un-partneri-cta {
-  padding: 64px;
-  background: rgba(10,15,8,0.8);
-  backdrop-filter: blur(8px);
-  border-top: 1px solid var(--cream-08);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 40px;
-  flex-wrap: wrap;
+  padding: 64px 48px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 40px; flex-wrap: wrap;
+  border-top: 1px solid var(--white-10);
 }
 .un-partneri-cta-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 8px;
+  font-family: 'Syne', sans-serif; font-size: 28px;
+  font-weight: 800; color: var(--white); margin-bottom: 8px;
 }
-.un-partneri-cta-sub {
-  font-size: 15px;
-  color: var(--cream-40);
-  font-weight: 300;
-}
+.un-partneri-cta-sub { font-size: 15px; color: var(--white-60); font-weight: 300; }
 
 @media (max-width: 900px) {
-  .un-partneri-hero { padding: 72px 24px 56px; }
-  .un-partneri-title { font-size: 40px; }
+  .un-partneri-hero { padding: 56px 24px 40px; }
   .un-partneri-grid { grid-template-columns: 1fr; }
   .un-partneri-cta { padding: 48px 24px; flex-direction: column; align-items: flex-start; }
 }
 </style>
 
-<div class="un-partneri-page">
+<div class="un-partneri">
   <div class="un-partneri-hero">
     <span class="section-label">Naši partneři</span>
-    <h1 class="un-partneri-title">Spolehliví<br><em>partneři</em></h1>
+    <h1 class="un-partneri-title">Spolehliví <span>partneři</span></h1>
     <p class="un-partneri-sub">Spolupracujeme s prověřenými partnery kteří sdílejí naši lásku k Děčínu a okolí.</p>
   </div>
 
   <div class="un-partneri-grid">
-
     <a href="https://www.skvelecesko.cz" target="_blank" class="un-partner-card">
-      <div class="un-partner-logo-placeholder">SC</div>
-      <div>
-        <div class="un-partner-type">Turistický portál</div>
-        <div class="un-partner-name">SkvéléČesko.cz</div>
-      </div>
-      <p class="un-partner-desc">Jaké další aktivity jsou v okolí hry? Najdete je na SkvéléČesko.cz — největší portál pro výlety a zážitky v ČR.</p>
-      <span class="un-partner-link">Navštívit web →</span>
+      <div class="un-partner-initial">SC</div>
+      <div class="un-partner-type">Turistický portál</div>
+      <div class="un-partner-name">SkvéléČesko.cz</div>
+      <p class="un-partner-desc">Jaké další aktivity jsou v okolí hry? Najdete je na SkvéléČesko.cz — největší portál pro výlety v ČR.</p>
+      <span class="un-partner-link">Navštívit →</span>
     </a>
-
     <a href="https://www.kudyznudy.cz" target="_blank" class="un-partner-card">
-      <div class="un-partner-logo-placeholder">KZ</div>
-      <div>
-        <div class="un-partner-type">CzechTourism</div>
-        <div class="un-partner-name">Kudy z nudy</div>
-      </div>
-      <p class="un-partner-desc">Podívejte se, co dalšího můžete dělat v okolí hry. Officiální turistický portál CzechTourism plný tipů na výlety.</p>
-      <span class="un-partner-link">Navštívit web →</span>
+      <div class="un-partner-initial">KZ</div>
+      <div class="un-partner-type">CzechTourism</div>
+      <div class="un-partner-name">Kudy z nudy</div>
+      <p class="un-partner-desc">Officiální turistický portál CzechTourism. Tipy na výlety a aktivity po celé ČR.</p>
+      <span class="un-partner-link">Navštívit →</span>
     </a>
-
     <div class="un-partner-card">
-      <div class="un-partner-logo-placeholder">UP</div>
-      <div>
-        <div class="un-partner-type">Restaurace & Hotel · Děčín</div>
-        <div class="un-partner-name">U Pekaře</div>
-      </div>
-      <p class="un-partner-desc">Náš partner pro ubytování a občerstvení v Děčíně. Po hře si zasloužíte dobré jídlo — U Pekaře vás přivítají.</p>
+      <div class="un-partner-initial">UP</div>
+      <div class="un-partner-type">Restaurace & Hotel · Děčín</div>
+      <div class="un-partner-name">U Pekaře</div>
+      <p class="un-partner-desc">Náš partner pro ubytování a občerstvení v Děčíně. Po hře si zasloužíte dobré jídlo.</p>
       <span class="un-partner-link">Zjistit více →</span>
     </div>
-
   </div>
 
   <div class="un-partneri-cta">

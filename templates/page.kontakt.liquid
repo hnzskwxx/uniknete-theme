@@ -1,84 +1,52 @@
 <style>
-/* Ztmavení videa na kontakt stránce */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(8,11,8,0.72);
-  z-index: -1;
-  pointer-events: none;
-}
-
-.un-kontakt-page {
-  min-height: 100vh;
-  padding-top: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.un-kontakt {
+  padding-top: 80px; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
   padding-bottom: 80px;
 }
 .un-kontakt-inner {
-  width: 100%;
-  max-width: 1000px;
-  padding: 0 48px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  width: 100%; max-width: 960px; padding: 0 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
 }
-
-/* LEVÁ */
-.un-kontakt-left {}
 .un-kontakt-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(40px, 5vw, 64px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.0;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
+  font-size: clamp(36px, 5vw, 56px); font-weight: 800;
+  color: var(--white); line-height: 1.0;
+  letter-spacing: -1px; margin-bottom: 16px;
 }
 .un-kontakt-title span { color: var(--accent); }
 .un-kontakt-sub {
-  font-size: 16px;
-  color: var(--white-60);
-  font-weight: 300;
-  line-height: 1.75;
-  margin-bottom: 48px;
+  font-size: 16px; color: var(--white-60);
+  font-weight: 300; line-height: 1.75; margin-bottom: 48px;
 }
 .un-kontakt-items { display: flex; flex-direction: column; gap: 24px; }
 .un-kontakt-item { display: flex; align-items: center; gap: 16px; }
 .un-kontakt-icon {
   width: 44px; height: 44px;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-border);
-  border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
+  background: var(--accent-dim); border: 1px solid var(--accent-border);
+  border-radius: 2px; display: flex; align-items: center;
+  justify-content: center; font-size: 18px; flex-shrink: 0;
 }
 .un-kontakt-item-label {
-  font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 3px; display: block; font-weight: 500;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 3px; display: block; font-weight: 500;
 }
 .un-kontakt-item-value {
   font-size: 16px; color: var(--white);
-  text-decoration: none; font-weight: 400;
-  transition: color 0.2s;
+  text-decoration: none; transition: color 0.2s;
 }
 .un-kontakt-item-value:hover { color: var(--accent); }
 
-/* PRAVÁ - formulář */
-.un-kontakt-form-wrap {
-  background: #111411;
+.un-kontakt-form {
+  background: var(--bg-2);
   border: 1px solid var(--white-10);
   border-top: 2px solid var(--accent);
-  padding: 40px;
-  border-radius: 2px;
+  padding: 40px; border-radius: 2px;
 }
 .un-kontakt-form-title {
   font-family: 'Syne', sans-serif;
-  font-size: 24px; font-weight: 800;
+  font-size: 22px; font-weight: 800;
   color: var(--white); margin-bottom: 28px;
 }
 .un-form { display: flex; flex-direction: column; gap: 16px; }
@@ -86,39 +54,31 @@ body::after {
 .un-form-group { display: flex; flex-direction: column; gap: 6px; }
 .un-form-group label {
   font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--white-30);
-  font-weight: 500;
+  text-transform: uppercase; color: var(--white-30); font-weight: 500;
 }
-.un-form-group input,
-.un-form-group textarea {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--white-10);
-  border-radius: 2px; padding: 12px 16px;
-  color: var(--white); font-size: 14px;
-  font-family: 'Inter', sans-serif;
+.un-form-group input, .un-form-group textarea {
+  background: var(--white-06); border: 1px solid var(--white-10);
+  border-radius: 2px; padding: 12px 16px; color: var(--white);
+  font-size: 14px; font-family: 'Inter', sans-serif;
   font-weight: 300; outline: none; width: 100%;
   transition: border-color 0.2s;
 }
-.un-form-group input::placeholder,
-.un-form-group textarea::placeholder { color: var(--white-30); }
-.un-form-group input:focus,
-.un-form-group textarea:focus { border-color: var(--accent); }
+.un-form-group input::placeholder, .un-form-group textarea::placeholder { color: var(--white-30); }
+.un-form-group input:focus, .un-form-group textarea:focus { border-color: var(--accent); }
 .un-form-group textarea { resize: vertical; min-height: 110px; }
 .un-form-success {
-  color: var(--accent); font-size: 14px;
-  padding: 12px 16px; border: 1px solid var(--accent-border);
-  border-radius: 2px; background: var(--accent-dim);
+  color: var(--accent); font-size: 14px; padding: 12px 16px;
+  border: 1px solid var(--accent-border); border-radius: 2px; background: var(--accent-dim);
 }
-
 @media (max-width: 900px) {
   .un-kontakt-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
   .un-form-row { grid-template-columns: 1fr; }
 }
 </style>
 
-<div class="un-kontakt-page">
+<div class="un-kontakt">
   <div class="un-kontakt-inner">
-    <div class="un-kontakt-left">
+    <div>
       <span class="section-label">Kontakt</span>
       <h1 class="un-kontakt-title">Spojte se<br><span>s námi</span></h1>
       <p class="un-kontakt-sub">Máte otázku nebo zájem o průvodce na míru? Ozveme se co nejdříve.</p>
@@ -139,14 +99,11 @@ body::after {
         </div>
       </div>
     </div>
-
-    <div class="un-kontakt-form-wrap">
+    <div class="un-kontakt-form">
       <div class="un-kontakt-form-title">Napište nám</div>
       {% form 'contact', class: 'un-form' %}
         {{ form.errors | default_errors }}
-        {% if form.posted_successfully? %}
-          <p class="un-form-success">✓ Zpráva odeslána! Ozveme se co nejdříve.</p>
-        {% endif %}
+        {% if form.posted_successfully? %}<p class="un-form-success">✓ Zpráva odeslána!</p>{% endif %}
         <div class="un-form-row">
           <div class="un-form-group">
             <label>Jméno</label>

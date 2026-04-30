@@ -18,20 +18,18 @@
   {{ 'base.css' | asset_url | stylesheet_tag }}
   <style>
     html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
-    body { display: flex; flex-direction: column; }
+    body { display: flex; flex-direction: column; background: #0D110D; }
     main { flex: 1; }
 
-    /* VIDEO – jen na homepage */
+    /* VIDEO – jen homepage */
     #un-videobg {
       display: none;
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      z-index: -2;
-      overflow: hidden;
+      z-index: -2; overflow: hidden;
     }
     body.is-homepage #un-videobg { display: block; }
-
     #un-videobg video {
       position: absolute;
       top: 50%; left: 50%;
@@ -43,15 +41,8 @@
     }
     #un-videobg::after {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to bottom, rgba(8,11,8,0.3) 0%, rgba(8,11,8,0.1) 50%, rgba(8,11,8,0.6) 100%);
-    }
-
-    /* Bílé pozadí pro všechny ostatní stránky */
-    body:not(.is-homepage) {
-      background: #ffffff;
-      color: #111111;
     }
   </style>
 </head>
@@ -69,13 +60,13 @@
   <script>
     if (document.body.classList.contains('is-homepage')) {
       window.addEventListener('load', function() {
-        var video = document.getElementById('bg-video');
-        var source = document.createElement('source');
-        source.src = 'https://cdn.shopify.com/videos/c/o/v/0a05ebd7b50b4986b0824e28f5d275c8.mp4';
-        source.type = 'video/mp4';
-        video.appendChild(source);
-        video.load();
-        video.play().catch(function(){});
+        var v = document.getElementById('bg-video');
+        var s = document.createElement('source');
+        s.src = 'https://cdn.shopify.com/videos/c/o/v/0a05ebd7b50b4986b0824e28f5d275c8.mp4';
+        s.type = 'video/mp4';
+        v.appendChild(s);
+        v.load();
+        v.play().catch(function(){});
       });
     }
   </script>
