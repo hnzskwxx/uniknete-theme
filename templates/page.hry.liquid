@@ -35,7 +35,7 @@
 .un-hry-card-img-wrap { overflow: hidden; }
 .un-hry-card-img {
   width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16/9;
   object-fit: cover;
   display: block;
   filter: brightness(0.85) saturate(0.85);
@@ -132,3 +132,9 @@
     {% endfor %}
   </div>
 </div>
+<style>
+@media (min-width: 1400px) {
+  .un-hry-grid { max-width: 1400px; margin: 0 auto; }
+  .un-hry-hero { max-width: 1400px; margin: 0 auto; padding-left: 64px; padding-right: 64px; }
+}
+</style>
