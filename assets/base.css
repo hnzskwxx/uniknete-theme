@@ -103,3 +103,11 @@ body:not(.is-homepage)::before {
   z-index: -1;
   pointer-events: none;
 }
+
+/* Remove Shopify section borders */
+.shopify-section,
+[data-shopify-editor-section],
+.shopify-section-group {
+  outline: none !important;
+  border: none !important;
+}
