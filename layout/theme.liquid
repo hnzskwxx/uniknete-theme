@@ -39,6 +39,15 @@
       object-fit: cover;
       filter: saturate(0.4) brightness(0.35);
     }
+    #un-videobg_DUPE {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(1.15);
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto;
+      object-fit: cover;
+      filter: saturate(0.4) brightness(0.35);
+    }
     #un-videobg::after {
       content: '';
       position: absolute; inset: 0;
@@ -70,5 +79,9 @@
       });
     }
   </script>
+  <style>
+    * { outline: none !important; }
+    .shopify-section { border: none !important; }
+  </style>
 </body>
 </html>
