@@ -6,24 +6,26 @@
   padding: 20px 48px;
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 1000;
+  z-index: 9000;
   background: transparent;
-  transition: background 0.3s, border-color 0.3s;
-  border-bottom: 1px solid transparent;
+  transition: background 0.3s;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 .un-nav.scrolled {
   background: rgba(13,17,13,0.97);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border-color: rgba(255,255,255,0.06);
 }
 .un-logo {
   font-family: 'Syne', sans-serif;
   font-size: 18px; font-weight: 800;
   color: var(--white);
   letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
-  position: relative; z-index: 1001;
+  position: relative; z-index: 9002;
 }
 .un-logo span { color: var(--accent); }
+
 .nav-links {
   display: flex; gap: 40px;
   list-style: none; align-items: center;
@@ -36,84 +38,99 @@
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--accent); }
+
 .nav-toggle {
   display: none;
   background: none; border: none;
-  cursor: pointer; flex-direction: column;
-  gap: 5px; padding: 8px;
-  position: relative; z-index: 1001;
+  cursor: pointer;
+  padding: 10px;
+  position: relative; z-index: 9002;
+  -webkit-tap-highlight-color: transparent;
 }
-.nav-toggle span {
+.nav-toggle-bar {
   display: block; width: 24px; height: 2px;
   background: var(--white); border-radius: 2px;
+  margin: 5px 0;
   transition: all 0.3s;
 }
 
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(8,11,8,0.98);
+  z-index: 8999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+.nav-overlay.open { display: flex; }
+.nav-overlay a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 20px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-overlay a:active { color: var(--accent); }
+
 @media (max-width: 900px) {
   .un-nav { padding: 16px 24px; }
-  .nav-toggle { display: flex; }
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(8,11,8,0.98);
-    gap: 32px;
-    z-index: 999;
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { font-size: 18px; letter-spacing: 2px; }
+  .nav-toggle { display: block; }
+  .nav-links { display: none; }
 }
 </style>
 
 <nav class="un-nav" id="un-nav">
   <a href="/" class="un-logo">Unikněte<span>!</span></a>
-  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-    <span></span><span></span><span></span>
+
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Menu">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
   </button>
-  <ul class="nav-links" id="nav-links">
+
+  <ul class="nav-links">
     {% for link in linklists[section.settings.menu].links %}
       <li><a href="{{ link.url }}">{{ link.title }}</a></li>
     {% endfor %}
   </ul>
 </nav>
 
+<!-- Mobilní overlay menu — separátní od nav -->
+<div class="nav-overlay" id="nav-overlay">
+  {% for link in linklists[section.settings.menu].links %}
+    <a href="{{ link.url }}">{{ link.title }}</a>
+  {% endfor %}
+</div>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  var nav = document.getElementById('un-nav');
+(function() {
   var toggle = document.getElementById('nav-toggle');
-  var links = document.getElementById('nav-links');
+  var overlay = document.getElementById('nav-overlay');
+  var nav = document.getElementById('un-nav');
 
-  if (!toggle || !links) return;
+  if (!toggle || !overlay) return;
 
-  // Scroll efekt
-  if (window.scrollY > 40) nav.classList.add('scrolled');
-  window.addEventListener('scroll', function() {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
-
-  // Toggle menu
-  toggle.addEventListener('click', function(e) {
-    e.stopPropagation();
-    links.classList.toggle('open');
+  toggle.addEventListener('click', function() {
+    overlay.classList.toggle('open');
   });
 
-  // Zavři po kliknutí na odkaz
-  links.querySelectorAll('a').forEach(function(a) {
+  overlay.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-      links.classList.remove('open');
+      overlay.classList.remove('open');
     });
   });
 
-  // Zavři po kliknutí mimo
-  document.addEventListener('click', function(e) {
-    if (!nav.contains(e.target)) {
-      links.classList.remove('open');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
     }
-  });
-});
+  }, { passive: true });
+})();
 </script>
 
 {% schema %}

@@ -17,54 +17,46 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet" /></noscript>
   {{ 'base.css' | asset_url | stylesheet_tag }}
   <style>
-    html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
-    body { display: flex; flex-direction: column; background: #0D110D; }
+    html, body { width: 100%; min-height: 100%; overflow-x: hidden; }
+    body { display: flex; flex-direction: column; }
     main { flex: 1; }
 
-    /* VIDEO – jen homepage */
-    #un-videobg {
-      display: none;
+    /* Fixní pozadí — desktop */
+    body::after {
+      content: '';
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: -2; overflow: hidden;
+      width: 100%; height: 100%;
+      background-image: url('https://cdn.shopify.com/s/files/1/1029/3008/8276/files/video.png?v=1777579166');
+      background-size: cover;
+      background-position: center;
+      background-color: #0D110D;
+      z-index: -2;
     }
-    body.is-homepage #un-videobg { display: block; }
-    #un-videobg video {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(1.15);
-      min-width: 100%; min-height: 100%;
-      width: auto; height: auto;
-      object-fit: cover;
-      filter: saturate(0.4) brightness(0.35);
-    }
-    #un-videobg_DUPE {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) scale(1.15);
-      min-width: 100%; min-height: 100%;
-      width: auto; height: auto;
-      object-fit: cover;
-      filter: saturate(0.4) brightness(0.35);
-    }
-    #un-videobg::after {
+    body::before {
       content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(8,11,8,0.3) 0%, rgba(8,11,8,0.1) 50%, rgba(8,11,8,0.6) 100%);
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(8,11,8,0.82);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* iOS Safari fix — pseudo-element na html */
+    @supports (-webkit-touch-callout: none) {
+      body::after {
+        position: fixed;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+      }
     }
   </style>
 </head>
 <body>
-
   {% section 'header' %}
   <main>{{ content_for_layout }}</main>
   {% section 'footer' %}
-
   {{ 'main.js' | asset_url | script_tag }}
-  <style>
-    * { outline: none !important; }
-    .shopify-section { border: none !important; }
-  </style>
 </body>
 </html>
