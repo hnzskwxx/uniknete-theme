@@ -144,9 +144,18 @@
   .un-hry-row2 { grid-template-columns: 1fr 1fr; }
 }
 
-/* MOBILE */
+
 @media (max-width: 768px) {
   .un-hry-wrap { padding: 24px 16px 48px; }
+  .un-hry-grid { grid-template-columns: 1fr; gap: 16px; }
+  .un-hry-card:nth-child(1) { grid-column: 1; }
+  .un-hry-row2 { grid-template-columns: 1fr; gap: 16px; }
+  .un-hry-card-img { aspect-ratio: 4/3; padding: 12px; }
+  .un-hry-card:hover { transform: none; }
+  .un-hry-card-body { padding: 16px 20px 20px; }
+  .un-hry-card-desc { display: none; }
+  .un-hry-card-price { font-size: 18px !important; }
+}
   .un-hry-grid { grid-template-columns: 1fr; gap: 16px; }
   .un-hry-card:nth-child(1) { grid-column: 1; }
   .un-hry-row2 { grid-template-columns: 1fr; gap: 16px; }
