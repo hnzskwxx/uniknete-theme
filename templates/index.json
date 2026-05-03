@@ -16,7 +16,7 @@
         "title": "Zažij příběh, ve kterém jsi hlavní postava.",
         "subtitle": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času.",
         "cta_text": "Začít dobrodružství",
-        "cta_url": "",
+        "cta_url": "https://uniknete.myshopify.com/pages/hry",
         "hint": "Voucher dorazí e-mailem ihned po platbě"
       }
     },
@@ -61,13 +61,13 @@
       "settings": {}
     },
     "products": {
-      "type": "products-grid",
-      "settings": {
-        "label": "Katalog her",
-        "title": "Vyber svůj příběh",
-        "collection": "hry",
-        "products_count": 5
-      }
+  "type": "products-grid",
+  "settings": {
+    "label": "Katalog her",
+    "title": "Vyber svůj příběh",
+    "collection": "hry",
+    "products_count": 12
+  }
     },
     "how": {
       "type": "how-it-works",
