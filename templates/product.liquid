@@ -1,29 +1,22 @@
 <style>
 .un-product { padding-top: 80px; }
-
 .un-product-wrap {
   max-width: 1200px;
   margin: 0 auto;
   padding: 48px 32px 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+  display: flex; flex-direction: column; gap: 40px;
 }
 
-/* ========================
-   HERO SEKCE
-======================== */
+/* HERO — 2 sloupce, bez ceny */
 .un-product-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: start;
 }
-
-/* OBRÁZEK */
 .un-product-gallery { display: flex; flex-direction: column; gap: 12px; }
 .un-product-main-img {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1/1;
   background: rgba(8,11,8,0.55);
   backdrop-filter: blur(10px);
   border-radius: 20px;
@@ -33,22 +26,18 @@
 }
 .un-product-main-img img {
   width: 100%; height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
+  object-fit: contain; border-radius: 8px;
   transition: transform 0.4s ease;
 }
 .un-product-main-img:hover img { transform: scale(1.03); }
-
-.un-product-thumbs {
-  display: flex; gap: 10px;
-}
+.un-product-thumbs { display: flex; gap: 10px; }
 .un-product-thumb {
-  width: 72px; height: 72px;
+  width: 68px; height: 68px;
   background: rgba(8,11,8,0.5);
   backdrop-filter: blur(6px);
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.07);
-  padding: 8px; cursor: pointer;
+  padding: 6px; cursor: pointer;
   transition: border-color 0.2s, transform 0.2s;
   display: flex; align-items: center; justify-content: center;
 }
@@ -56,19 +45,14 @@
 .un-product-thumb.active { border-color: var(--accent); }
 .un-product-thumb img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
 
-/* INFO BLOK */
 .un-product-info {
-  background: rgba(8,11,8,0.65);
+  background: rgba(8,11,8,0.6);
   backdrop-filter: blur(14px);
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
   padding: 36px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: sticky;
-  top: 96px;
+  display: flex; flex-direction: column; gap: 16px;
 }
 .un-product-type {
   font-size: 10px; letter-spacing: 3px;
@@ -76,181 +60,202 @@
 }
 .un-product-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(28px, 3vw, 42px);
+  font-size: clamp(28px, 3vw, 44px);
   font-weight: 800; color: var(--white);
   line-height: 1.05; letter-spacing: -1px;
 }
 .un-product-tagline {
-  font-size: 15px; color: rgba(240,237,232,0.6);
-  font-weight: 300; line-height: 1.65;
-  padding-bottom: 20px;
+  font-size: 15px; color: rgba(240,237,232,0.55);
+  font-weight: 300; line-height: 1.7;
+}
+.un-product-meta-mini {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.un-product-meta-mini-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: rgba(240,237,232,0.5); font-weight: 300;
+}
+.un-product-meta-mini-item strong { color: var(--white); font-weight: 600; }
+
+/* PURCHASE OPTIONS */
+.un-purchase { }
+.un-purchase-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--accent); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.un-purchase-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 20px; align-items: stretch;
+}
+.un-purchase-card {
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  text-decoration: none; color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s, background 0.2s;
+}
+.un-purchase-card:hover {
+  transform: scale(1.02);
+  background: rgba(8,11,8,0.8);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+}
+.un-purchase-card.main { border-color: rgba(255,107,53,0.3); padding: 28px; }
+
+.un-purchase-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.un-purchase-badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 6px;
+}
+.un-purchase-badge.accent { background: var(--accent); color: #fff; }
+.un-purchase-badge.muted {
+  background: rgba(255,255,255,0.07); color: rgba(240,237,232,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.un-purchase-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px; font-weight: 800; color: var(--white); line-height: 1.15;
+}
+.un-purchase-card.main .un-purchase-name { font-size: 20px; }
+
+/* CENA */
+.un-purchase-price-row {
+  display: flex; align-items: baseline; gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
   border-bottom: 1px solid rgba(255,255,255,0.07);
 }
-.un-product-price-wrap {
-  display: flex; align-items: baseline; gap: 12px;
-}
-.un-product-price {
+.un-purchase-price-num {
   font-family: 'Syne', sans-serif;
-  font-size: 38px; font-weight: 800; color: var(--white);
+  font-weight: 800; color: var(--white);
 }
-.un-product-price-old {
-  font-size: 20px; color: rgba(240,237,232,0.3);
-  text-decoration: line-through;
+.un-purchase-card.main .un-purchase-price-num { font-size: 34px; }
+.un-purchase-card:not(.main) .un-purchase-price-num { font-size: 24px; }
+.un-purchase-price-kc {
+  font-size: 15px; font-weight: 700;
+  color: rgba(240,237,232,0.5); margin-left: 2px;
 }
-.un-product-qty-row {
-  display: flex; align-items: center; gap: 12px;
-}
-.un-product-qty-label {
-  font-size: 11px; letter-spacing: 1px;
-  text-transform: uppercase; color: rgba(240,237,232,0.4);
-}
-.un-product-qty {
-  width: 60px; padding: 10px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px; color: var(--white);
-  font-size: 15px; font-family: 'Inter', sans-serif;
-  text-align: center; outline: none;
-  transition: border-color 0.2s;
-}
-.un-product-qty:focus { border-color: var(--accent); }
-.un-product-submit {
-  background: var(--accent); color: #fff;
-  border: none; padding: 17px;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer; font-family: 'Inter', sans-serif;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  border-radius: 12px; width: 100%;
-  transition: background 0.2s, transform 0.15s;
-}
-.un-product-submit:hover { background: #ff824d; transform: translateY(-1px); }
-.un-product-submit:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
-.un-product-notes {
-  display: flex; flex-direction: column; gap: 8px;
-}
-.un-product-note {
-  font-size: 12px; color: rgba(240,237,232,0.35);
-  display: flex; align-items: center; gap: 8px;
-}
-.un-product-note::before { content: '✓'; color: var(--accent); font-weight: 700; }
 
-/* ========================
-   INFO KARTY
-======================== */
+/* OBRÁZEK balíčku */
+.un-purchase-img {
+  border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  padding: 10px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.un-purchase-img img { width: 100%; object-fit: contain; border-radius: 6px; }
+
+.un-purchase-desc {
+  font-size: 13px; color: rgba(240,237,232,0.5);
+  font-weight: 300; line-height: 1.6; flex: 1;
+}
+.un-purchase-cta {
+  display: block; text-align: center;
+  padding: 13px 16px; border-radius: 10px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: background 0.2s; text-decoration: none; margin-top: auto;
+}
+.un-purchase-cta.primary { background: var(--accent); color: #fff; }
+.un-purchase-cta.primary:hover { background: #ff824d; }
+.un-purchase-cta.ghost {
+  background: rgba(255,255,255,0.07); color: var(--white);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.un-purchase-cta.ghost:hover { background: rgba(255,255,255,0.13); }
+
+/* META KARTY */
 .un-product-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 12px;
 }
 .un-product-meta-card {
   background: rgba(8,11,8,0.55);
   backdrop-filter: blur(10px);
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.07);
-  padding: 18px 16px;
-  text-align: center;
+  padding: 18px 16px; text-align: center;
   display: flex; flex-direction: column; gap: 6px;
 }
-.un-product-meta-icon { font-size: 22px; }
-.un-product-meta-label {
+.un-meta-icon { font-size: 22px; }
+.un-meta-label {
   font-size: 9px; letter-spacing: 2px;
-  text-transform: uppercase; color: rgba(240,237,232,0.35);
-  font-weight: 500;
+  text-transform: uppercase; color: rgba(240,237,232,0.35); font-weight: 500;
 }
-.un-product-meta-value {
+.un-meta-value {
   font-family: 'Syne', sans-serif;
   font-size: 15px; font-weight: 700; color: var(--white);
 }
 
-/* ========================
-   POPIS
-======================== */
+/* POPIS */
 .un-product-desc-box {
   background: rgba(8,11,8,0.55);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.07);
   padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
 }
-.un-product-desc-section h3 {
+.un-desc-section h3 {
   font-family: 'Syne', sans-serif;
   font-size: 13px; font-weight: 700;
   color: var(--accent); letter-spacing: 2px;
   text-transform: uppercase; margin-bottom: 16px;
 }
-.un-product-desc-section p,
-.un-product-desc-text {
-  font-size: 15px; color: rgba(240,237,232,0.6);
+.un-desc-section p, .un-desc-text {
+  font-size: 15px; color: rgba(240,237,232,0.55);
   line-height: 1.8; font-weight: 300;
 }
-.un-product-desc-text p { margin-bottom: 12px; }
-
-/* ========================
-   CO DOSTANEŠ
-======================== */
-.un-product-includes {
-  display: flex; flex-direction: column; gap: 10px;
+.un-desc-text p { margin-bottom: 12px; }
+.un-include-list { display: flex; flex-direction: column; gap: 10px; }
+.un-include-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: rgba(240,237,232,0.65); font-weight: 300;
 }
-.un-product-include-item {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 14px; color: rgba(240,237,232,0.7);
-  font-weight: 300;
-}
-.un-product-include-item::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%; background: var(--accent);
-  flex-shrink: 0;
+.un-include-item::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--accent); flex-shrink: 0;
 }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .un-product-wrap { padding: 32px 20px 100px; gap: 32px; }
+  .un-product-wrap { padding: 32px 20px 80px; gap: 32px; }
   .un-product-hero { grid-template-columns: 1fr; }
-  .un-product-info { position: static; }
-  .un-product-meta-grid { grid-template-columns: repeat(2, 1fr); }
-  .un-product-desc-box { grid-template-columns: 1fr; gap: 32px; }
-
-  /* Sticky CTA na mobilu */
-  .un-product-submit-sticky {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    padding: 16px 24px;
-    background: rgba(8,11,8,0.95);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid rgba(255,255,255,0.08);
-    z-index: 50;
-  }
-}
-@media (min-width: 901px) {
-  .un-product-submit-sticky { display: none; }
+  .un-purchase-grid { grid-template-columns: 1fr; }
+  .un-product-meta-grid { grid-template-columns: repeat(2,1fr); }
+  .un-product-desc-box { grid-template-columns: 1fr; gap: 32px; padding: 28px; }
 }
 </style>
 
 <div class="un-product">
   <div class="un-product-wrap">
 
-    <!-- HERO -->
+    <!-- HERO — bez ceny -->
     <div class="un-product-hero">
-
-      <!-- Galerie -->
       <div class="un-product-gallery">
-        <div class="un-product-main-img" id="mainImgWrap">
+        <div class="un-product-main-img">
           {% if product.featured_image %}
-            <img id="mainImg"
-              src="{{ product.featured_image | img_url: '700x700' }}"
-              alt="{{ product.title | escape }}" />
+            <img id="mainImg" src="{{ product.featured_image | img_url: '700x700' }}" alt="{{ product.title | escape }}" loading="eager" />
           {% else %}
-            <div style="font-size:80px;opacity:0.15;">🗺</div>
+            <div style="font-size:80px;opacity:0.1;">🗺</div>
           {% endif %}
         </div>
         {% if product.images.size > 1 %}
           <div class="un-product-thumbs">
             {% for image in product.images %}
               <div class="un-product-thumb {% if forloop.first %}active{% endif %}"
-                onclick="document.getElementById('mainImg').src='{{ image | img_url: '700x700' }}'; document.querySelectorAll('.un-product-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');">
+                onclick="document.getElementById('mainImg').src='{{ image | img_url: '700x700' }}';document.querySelectorAll('.un-product-thumb').forEach(t=>t.classList.remove('active'));this.classList.add('active');">
                 <img src="{{ image | img_url: '150x150' }}" alt="" />
               </div>
             {% endfor %}
@@ -258,102 +263,118 @@
         {% endif %}
       </div>
 
-      <!-- Info blok -->
       <div class="un-product-info">
         <div class="un-product-type">{{ product.type | default: 'Venkovní hra' }}</div>
         <h1 class="un-product-title">{{ product.title }}</h1>
-        <p class="un-product-tagline">{{ product.description | strip_html | truncate: 120 }}</p>
-
-        <div class="un-product-price-wrap">
-          <span class="un-product-price">
-            {% if product.price > 0 %}{{ product.price | money }}{% else %}Na vyžádání{% endif %}
-          </span>
-          {% if product.compare_at_price > product.price %}
-            <span class="un-product-price-old">{{ product.compare_at_price | money }}</span>
-          {% endif %}
+        <p class="un-product-tagline">{{ product.description | strip_html | truncate: 140 }}</p>
+        <div class="un-product-meta-mini">
+          <div class="un-product-meta-mini-item">👥 <strong>2–8</strong> hráčů</div>
+          <div class="un-product-meta-mini-item">⏱ <strong>60–120 min</strong></div>
+          <div class="un-product-meta-mini-item">📅 platnost <strong>12 měsíců</strong></div>
         </div>
+      </div>
+    </div>
 
-        {% form 'product', product %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
-          <div class="un-product-qty-row">
-            <span class="un-product-qty-label">Počet</span>
-            <input class="un-product-qty" type="number" name="quantity" value="1" min="1" max="20" />
+    <!-- NÁKUPNÍ MOŽNOSTI -->
+    <div class="un-purchase">
+      <div class="un-purchase-heading">Možnosti nákupu</div>
+      <div class="un-purchase-grid">
+
+        <!-- Varianta 1 — HLAVNÍ -->
+        <a href="https://buy.stripe.com/8x28wP5W4dSobHB8gQbAs01" target="_blank" class="un-purchase-card main">
+          <div class="un-purchase-badges">
+            <span class="un-purchase-badge accent">Nejrychlejší</span>
           </div>
-          {% if product.available %}
-            <button type="submit" class="un-product-submit">Přidat do košíku</button>
-          {% else %}
-            <button class="un-product-submit" disabled>Vyprodáno</button>
-          {% endif %}
-        {% endform %}
+          <div class="un-purchase-name">Online hra</div>
+          <div class="un-purchase-price-row">
+            <span class="un-purchase-price-num">397</span>
+            <span class="un-purchase-price-kc">Kč</span>
+          </div>
+          <p class="un-purchase-desc">Okamžitý přístup po zaplacení. Voucher s QR kódem e-mailem.</p>
+          <span class="un-purchase-cta primary">Koupit ihned →</span>
+        </a>
 
-        <div class="un-product-notes">
-          <div class="un-product-note">Voucher přijde e-mailem ihned po platbě</div>
-          <div class="un-product-note">Platnost 12 měsíců od zakoupení</div>
-          <div class="un-product-note">Termín si vybereš sám</div>
-        </div>
+        <!-- Varianta 2 — Skvélé Česko -->
+        <a href="https://www.skvelecesko.cz/venkovni-online-hra-utek-ze-zakleteho-mesta-decin-a5249" target="_blank" class="un-purchase-card">
+          <div class="un-purchase-badges">
+            <span class="un-purchase-badge muted">Firemní benefity</span>
+          </div>
+          <div class="un-purchase-name">Firemní benefity</div>
+          <div class="un-purchase-price-row">
+            <span class="un-purchase-price-num">379</span>
+            <span class="un-purchase-price-kc">Kč</span>
+          </div>
+          <p class="un-purchase-desc">Uplatněte benefity přes Skvélé Česko.</p>
+          <span class="un-purchase-cta ghost">Koupit u partnera →</span>
+        </a>
+
+        <!-- Varianta 3 — Dárkový balíček -->
+        <a href="https://buy.stripe.com/eVq8wP2JS6pW12XaoYbAs07" target="_blank" class="un-purchase-card">
+          <div class="un-purchase-badges">
+            <span class="un-purchase-badge muted">Dárek</span>
+          </div>
+          <div class="un-purchase-img">
+            <img src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/unnameddddddddddd.jpg?v=1777816661" alt="Dárkový balíček" />
+          </div>
+          <div class="un-purchase-name">Dárkový balíček</div>
+          <div class="un-purchase-price-row">
+            <span class="un-purchase-price-num">739</span>
+            <span class="un-purchase-price-kc">Kč</span>
+          </div>
+          <p class="un-purchase-desc">Fyzická verze vhodná jako dárek. Včetně fyzického balení.</p>
+          <span class="un-purchase-cta ghost">Koupit balíček →</span>
+        </a>
+
       </div>
     </div>
 
     <!-- META KARTY -->
     <div class="un-product-meta-grid">
       <div class="un-product-meta-card">
-        <div class="un-product-meta-icon">👥</div>
-        <div class="un-product-meta-label">Hráči</div>
-        <div class="un-product-meta-value">2–8 osob</div>
+        <div class="un-meta-icon">👥</div>
+        <div class="un-meta-label">Hráči</div>
+        <div class="un-meta-value">2–8 osob</div>
       </div>
       <div class="un-product-meta-card">
-        <div class="un-product-meta-icon">⏱</div>
-        <div class="un-product-meta-label">Délka</div>
-        <div class="un-product-meta-value">60–120 min</div>
+        <div class="un-meta-icon">⏱</div>
+        <div class="un-meta-label">Délka</div>
+        <div class="un-meta-value">60–120 min</div>
       </div>
       <div class="un-product-meta-card">
-        <div class="un-product-meta-icon">🎯</div>
-        <div class="un-product-meta-label">Obtížnost</div>
-        <div class="un-product-meta-value">Střední</div>
+        <div class="un-meta-icon">🎯</div>
+        <div class="un-meta-label">Obtížnost</div>
+        <div class="un-meta-value">Střední</div>
       </div>
       <div class="un-product-meta-card">
-        <div class="un-product-meta-icon">📅</div>
-        <div class="un-product-meta-label">Platnost</div>
-        <div class="un-product-meta-value">12 měsíců</div>
+        <div class="un-meta-icon">📅</div>
+        <div class="un-meta-label">Platnost</div>
+        <div class="un-meta-value">12 měsíců</div>
       </div>
     </div>
 
-    <!-- POPIS + CO DOSTANEŠ -->
+    <!-- POPIS -->
     <div class="un-product-desc-box">
-      <div class="un-product-desc-section">
+      <div class="un-desc-section">
         <h3>O hře</h3>
-        <div class="un-product-desc-text">{{ product.description }}</div>
+        <div class="un-desc-text">{{ product.description }}</div>
       </div>
-      <div class="un-product-desc-section">
+      <div class="un-desc-section">
         <h3>Co dostaneš</h3>
-        <div class="un-product-includes">
-          <div class="un-product-include-item">PDF voucher s QR kódem (e-mailem)</div>
-          <div class="un-product-include-item">Herní instrukce krok za krokem</div>
-          <div class="un-product-include-item">Mapa lokací a šifer</div>
-          <div class="un-product-include-item">Podpora na telefonu během hry</div>
-          <div class="un-product-include-item">Platnost 12 měsíců</div>
+        <div class="un-include-list">
+          <div class="un-include-item">PDF voucher s QR kódem (e-mailem)</div>
+          <div class="un-include-item">Herní instrukce krok za krokem</div>
+          <div class="un-include-item">Mapa lokací a šifer</div>
+          <div class="un-include-item">Podpora na telefonu během hry</div>
+          <div class="un-include-item">Platnost 12 měsíců</div>
         </div>
-        <h3 style="margin-top:32px;">Jak to funguje</h3>
-        <div class="un-product-includes">
-          <div class="un-product-include-item">Koupíš voucher online</div>
-          <div class="un-product-include-item">Dostaneš instrukce e-mailem</div>
-          <div class="un-product-include-item">Vyrazíš ven a hraješ</div>
+        <h3 style="margin-top:28px;">Jak to funguje</h3>
+        <div class="un-include-list">
+          <div class="un-include-item">Vybereš variantu a zaplatíš online</div>
+          <div class="un-include-item">Dostaneš instrukce e-mailem</div>
+          <div class="un-include-item">Vyrazíš ven a hraješ</div>
         </div>
       </div>
     </div>
-
-  {% render 'purchase-options' %}
 
   </div>
-</div>
-
-<!-- Sticky CTA mobil -->
-<div class="un-product-submit-sticky">
-  {% form 'product', product %}
-    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
-    <input type="hidden" name="quantity" value="1" />
-    {% if product.available %}
-      <button type="submit" class="un-product-submit">Koupit — {{ product.price | money }}</button>
-    {% endif %}
-  {% endform %}
 </div>
