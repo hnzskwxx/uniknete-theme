@@ -2,194 +2,236 @@
 .un-hry {
   padding-top: 80px;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-.un-hry-hero {
-  padding: 32px 48px 24px;
-  border-bottom: 1px solid var(--white-10);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-}
-.un-hry-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(24px, 2.5vw, 38px);
-  font-weight: 800;
-  color: var(--white);
-  line-height: 1.0;
-  letter-spacing: -1px;
-}
-.un-hry-title span { color: var(--accent); }
-.un-hry-sub {
-  font-size: 13px;
-  color: var(--white-60);
-  font-weight: 300;
-  text-align: right;
+.un-hry-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 48px 32px 64px;
 }
 
-/* GRID */
+/* ASYMETRICKÝ GRID */
 .un-hry-grid {
-  flex: 1;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 28px;
+}
+
+/* Řádek 1: velká karta + malá */
+.un-hry-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+.un-hry-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+
+/* Řádek 2: 3 stejné karty */
+.un-hry-row2 {
+  grid-column: 1 / 3;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 2px;
-  background: rgba(255,255,255,0.06);
+  gap: 28px;
 }
-
-/* Produkt 1 — zabírá oba řádky vlevo */
-.un-hry-card:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1 / 3;
-}
-/* Produkty 2–5 — normální */
-.un-hry-card:nth-child(2) { grid-column: 2; grid-row: 1; }
-.un-hry-card:nth-child(3) { grid-column: 3; grid-row: 1; }
-.un-hry-card:nth-child(4) { grid-column: 2; grid-row: 2; }
-.un-hry-card:nth-child(5) { grid-column: 3; grid-row: 2; }
 
 /* KARTA */
 .un-hry-card {
-  position: relative;
-  display: block;
+  background: rgba(8, 11, 8, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.05) inset;
+  overflow: hidden;
   text-decoration: none;
   color: inherit;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
+  cursor: pointer;
 }
-.un-hry-card img {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: brightness(0.75) saturate(0.8);
-  transition: transform 0.6s ease, filter 0.4s;
+.un-hry-card:hover {
+  transform: scale(1.025);
+  background: rgba(8, 11, 8, 0.78);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 1px 0 rgba(255,255,255,0.07) inset;
 }
-.un-hry-card:hover img {
-  transform: scale(1.05);
-  filter: brightness(0.5) saturate(1);
+
+/* OBRÁZEK — čtverec, žádné ořezání */
+.un-hry-card-img {
+  aspect-ratio: 1 / 1;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
 }
-.un-hry-card-placeholder {
-  position: absolute; inset: 0;
-  background: rgba(8,11,8,0.5);
-  display: flex; align-items: center;
-  justify-content: center; font-size: 48px;
+.un-hry-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
 }
-.un-hry-card-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(8,11,8,0.95) 0%, rgba(8,11,8,0.1) 60%, transparent 100%);
+.un-hry-card-img-placeholder {
+  font-size: 64px;
+  opacity: 0.2;
 }
+
+/* TEXT */
 .un-hry-card-body {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 24px 28px;
-  z-index: 2;
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
 }
 .un-hry-card-num {
-  font-size: 9px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--accent);
-  font-weight: 600; margin-bottom: 6px; display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
 }
 .un-hry-card-name {
   font-family: 'Syne', sans-serif;
-  font-weight: 800; color: var(--white);
-  line-height: 1.05; letter-spacing: -0.5px;
-  margin-bottom: 10px;
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.3px;
 }
-/* Velká karta má větší název */
-.un-hry-card:nth-child(1) .un-hry-card-name { font-size: clamp(24px, 2.8vw, 40px); }
-.un-hry-card:not(:nth-child(1)) .un-hry-card-name { font-size: clamp(15px, 1.6vw, 20px); }
-
-.un-hry-card-hook {
-  font-size: 13px; color: var(--white-60);
-  font-weight: 300; line-height: 1.5; margin-bottom: 12px;
-  display: none;
+.un-hry-card-desc {
+  font-size: 13px;
+  color: rgba(240,237,232,0.55);
+  font-weight: 300;
+  line-height: 1.6;
+  flex: 1;
 }
-.un-hry-card:nth-child(1) .un-hry-card-hook { display: block; }
-
 .un-hry-card-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  margin-top: 8px;
 }
-.un-hry-card-meta {
-  display: flex; gap: 12px;
-  font-size: 11px; color: rgba(240,237,232,0.4);
+.un-hry-card-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--white);
 }
 .un-hry-card-btn {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 1px; text-transform: uppercase;
-  color: var(--accent);
-  opacity: 0; transform: translateX(-6px);
-  transition: all 0.25s;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent);
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
-.un-hry-card:hover .un-hry-card-btn {
-  opacity: 1; transform: translateX(0);
+.un-hry-card:hover .un-hry-card-btn { background: #ff824d; }
+
+/* Velká karta — větší název */
+.un-hry-card:nth-child(1) .un-hry-card-name { font-size: clamp(20px, 2.2vw, 30px); }
+.un-hry-card:nth-child(1) .un-hry-card-desc { font-size: 14px; }
+.un-hry-card:nth-child(1) .un-hry-card-price { font-size: 22px; }
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .un-hry-grid { grid-template-columns: 1fr 1fr; }
+  .un-hry-card:nth-child(1) { grid-column: 1 / 3; }
+  .un-hry-row2 { grid-template-columns: 1fr 1fr; }
 }
 
-/* Velká karta má vždy viditelné CTA */
-.un-hry-card:nth-child(1) .un-hry-card-btn {
-  opacity: 1; transform: none;
-  background: var(--accent); color: #fff;
-  padding: 10px 20px; border-radius: 2px;
-}
-.un-hry-card:nth-child(1):hover .un-hry-card-btn { background: #ff824d; }
-
-@media (max-width: 768px) {
-  .un-hry-hero { padding: 20px 24px; }
-  .un-hry-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    flex: none;
-  }
-  .un-hry-card:nth-child(1) { grid-column: 1 / 3; grid-row: auto; min-height: 280px; }
-  .un-hry-card:nth-child(2),
-  .un-hry-card:nth-child(3),
-  .un-hry-card:nth-child(4),
-  .un-hry-card:nth-child(5) {
-    grid-column: auto; grid-row: auto; min-height: 180px;
-  }
+/* MOBILE */
+@media (max-width: 600px) {
+  .un-hry-wrap { padding: 32px 16px 48px; }
+  .un-hry-grid { grid-template-columns: 1fr; }
+  .un-hry-card:nth-child(1) { grid-column: 1; }
+  .un-hry-row2 { grid-template-columns: 1fr; }
 }
 </style>
 
 <div class="un-hry">
-  <div class="un-hry-hero">
-    <div>
-      <span class="section-label" style="margin-bottom:4px;">Katalog her</span>
-      <h1 class="un-hry-title">Vyber svůj <span>příběh</span></h1>
-    </div>
-    <p class="un-hry-sub">Koupíš voucher,<br>dostaneš instrukce e-mailem.</p>
-  </div>
+  <div class="un-hry-wrap">
+    {% assign products = collections.all.products %}
 
-  <div class="un-hry-grid">
-    {% for product in collections.all.products limit: 5 %}
-      <a href="{{ product.url }}" class="un-hry-card">
-        {% if product.featured_image %}
-          <img
-            src="{{ product.featured_image | img_url: '900x700', crop: 'center' }}"
-            alt="{{ product.title | escape }}"
-            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}" />
-        {% else %}
-          <div class="un-hry-card-placeholder">🗺</div>
-        {% endif %}
-        <div class="un-hry-card-overlay"></div>
+    <div class="un-hry-grid">
+      <!-- Karta 1 (velká) -->
+      {% assign p = products[0] %}
+      <a href="{{ p.url }}" class="un-hry-card">
+        <div class="un-hry-card-img">
+          {% if p.featured_image %}
+            <img src="{{ p.featured_image | img_url: '600x600' }}" alt="{{ p.title | escape }}" loading="eager" />
+          {% else %}
+            <div class="un-hry-card-img-placeholder">🗺</div>
+          {% endif %}
+        </div>
         <div class="un-hry-card-body">
-          <span class="un-hry-card-num">0{{ forloop.index }} — {{ product.type | default: 'Hra' }}</span>
-          <div class="un-hry-card-name">{{ product.title }}</div>
-          {% if product.description != blank %}
-            <div class="un-hry-card-hook">{{ product.description | strip_html | truncate: 100 }}</div>
+          <span class="un-hry-card-num">01 — {{ p.type | default: 'Hra' }}</span>
+          <div class="un-hry-card-name">{{ p.title }}</div>
+          {% if p.description != blank %}
+            <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 120 }}</div>
           {% endif %}
           <div class="un-hry-card-footer">
-            <div class="un-hry-card-meta">
-              <span>👥 2–8</span>
-              <span>⏱ 90 min</span>
-            </div>
+            <div class="un-hry-card-price">{% if p.price > 0 %}{{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
             <span class="un-hry-card-btn">Koupit →</span>
           </div>
         </div>
       </a>
-    {% endfor %}
+
+      <!-- Karta 2 (malá) -->
+      {% assign p = products[1] %}
+      <a href="{{ p.url }}" class="un-hry-card">
+        <div class="un-hry-card-img">
+          {% if p.featured_image %}
+            <img src="{{ p.featured_image | img_url: '400x400' }}" alt="{{ p.title | escape }}" loading="lazy" />
+          {% else %}
+            <div class="un-hry-card-img-placeholder">🗺</div>
+          {% endif %}
+        </div>
+        <div class="un-hry-card-body">
+          <span class="un-hry-card-num">02 — {{ p.type | default: 'Hra' }}</span>
+          <div class="un-hry-card-name">{{ p.title }}</div>
+          {% if p.description != blank %}
+            <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 80 }}</div>
+          {% endif %}
+          <div class="un-hry-card-footer">
+            <div class="un-hry-card-price">{% if p.price > 0 %}{{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
+            <span class="un-hry-card-btn">Koupit →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Řádek 2: karty 3, 4, 5 -->
+      <div class="un-hry-row2">
+        {% for i in (2..4) %}
+          {% assign p = products[i] %}
+          {% if p %}
+            <a href="{{ p.url }}" class="un-hry-card">
+              <div class="un-hry-card-img">
+                {% if p.featured_image %}
+                  <img src="{{ p.featured_image | img_url: '400x400' }}" alt="{{ p.title | escape }}" loading="lazy" />
+                {% else %}
+                  <div class="un-hry-card-img-placeholder">🗺</div>
+                {% endif %}
+              </div>
+              <div class="un-hry-card-body">
+                <span class="un-hry-card-num">0{{ i | plus: 1 }} — {{ p.type | default: 'Hra' }}</span>
+                <div class="un-hry-card-name">{{ p.title }}</div>
+                {% if p.description != blank %}
+                  <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 80 }}</div>
+                {% endif %}
+                <div class="un-hry-card-footer">
+                  <div class="un-hry-card-price">{% if p.price > 0 %}{{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
+                  <span class="un-hry-card-btn">Koupit →</span>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
