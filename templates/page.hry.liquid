@@ -175,7 +175,7 @@
             <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 120 }}</div>
           {% endif %}
           <div class="un-hry-card-footer">
-            <div class="un-hry-card-price">{% if p.price > 0 %}<span style="font-size:11px;font-weight:400;opacity:0.6;">od</span> {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
+            <div class="un-hry-card-price">{% if p.price > 0 %}od {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
             <span class="un-hry-card-btn">Koupit →</span>
           </div>
         </div>
@@ -198,7 +198,7 @@
             <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 80 }}</div>
           {% endif %}
           <div class="un-hry-card-footer">
-            <div class="un-hry-card-price">{% if p.price > 0 %}<span style="font-size:11px;font-weight:400;opacity:0.6;">od</span> {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
+            <div class="un-hry-card-price">{% if p.price > 0 %}od {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
             <span class="un-hry-card-btn">Koupit →</span>
           </div>
         </div>
@@ -224,7 +224,7 @@
                   <div class="un-hry-card-desc">{{ p.description | strip_html | truncate: 80 }}</div>
                 {% endif %}
                 <div class="un-hry-card-footer">
-                  <div class="un-hry-card-price">{% if p.price > 0 %}<span style="font-size:11px;font-weight:400;opacity:0.6;">od</span> {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
+                  <div class="un-hry-card-price">{% if p.price > 0 %}od {{ p.price | money }}{% else %}Na vyžádání{% endif %}</div>
                   <span class="un-hry-card-btn">Koupit →</span>
                 </div>
               </div>
