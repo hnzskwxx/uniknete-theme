@@ -28,42 +28,83 @@
   background: rgba(8,11,8,0.78);
   box-shadow: 0 16px 40px rgba(0,0,0,0.45);
 }
-.un-purchase-card.main { border-color: rgba(255,107,53,0.25); padding: 28px; }
+.un-purchase-card.main { border-color: rgba(255,107,53,0.3); padding: 28px; }
+
+/* BADGE */
+.un-purchase-badges { display: flex; gap: 6px; flex-wrap: wrap; }
 .un-purchase-badge {
   font-size: 9px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  color: var(--accent); display: flex; align-items: center; gap: 6px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 6px;
 }
-.un-purchase-badge::before {
-  content: ''; width: 6px; height: 6px;
-  border-radius: 50%; background: var(--accent); flex-shrink: 0;
+.un-purchase-badge.primary {
+  background: var(--accent); color: #fff;
 }
+.un-purchase-badge.secondary {
+  background: rgba(255,255,255,0.07);
+  color: rgba(240,237,232,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* NÁZEV */
 .un-purchase-name {
   font-family: 'Syne', sans-serif;
-  font-size: 17px; font-weight: 800; color: var(--white); line-height: 1.15;
+  font-size: 17px; font-weight: 800;
+  color: var(--white); line-height: 1.15;
 }
 .un-purchase-card.main .un-purchase-name { font-size: 20px; }
-.un-purchase-desc {
-  font-size: 13px; color: rgba(240,237,232,0.5);
-  font-weight: 300; line-height: 1.6; flex: 1;
+
+/* CENA */
+.un-purchase-price-wrap {
+  display: flex; align-items: baseline; gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
+.un-purchase-price-num {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; color: var(--white); line-height: 1;
+}
+.un-purchase-card.main .un-purchase-price-num { font-size: 36px; }
+.un-purchase-card:not(.main) .un-purchase-price-num { font-size: 24px; }
+
+.un-purchase-price-currency {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px; font-weight: 700;
+  color: rgba(240,237,232,0.5);
+}
+.un-purchase-price-context {
+  font-size: 11px; color: rgba(240,237,232,0.35);
+  font-weight: 300; margin-left: auto;
+  text-align: right; line-height: 1.4;
+}
+
+/* OBRÁZEK */
 .un-purchase-img {
   border-radius: 12px; overflow: hidden;
   background: rgba(255,255,255,0.04);
-  padding: 12px;
+  padding: 10px;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid rgba(255,255,255,0.05);
 }
 .un-purchase-img img {
   width: 100%; object-fit: contain; border-radius: 6px;
 }
-.un-purchase-divider { height: 1px; background: rgba(255,255,255,0.06); }
+
+/* POPIS */
+.un-purchase-desc {
+  font-size: 13px; color: rgba(240,237,232,0.5);
+  font-weight: 300; line-height: 1.6; flex: 1;
+}
+
+/* CTA */
 .un-purchase-cta {
   display: block; text-align: center;
   padding: 12px 16px; border-radius: 10px;
   font-size: 11px; font-weight: 700;
   letter-spacing: 1.5px; text-transform: uppercase;
   transition: background 0.2s; text-decoration: none;
+  margin-top: auto;
 }
 .un-purchase-cta.primary { background: var(--accent); color: #fff; }
 .un-purchase-cta.primary:hover { background: #ff824d; }
@@ -72,6 +113,7 @@
   border: 1px solid rgba(255,255,255,0.1);
 }
 .un-purchase-cta.secondary:hover { background: rgba(255,255,255,0.12); }
+
 @media (max-width: 900px) {
   .un-purchase-grid { grid-template-columns: 1fr 1fr; }
   .un-purchase-card:last-child { grid-column: 1 / 3; }
@@ -86,32 +128,52 @@
   <div class="un-purchase-title">Možnosti nákupu</div>
   <div class="un-purchase-grid">
 
-    <div class="un-purchase-card main">
-      <div class="un-purchase-badge">Doporučeno</div>
+    <!-- Varianta 1 — přímý nákup (HLAVNÍ) -->
+    <a href="https://buy.stripe.com/8x28wP5W4dSobHB8gQbAs01" target="_blank" class="un-purchase-card main">
+      <div class="un-purchase-badges">
+        <span class="un-purchase-badge primary">Nejrychlejší</span>
+        <span class="un-purchase-badge secondary">Doporučeno</span>
+      </div>
       <div class="un-purchase-name">Koupit hru</div>
-      <p class="un-purchase-desc">Okamžitý přístup po zaplacení. Voucher s QR kódem dostaneš e-mailem do pár minut.</p>
-      <div class="un-purchase-divider"></div>
-      <a href="https://buy.stripe.com/8x28wP5W4dSobHB8gQbAs01" target="_blank" class="un-purchase-cta primary">Koupit ihned →</a>
-    </div>
+      <div class="un-purchase-price-wrap">
+        <span class="un-purchase-price-num">299</span>
+        <span class="un-purchase-price-currency">Kč</span>
+        <span class="un-purchase-price-context">online hra<br>okamžitý přístup</span>
+      </div>
+      <p class="un-purchase-desc">Voucher s QR kódem dostaneš e-mailem do pár minut po platbě.</p>
+      <span class="un-purchase-cta primary">Koupit ihned →</span>
+    </a>
 
-    <div class="un-purchase-card">
-      <div class="un-purchase-badge">Firemní benefity</div>
+    <!-- Varianta 2 — partner -->
+    <a href="https://www.skvelecesko.cz/venkovni-online-hra-utek-ze-zakleteho-mesta-decin-a5249" target="_blank" class="un-purchase-card">
+      <div class="un-purchase-badges">
+        <span class="un-purchase-badge secondary">Firemní benefity</span>
+      </div>
       <div class="un-purchase-name">Přes Skvélé Česko</div>
-      <p class="un-purchase-desc">Máte firemní benefity? Nakupte přes partnera SkvéléČesko.cz.</p>
-      <div class="un-purchase-divider"></div>
-      <a href="https://www.skvelecesko.cz/venkovni-online-hra-utek-ze-zakleteho-mesta-decin-a5249" target="_blank" class="un-purchase-cta secondary">Koupit u partnera →</a>
-    </div>
+      <div class="un-purchase-price-wrap">
+        <span class="un-purchase-price-num" style="font-size:18px;color:rgba(240,237,232,0.5);">Cena</span>
+        <span class="un-purchase-price-context" style="margin-left:8px;">u partnera<br>dle aktuální nabídky</span>
+      </div>
+      <p class="un-purchase-desc">Máte firemní benefity k uplatnění? Nakupte přes SkvéléČesko.cz.</p>
+      <span class="un-purchase-cta secondary">Koupit u partnera →</span>
+    </a>
 
-    <div class="un-purchase-card">
+    <!-- Varianta 3 — dárkový balíček -->
+    <a href="https://buy.stripe.com/eVq8wP2JS6pW12XaoYbAs07" target="_blank" class="un-purchase-card">
+      <div class="un-purchase-badges">
+        <span class="un-purchase-badge secondary">Dárek</span>
+      </div>
+      <div class="un-purchase-name">Dárkový balíček</div>
+      <div class="un-purchase-price-wrap">
+        <span class="un-purchase-price-num">499</span>
+        <span class="un-purchase-price-currency">Kč</span>
+        <span class="un-purchase-price-context">včetně<br>fyzického balení</span>
+      </div>
       <div class="un-purchase-img">
         <img src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/unnameddddddddddd.jpg?v=1777816661" alt="Dárkový balíček" />
       </div>
-      <div class="un-purchase-badge">Fyzický dárek</div>
-      <div class="un-purchase-name">Dárkový balíček</div>
-      <p class="un-purchase-desc">Fyzická varianta jako dárek — krásně zabalené, ideální pro blízké.</p>
-      <div class="un-purchase-divider"></div>
-      <a href="https://buy.stripe.com/eVq8wP2JS6pW12XaoYbAs07" target="_blank" class="un-purchase-cta secondary">Koupit balíček →</a>
-    </div>
+      <span class="un-purchase-cta secondary">Koupit balíček →</span>
+    </a>
 
   </div>
 </div>
