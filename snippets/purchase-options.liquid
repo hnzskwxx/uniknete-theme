@@ -47,6 +47,16 @@
   font-size: 13px; color: rgba(240,237,232,0.5);
   font-weight: 300; line-height: 1.6; flex: 1;
 }
+.un-purchase-img {
+  border-radius: 12px; overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  padding: 12px;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.un-purchase-img img {
+  width: 100%; object-fit: contain; border-radius: 6px;
+}
 .un-purchase-divider { height: 1px; background: rgba(255,255,255,0.06); }
 .un-purchase-cta {
   display: block; text-align: center;
@@ -93,6 +103,9 @@
     </div>
 
     <div class="un-purchase-card">
+      <div class="un-purchase-img">
+        <img src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/unnameddddddddddd.jpg?v=1777816661" alt="Dárkový balíček" />
+      </div>
       <div class="un-purchase-badge">Fyzický dárek</div>
       <div class="un-purchase-name">Dárkový balíček</div>
       <p class="un-purchase-desc">Fyzická varianta jako dárek — krásně zabalené, ideální pro blízké.</p>
