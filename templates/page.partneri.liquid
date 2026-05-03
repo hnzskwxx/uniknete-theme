@@ -1,121 +1,192 @@
 <style>
 .un-partneri { padding-top: 80px; min-height: 100vh; }
 
-.un-partneri-hero {
-  padding: 64px 48px 48px;
-  border-bottom: 1px solid var(--white-10);
+.un-partneri-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 64px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
 }
+
+/* HERO TEXT */
+.un-partneri-hero { max-width: 600px; }
 .un-partneri-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(36px, 5vw, 64px); font-weight: 800;
-  color: var(--white); line-height: 1.0;
-  letter-spacing: -1px; margin-bottom: 12px;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.0; letter-spacing: -1px; margin-bottom: 14px;
 }
 .un-partneri-title span { color: var(--accent); }
 .un-partneri-sub {
-  font-size: 16px; color: var(--white-60);
-  font-weight: 300; max-width: 520px;
+  font-size: 16px; color: rgba(240,237,232,0.55);
+  font-weight: 300; line-height: 1.7;
 }
 
+/* GRID 1fr 1.2fr 1fr — prostřední větší */
 .un-partneri-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--white-10);
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 24px;
+  align-items: stretch;
 }
 
+/* KARTA */
 .un-partner-card {
-  padding: 40px 36px;
-  display: flex; flex-direction: column; gap: 14px;
-  text-decoration: none; color: inherit;
-  transition: background 0.25s;
-  background: rgba(8,11,8,0.45);
-  backdrop-filter: blur(6px);
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s;
 }
-.un-partner-card:hover { background: rgba(8,11,8,0.65); }
+.un-partner-card:hover {
+  transform: scale(1.025);
+  background: rgba(8,11,8,0.78);
+  box-shadow: 0 20px 56px rgba(0,0,0,0.5);
+}
 
-.un-partner-logo {
-  width: 80px; height: 80px;
-  border-radius: 4px;
-  object-fit: contain;
-  background: #fff;
-  padding: 8px;
+/* Prostřední karta — featured */
+.un-partner-card.featured {
+  border-color: rgba(255,107,53,0.2);
+  padding: 40px 32px;
 }
+.un-partner-card.featured .un-partner-name {
+  font-size: 24px;
+}
+
+/* LOGO */
+.un-partner-logo-wrap {
+  height: 72px;
+  display: flex;
+  align-items: center;
+}
+.un-partner-logo {
+  max-height: 60px;
+  max-width: 160px;
+  width: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+.un-partner-logo-placeholder {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px; font-weight: 800;
+  color: var(--accent);
+  background: rgba(255,107,53,0.1);
+  border: 1px solid rgba(255,107,53,0.2);
+  border-radius: 10px;
+  width: 60px; height: 60px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* DIVIDER */
+.un-partner-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+/* TEXT */
 .un-partner-type {
   font-size: 10px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--accent); font-weight: 500;
+  text-transform: uppercase; color: var(--accent);
+  font-weight: 600;
 }
 .un-partner-name {
   font-family: 'Syne', sans-serif;
-  font-size: 22px; font-weight: 800;
-  color: var(--white); line-height: 1.2;
+  font-size: 20px; font-weight: 800;
+  color: var(--white); line-height: 1.15;
 }
 .un-partner-desc {
-  font-size: 14px; color: var(--white-60);
-  line-height: 1.7; font-weight: 300; flex: 1;
+  font-size: 14px; color: rgba(240,237,232,0.55);
+  font-weight: 300; line-height: 1.7; flex: 1;
 }
+
+/* ODKAZ */
 .un-partner-link {
-  font-size: 11px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
   color: var(--accent);
-  display: flex; align-items: center; gap: 8px;
-  transition: gap 0.2s; margin-top: 8px;
+  padding-top: 4px;
+  transition: gap 0.2s;
 }
 .un-partner-card:hover .un-partner-link { gap: 12px; }
 
-.un-partneri-cta {
-  padding: 64px 48px;
-  backdrop-filter: blur(6px);
-  background: rgba(8,11,8,0.45);
-  border-top: 1px solid var(--white-10);
-  display: flex; justify-content: space-between;
-  align-items: center; gap: 40px; flex-wrap: wrap;
-}
-.un-partneri-cta-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 28px; font-weight: 800;
-  color: var(--white); margin-bottom: 8px;
-}
-.un-partneri-cta-sub {
-  font-size: 15px; color: var(--white-60); font-weight: 300;
+/* TABLET */
+@media (max-width: 900px) {
+  .un-partneri-grid { grid-template-columns: 1fr 1fr; }
+  .un-partner-card:last-child { grid-column: 1 / 3; max-width: 480px; margin: 0 auto; width: 100%; }
 }
 
-@media (max-width: 900px) {
-  .un-partneri-hero { padding: 56px 24px 40px; }
+/* MOBILE */
+@media (max-width: 600px) {
+  .un-partneri-wrap { padding: 48px 20px 64px; }
   .un-partneri-grid { grid-template-columns: 1fr; }
-  .un-partneri-cta { padding: 48px 24px; flex-direction: column; align-items: flex-start; }
+  .un-partner-card:last-child { grid-column: auto; max-width: none; }
 }
 </style>
 
 <div class="un-partneri">
-  <div class="un-partneri-hero">
-    <span class="section-label">Naši partneři</span>
-    <h1 class="un-partneri-title">Spolehliví <span>partneři</span></h1>
-    <p class="un-partneri-sub">Spolupracujeme s prověřenými partnery kteří sdílejí naši lásku k Děčínu a okolí.</p>
-  </div>
+  <div class="un-partneri-wrap">
 
-  <div class="un-partneri-grid">
-    <a href="https://www.skvelecesko.cz" target="_blank" class="un-partner-card">
-      <img class="un-partner-logo" src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/skvele_cesko.png?v=1777641356" alt="SkvéléČesko" />
-      <div class="un-partner-type">Turistický portál</div>
-      <div class="un-partner-name">SkvéléČesko.cz</div>
-      <p class="un-partner-desc">Jaké další aktivity jsou v okolí hry? Najdete je na SkvéléČesko.cz — největší portál pro výlety v ČR.</p>
-      <span class="un-partner-link">Navštívit →</span>
-    </a>
-    <a href="https://www.kudyznudy.cz" target="_blank" class="un-partner-card">
-      <img class="un-partner-logo" src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/kudyznudy.jpg?v=1777641389" alt="Kudy z nudy" />
-      <div class="un-partner-type">CzechTourism</div>
-      <div class="un-partner-name">Kudy z nudy</div>
-      <p class="un-partner-desc">Officiální turistický portál CzechTourism. Tipy na výlety a aktivity po celé ČR.</p>
-      <span class="un-partner-link">Navštívit →</span>
-    </a>
-    <div class="un-partner-card">
-      <img class="un-partner-logo" src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/upekare.png?v=1777641366" alt="U Pekaře" />
-      <div class="un-partner-type">Restaurace & Hotel · Děčín</div>
-      <div class="un-partner-name">U Pekaře</div>
-      <p class="un-partner-desc">Náš partner pro ubytování a občerstvení v Děčíně. Po hře si zasloužíte dobré jídlo.</p>
-      <span class="un-partner-link">Zjistit více →</span>
+    <div class="un-partneri-hero">
+      <span class="section-label">Naši partneři</span>
+      <h1 class="un-partneri-title">Spolehliví <span>partneři</span></h1>
+      <p class="un-partneri-sub">Spolupracujeme s prověřenými partnery kteří sdílejí naši lásku k Děčínu a okolí.</p>
+    </div>
+
+    <div class="un-partneri-grid">
+
+      <!-- Partner 1 -->
+      <a href="https://www.skvelecesko.cz" target="_blank" class="un-partner-card">
+        <div class="un-partner-logo-wrap">
+          <img class="un-partner-logo"
+            src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/skvele_cesko.png?v=1777641356"
+            alt="SkvéléČesko.cz" />
+        </div>
+        <div class="un-partner-divider"></div>
+        <div class="un-partner-type">Turistický portál</div>
+        <div class="un-partner-name">SkvéléČesko.cz</div>
+        <p class="un-partner-desc">Jaké další aktivity jsou v okolí hry? Najdete je na SkvéléČesko.cz — největší portál pro výlety a zážitky v ČR.</p>
+        <span class="un-partner-link">Navštívit →</span>
+      </a>
+
+      <!-- Partner 2 — featured (prostřední) -->
+      <a href="https://www.kudyznudy.cz" target="_blank" class="un-partner-card featured">
+        <div class="un-partner-logo-wrap">
+          <img class="un-partner-logo"
+            src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/kudyznudy.jpg?v=1777641389"
+            alt="Kudy z nudy" />
+        </div>
+        <div class="un-partner-divider"></div>
+        <div class="un-partner-type">CzechTourism</div>
+        <div class="un-partner-name">Kudy z nudy</div>
+        <p class="un-partner-desc">Officiální turistický portál CzechTourism. Tipy na výlety, aktivity a zážitky po celé České republice.</p>
+        <span class="un-partner-link">Navštívit →</span>
+      </a>
+
+      <!-- Partner 3 -->
+      <div class="un-partner-card">
+        <div class="un-partner-logo-wrap">
+          <img class="un-partner-logo"
+            src="https://cdn.shopify.com/s/files/1/1029/3008/8276/files/upekare.png?v=1777641366"
+            alt="U Pekaře" />
+        </div>
+        <div class="un-partner-divider"></div>
+        <div class="un-partner-type">Restaurace & Hotel · Děčín</div>
+        <div class="un-partner-name">U Pekaře</div>
+        <p class="un-partner-desc">Náš partner pro ubytování a občerstvení v Děčíně. Po hře si zasloužíte dobré jídlo a odpočinek.</p>
+        <span class="un-partner-link">Zjistit více →</span>
+      </div>
+
     </div>
   </div>
-
-  </div>
+</div>
