@@ -1,12 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
+
 {
   "sections": {
     "hero": {
@@ -16,7 +8,7 @@
         "title": "Zažij příběh, ve kterém jsi hlavní postava.",
         "subtitle": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času.",
         "cta_text": "Začít dobrodružství",
-        "cta_url": "https://uniknete.myshopify.com/pages/hry",
+        "cta_url": "",
         "hint": "Voucher dorazí e-mailem ihned po platbě"
       }
     },
@@ -61,13 +53,13 @@
       "settings": {}
     },
     "products": {
-  "type": "products-grid",
-  "settings": {
-    "label": "Katalog her",
-    "title": "Vyber svůj příběh",
-    "collection": "hry",
-    "products_count": 12
-  }
+      "type": "products-grid",
+      "settings": {
+        "label": "Katalog her",
+        "title": "Vyber svůj příběh",
+        "collection": "hry",
+        "products_count": 5
+      }
     },
     "how": {
       "type": "how-it-works",
