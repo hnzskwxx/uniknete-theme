@@ -1,0 +1,74 @@
+<style>
+.un-policy {
+  padding-top: 80px;
+  min-height: 100vh;
+}
+.un-policy-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 64px 32px 80px;
+}
+.un-policy-box {
+  background: rgba(8,11,8,0.65);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 48px;
+}
+.un-policy-label {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent);
+  font-weight: 600; margin-bottom: 16px; display: block;
+}
+.un-policy-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.1; letter-spacing: -1px; margin-bottom: 32px;
+}
+.un-policy-content {
+  font-size: 15px; color: rgba(240,237,232,0.6);
+  line-height: 1.8; font-weight: 300;
+}
+.un-policy-content h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--white); margin: 32px 0 12px;
+}
+.un-policy-content h3 {
+  font-size: 16px; font-weight: 600;
+  color: var(--white); margin: 24px 0 8px;
+}
+.un-policy-content p { margin-bottom: 14px; }
+.un-policy-content a { color: var(--accent); }
+.un-policy-content ul, .un-policy-content ol {
+  margin: 12px 0 12px 24px;
+}
+.un-policy-content li { margin-bottom: 6px; }
+.un-policy-back {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--accent); text-decoration: none;
+  margin-bottom: 32px; transition: gap 0.2s;
+}
+.un-policy-back:hover { gap: 12px; }
+
+@media (max-width: 768px) {
+  .un-policy-wrap { padding: 48px 20px 64px; }
+  .un-policy-box { padding: 32px 24px; }
+}
+</style>
+
+<div class="un-policy">
+  <div class="un-policy-wrap">
+    <a href="/" class="un-policy-back">← Zpět na hlavní stránku</a>
+    <div class="un-policy-box">
+      <span class="un-policy-label">Právní informace</span>
+      <h1 class="un-policy-title">{{ policy.title }}</h1>
+      <div class="un-policy-content">
+        {{ policy.body }}
+      </div>
+    </div>
+  </div>
+</div>
