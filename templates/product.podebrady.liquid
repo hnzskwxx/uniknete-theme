@@ -163,35 +163,6 @@
   font-size: 15px; font-weight: 700; color: var(--white);
 }
 
-/* POPIS */
-.un-product-desc-box {
-  background: rgba(8,11,8,0.55);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.07);
-  padding: 40px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-}
-.un-desc-section h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 13px; font-weight: 700;
-  color: var(--accent); letter-spacing: 2px;
-  text-transform: uppercase; margin-bottom: 16px;
-}
-.un-desc-text {
-  font-size: 15px; color: rgba(240,237,232,0.55);
-  line-height: 1.8; font-weight: 300;
-}
-.un-desc-text p { margin-bottom: 12px; }
-.un-include-list { display: flex; flex-direction: column; gap: 10px; }
-.un-include-item {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 14px; color: rgba(240,237,232,0.65); font-weight: 300;
-}
-.un-include-item::before {
-  content: ''; width: 6px; height: 6px;
-  border-radius: 50%; background: var(--accent); flex-shrink: 0;
-}
 
 /* VOUCHER */
 .un-voucher-box {
@@ -246,6 +217,22 @@
           <div class="un-product-meta-mini-item">👥 <strong>2–8</strong> hráčů</div>
           <div class="un-product-meta-mini-item">⏱ <strong>60–120 min</strong></div>
           <div class="un-product-meta-mini-item">📅 platnost <strong>12 měsíců</strong></div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Co dostaneš</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>PDF voucher s QR kódem (e-mailem)</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Herní instrukce krok za krokem</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Podpora na telefonu během hry</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:16px;">
+          <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Jak to funguje</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Vybereš variantu a zaplatíš online</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Dostaneš instrukce e-mailem</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(240,237,232,0.65);font-weight:300;"><span style="width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;display:inline-block;"></span>Vyrazíš ven a hraješ</div>
+          </div>
         </div>
       </div>
     </div>
@@ -303,31 +290,6 @@
         <div class="un-meta-value">12 měsíců</div>
       </div>
     </div>
-
-    <!-- POPIS -->
-    <div class="un-product-desc-box">
-      <div class="un-desc-section">
-        <h3>O hře</h3>
-        <div class="un-desc-text">{{ product.description }}</div>
-      </div>
-      <div class="un-desc-section">
-        <h3>Co dostaneš</h3>
-        <div class="un-include-list">
-          <div class="un-include-item">PDF voucher s QR kódem (e-mailem)</div>
-          <div class="un-include-item">Herní instrukce krok za krokem</div>
-          <div class="un-include-item">Mapa lokací a šifer</div>
-          <div class="un-include-item">Podpora na telefonu během hry</div>
-          <div class="un-include-item">Platnost 12 měsíců</div>
-        </div>
-        <h3 style="margin-top:28px;">Jak to funguje</h3>
-        <div class="un-include-list">
-          <div class="un-include-item">Vybereš variantu a zaplatíš online</div>
-          <div class="un-include-item">Dostaneš instrukce e-mailem</div>
-          <div class="un-include-item">Vyrazíš ven a hraješ</div>
-        </div>
-      </div>
-    </div>
-
     <!-- UPLATNĚNÍ VOUCHERU -->
     <div class="un-voucher-box">
       <div class="un-voucher-label">Uplatnění voucheru</div>
