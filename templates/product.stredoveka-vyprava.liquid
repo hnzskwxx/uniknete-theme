@@ -1,0 +1,237 @@
+<style>
+.un-product { padding-top: 80px; }
+.un-product-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  display: flex; flex-direction: column; gap: 40px;
+}
+
+/* HERO */
+.un-product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.un-product-main-img {
+  aspect-ratio: 1/1;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.un-product-main-img img {
+  width: 100%; height: 100%;
+  object-fit: contain; border-radius: 8px;
+}
+
+/* INFO BLOK */
+.un-product-info {
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  padding: 36px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.un-product-type {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 600;
+}
+.un-product-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.05; letter-spacing: -1px;
+}
+.un-product-tagline {
+  font-size: 15px; color: rgba(240,237,232,0.6);
+  font-weight: 300; line-height: 1.75;
+}
+.un-product-tagline strong { color: var(--accent); font-weight: 600; }
+.un-product-meta-mini {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.un-product-meta-mini-item {
+  font-size: 13px; color: rgba(240,237,232,0.5); font-weight: 300;
+}
+.un-product-meta-mini-item strong { color: var(--white); font-weight: 600; }
+
+/* JEDNODUCHÁ NÁKUPNÍ KARTA */
+.un-buy-card {
+  background: rgba(255,107,53,0.08);
+  border: 1px solid rgba(255,107,53,0.25);
+  border-radius: 18px;
+  padding: 24px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.un-buy-card-name {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent);
+}
+.un-buy-price-row {
+  display: flex; align-items: baseline; gap: 4px;
+}
+.un-buy-price-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px; font-weight: 800; color: var(--white);
+}
+.un-buy-price-kc {
+  font-size: 16px; font-weight: 700;
+  color: rgba(240,237,232,0.5);
+}
+.un-buy-desc {
+  font-size: 13px; color: rgba(240,237,232,0.5);
+  font-weight: 300; line-height: 1.5;
+}
+.un-buy-cta {
+  display: block; text-align: center;
+  padding: 16px;
+  background: var(--accent); color: #fff;
+  border-radius: 12px; font-size: 13px;
+  font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.un-buy-cta:hover { background: #ff824d; transform: translateY(-1px); }
+
+/* Co dostaneš + Jak to funguje */
+.un-includes {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.un-include-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: rgba(240,237,232,0.6); font-weight: 300;
+}
+.un-include-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+.un-section-mini-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px; display: block;
+}
+
+/* VOUCHER */
+.un-voucher-box {
+  max-width: 800px; margin: 0 auto; width: 100%;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 40px;
+}
+.un-voucher-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.un-voucher-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+  color: var(--white); margin-bottom: 12px; line-height: 1.2;
+}
+.un-voucher-desc {
+  font-size: 15px; color: rgba(240,237,232,0.55);
+  font-weight: 300; line-height: 1.7; margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .un-product-wrap { padding: 32px 20px 80px; gap: 32px; }
+  .un-product-hero { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="un-product">
+  <div class="un-product-wrap">
+
+    <!-- HERO -->
+    <div class="un-product-hero">
+
+      <!-- Obrázek -->
+      <div class="un-product-main-img">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | img_url: '700x700' }}" alt="{{ product.title | escape }}" loading="eager" />
+        {% else %}
+          <div style="font-size:80px;opacity:0.1;">🗺</div>
+        {% endif %}
+      </div>
+
+      <!-- Info -->
+      <div class="un-product-info">
+        <div class="un-product-type">Venkovní hra · Historické město</div>
+        <h1 class="un-product-title">{{ product.title }}</h1>
+
+        <p class="un-product-tagline">
+          Vydej se na výpravu zpět do středověku. Staré ulice, zapomenutá tajemství a indicie
+          ukryté v kamenných zdech — <strong>Středověká výprava</strong> tě zavede do světa,
+          kde každý krok odkrývá nový příběh. Hra pro ty, kdo hledají dobrodružství mimo
+          všední čas.
+        </p>
+
+        <div class="un-product-meta-mini">
+          <div class="un-product-meta-mini-item">👥 <strong>2–8</strong> hráčů</div>
+          <div class="un-product-meta-mini-item">⏱ <strong>60–120 min</strong></div>
+          <div class="un-product-meta-mini-item">🎯 <strong>Střední</strong> obtížnost</div>
+          <div class="un-product-meta-mini-item">📅 platnost <strong>12 měsíců</strong></div>
+        </div>
+
+        <!-- NÁKUPNÍ KARTA -->
+        <div class="un-buy-card">
+          <div class="un-buy-card-name">Online hra</div>
+          <div class="un-buy-price-row">
+            <span class="un-buy-price-num">397</span>
+            <span class="un-buy-price-kc">Kč</span>
+          </div>
+          <div class="un-buy-desc">Okamžitý přístup po zaplacení. Voucher e-mailem.</div>
+          <a href="https://buy.stripe.com/6oU9AT2JSaGc5jdbt2bAs04" target="_blank" class="un-buy-cta">
+            Koupit hru →
+          </a>
+        </div>
+
+        <!-- Co dostaneš -->
+        <div>
+          <span class="un-section-mini-label">Co dostaneš</span>
+          <div class="un-includes">
+            <div class="un-include-item"><span class="un-include-dot"></span>PDF voucher s QR kódem (e-mailem)</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Herní instrukce krok za krokem</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Podpora na telefonu během hry</div>
+          </div>
+        </div>
+
+        <!-- Jak to funguje -->
+        <div>
+          <span class="un-section-mini-label">Jak to funguje</span>
+          <div class="un-includes">
+            <div class="un-include-item"><span class="un-include-dot"></span>Zaplatíš online</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Dostaneš instrukce e-mailem</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Vyrazíš ven a hraješ</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UPLATNĚNÍ VOUCHERU -->
+    <div class="un-voucher-box">
+      <div class="un-voucher-label">Uplatnění voucheru</div>
+      <div class="un-voucher-title">Máte voucher ze slevového portálu?</div>
+      <p class="un-voucher-desc">Máte voucher z některého ze slevových portálů (Skvélé Česko apod.)? Pokračujte k uplatnění voucheru.</p>
+      <div style="border-radius:12px;overflow:hidden;">
+        <iframe src="https://app.smartemailing.cz/public/web-forms-v2/display-form/682388-qazca27se2baurgtm47wyvd504oypoebg76fu7dyk0de1s01cu3hvrfv07ny621bc8dhbnycrh0fpmedmuxcml5b53l7t2dxduph"
+          width="100%" height="500" frameborder="0" scrolling="auto"
+          style="display:block;border:none;border-radius:12px;background:transparent;">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
