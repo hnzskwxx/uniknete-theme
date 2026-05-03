@@ -3,54 +3,68 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 64px;
+  padding: 20px 48px;
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 1000;
   background: transparent;
   transition: background 0.3s, border-color 0.3s;
   border-bottom: 1px solid transparent;
 }
 .un-nav.scrolled {
-  background: rgba(13,17,13,0.92);
+  background: rgba(13,17,13,0.97);
   backdrop-filter: blur(12px);
-  border-color: var(--white-10);
+  border-color: rgba(255,255,255,0.06);
 }
 .un-logo {
   font-family: 'Syne', sans-serif;
-  font-size: 22px; font-weight: 800;
+  font-size: 18px; font-weight: 800;
   color: var(--white);
   letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  position: relative; z-index: 1001;
 }
 .un-logo span { color: var(--accent); }
 .nav-links {
-  display: flex; gap: 48px;
+  display: flex; gap: 40px;
   list-style: none; align-items: center;
 }
 .nav-links a {
   color: var(--white);
   text-decoration: none;
-  font-size: 13px; font-weight: 500;
+  font-size: 12px; font-weight: 500;
   letter-spacing: 1px; text-transform: uppercase;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--white); }
+.nav-links a:hover { color: var(--accent); }
 .nav-toggle {
-  display: none; background: none; border: none;
-  cursor: pointer; flex-direction: column; gap: 5px; padding: 4px;
+  display: none;
+  background: none; border: none;
+  cursor: pointer; flex-direction: column;
+  gap: 5px; padding: 8px;
+  position: relative; z-index: 1001;
 }
-.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--white); }
+.nav-toggle span {
+  display: block; width: 24px; height: 2px;
+  background: var(--white); border-radius: 2px;
+  transition: all 0.3s;
+}
+
 @media (max-width: 900px) {
   .un-nav { padding: 16px 24px; }
   .nav-toggle { display: flex; }
   .nav-links {
-    display: none; position: fixed;
+    display: none;
+    position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    flex-direction: column; justify-content: center;
-    background: rgba(13,17,13,0.99); gap: 28px; z-index: 99;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(8,11,8,0.98);
+    gap: 32px;
+    z-index: 999;
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 16px; }
+  .nav-links a { font-size: 18px; letter-spacing: 2px; }
 }
 </style>
 
@@ -67,13 +81,39 @@
 </nav>
 
 <script>
-  const nav = document.getElementById('un-nav');
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.getElementById('nav-links');
+document.addEventListener('DOMContentLoaded', function() {
+  var nav = document.getElementById('un-nav');
+  var toggle = document.getElementById('nav-toggle');
+  var links = document.getElementById('nav-links');
+
+  if (!toggle || !links) return;
+
+  // Scroll efekt
   if (window.scrollY > 40) nav.classList.add('scrolled');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Toggle menu
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    links.classList.toggle('open');
+  });
+
+  // Zavři po kliknutí na odkaz
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      links.classList.remove('open');
+    });
+  });
+
+  // Zavři po kliknutí mimo
+  document.addEventListener('click', function(e) {
+    if (!nav.contains(e.target)) {
+      links.classList.remove('open');
+    }
+  });
+});
 </script>
 
 {% schema %}
