@@ -55,34 +55,16 @@
     }
   </style>
 </head>
-<body class="{% if template == 'index' %}is-homepage{% endif %}">
-
-  <div id="un-videobg">
-    <video id="bg-video" muted loop playsinline></video>
-  </div>
+<body>
 
   {% section 'header' %}
   <main>{{ content_for_layout }}</main>
   {% section 'footer' %}
 
   {{ 'main.js' | asset_url | script_tag }}
-  <script>
-    if (document.body.classList.contains('is-homepage')) {
-      window.addEventListener('load', function() {
-        var v = document.getElementById('bg-video');
-        var s = document.createElement('source');
-        s.src = 'https://cdn.shopify.com/videos/c/o/v/0a05ebd7b50b4986b0824e28f5d275c8.mp4';
-        s.type = 'video/mp4';
-        v.appendChild(s);
-        v.load();
-        v.play().catch(function(){});
-      });
-    }
-  </script>
   <style>
-.card--card, .card--standard .card__inner {
-    border: unset !important;
-}
-</style>
+    * { outline: none !important; }
+    .shopify-section { border: none !important; }
+  </style>
 </body>
 </html>
