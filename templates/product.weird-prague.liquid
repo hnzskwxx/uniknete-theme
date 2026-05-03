@@ -1,0 +1,266 @@
+<style>
+.un-product { padding-top: 80px; }
+.un-product-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  display: flex; flex-direction: column; gap: 40px;
+}
+
+/* HERO */
+.un-product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.un-product-main-img {
+  aspect-ratio: 1/1;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+.un-product-main-img img {
+  width: 100%; height: 100%;
+  object-fit: contain; border-radius: 8px;
+}
+.un-product-info {
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  padding: 36px;
+  display: flex; flex-direction: column; gap: 20px;
+}
+.un-product-type {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 600;
+}
+.un-product-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.05; letter-spacing: -1px;
+}
+.un-product-tagline {
+  font-size: 15px; color: rgba(240,237,232,0.6);
+  font-weight: 300; line-height: 1.75;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.un-product-meta-mini {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+.un-product-meta-mini-item {
+  font-size: 13px; color: rgba(240,237,232,0.5); font-weight: 300;
+}
+.un-product-meta-mini-item strong { color: var(--white); font-weight: 600; }
+
+/* CO DOSTANEŠ */
+.un-includes { display: flex; flex-direction: column; gap: 8px; }
+.un-include-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: rgba(240,237,232,0.6); font-weight: 300;
+}
+.un-include-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%; background: var(--accent); flex-shrink: 0;
+}
+.un-section-mini-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 10px; display: block;
+}
+
+/* 3 LANGUAGE CARDS */
+.un-lang-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--accent); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 20px;
+}
+.un-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.un-lang-card {
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  padding: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  text-decoration: none; color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s, background 0.2s;
+}
+.un-lang-card:hover {
+  transform: scale(1.02);
+  background: rgba(8,11,8,0.8);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.5);
+}
+.un-lang-flag {
+  font-size: 36px; line-height: 1;
+}
+.un-lang-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px; font-weight: 800;
+  color: var(--white); line-height: 1.15;
+}
+.un-lang-desc {
+  font-size: 14px; color: rgba(240,237,232,0.5);
+  font-weight: 300; line-height: 1.6; flex: 1;
+}
+.un-lang-divider { height: 1px; background: rgba(255,255,255,0.07); }
+.un-lang-cta {
+  display: block; text-align: center;
+  padding: 13px 16px; border-radius: 10px;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  background: var(--accent); color: #fff;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.un-lang-cta:hover { background: #ff824d; }
+
+/* VOUCHER */
+.un-voucher-box {
+  max-width: 800px; margin: 0 auto; width: 100%;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 40px;
+}
+.un-voucher-label {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 14px;
+}
+.un-voucher-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px; font-weight: 800;
+  color: var(--white); margin-bottom: 12px; line-height: 1.2;
+}
+.un-voucher-desc {
+  font-size: 15px; color: rgba(240,237,232,0.55);
+  font-weight: 300; line-height: 1.7; margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .un-product-wrap { padding: 32px 20px 80px; gap: 32px; }
+  .un-product-hero { grid-template-columns: 1fr; }
+  .un-lang-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .un-lang-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="un-product">
+  <div class="un-product-wrap">
+
+    <!-- HERO -->
+    <div class="un-product-hero">
+      <div class="un-product-main-img">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | img_url: '700x700' }}" alt="{{ product.title | escape }}" loading="eager" />
+        {% else %}
+          <div style="font-size:80px;opacity:0.1;">🗺</div>
+        {% endif %}
+      </div>
+
+      <div class="un-product-info">
+        <div class="un-product-type">Outdoor Game · Prague</div>
+        <h1 class="un-product-title">{{ product.title }}</h1>
+        <p class="un-product-tagline">
+          Prague hides more than you think. Bizarre corners, forgotten stories, and surreal
+          history waiting to be discovered. <em>Weird Prague</em> is an outdoor mystery game
+          that takes you through the city's strangest and most atmospheric streets —
+          one clue at a time.
+        </p>
+        <div class="un-product-meta-mini">
+          <div class="un-product-meta-mini-item">👥 <strong>2–8</strong> players</div>
+          <div class="un-product-meta-mini-item">⏱ <strong>60–120 min</strong></div>
+          <div class="un-product-meta-mini-item">🌍 <strong>EN / DE / ES</strong></div>
+          <div class="un-product-meta-mini-item">📅 valid <strong>12 months</strong></div>
+        </div>
+
+        <!-- Co dostaneš -->
+        <div>
+          <span class="un-section-mini-label">What you get</span>
+          <div class="un-includes">
+            <div class="un-include-item"><span class="un-include-dot"></span>PDF voucher with QR code (via email)</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Step-by-step game instructions</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Phone support during the game</div>
+          </div>
+        </div>
+
+        <!-- Jak to funguje -->
+        <div>
+          <span class="un-section-mini-label">How it works</span>
+          <div class="un-includes">
+            <div class="un-include-item"><span class="un-include-dot"></span>Choose your language & complete the form</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Receive instructions via email</div>
+            <div class="un-include-item"><span class="un-include-dot"></span>Head out and explore Prague</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 LANGUAGE OPTIONS -->
+    <div>
+      <div class="un-lang-heading">Choose your language</div>
+      <div class="un-lang-grid">
+
+        <a href="https://app.smartemailing.cz/public/web-forms-v2/display-form/682388-4pmcaxvn34nnlxnws1irqh4gdq872v63fozcdyfdslanlfjmwzg5iv2zhe8fhseaddi0n1zoxk0896pnzl16pbvbiia679ul63rw"
+           target="_blank" class="un-lang-card">
+          <div class="un-lang-flag">🇬🇧</div>
+          <div class="un-lang-name">English Version</div>
+          <div class="un-lang-divider"></div>
+          <div class="un-lang-desc">Full experience in English language. Perfect for international visitors and English-speaking groups.</div>
+          <span class="un-lang-cta">Play English Version →</span>
+        </a>
+
+        <a href="https://app.smartemailing.cz/public/web-forms-v2/display-form/682388-w8z1ha3ps012hnwr8setfatqs0ijxqf826rp9rohfzbxhoo82gjrn0j1gnth0765pedx6tkzee27txatyinwy893u0ovampl8vuw"
+           target="_blank" class="un-lang-card">
+          <div class="un-lang-flag">🇩🇪</div>
+          <div class="un-lang-name">German Version</div>
+          <div class="un-lang-divider"></div>
+          <div class="un-lang-desc">Complete experience in German language. Ideal for German-speaking visitors exploring Prague.</div>
+          <span class="un-lang-cta">Play German Version →</span>
+        </a>
+
+        <a href="https://app.smartemailing.cz/public/web-forms-v2/display-form/682388-w8z1ha3ps012hnwr8setfatqs0ijxqf826rp9rohfzbxhoo82gjrn0j1gnth0765pedx6tkzee27txatyinwy893u0ovampl8vuw"
+           target="_blank" class="un-lang-card">
+          <div class="un-lang-flag">🇪🇸</div>
+          <div class="un-lang-name">Spanish Version</div>
+          <div class="un-lang-divider"></div>
+          <div class="un-lang-desc">Full gameplay experience in Spanish. For Spanish-speaking adventurers discovering Prague.</div>
+          <span class="un-lang-cta">Play Spanish Version →</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- VOUCHER -->
+    <div class="un-voucher-box">
+      <div class="un-voucher-label">Voucher Redemption</div>
+      <div class="un-voucher-title">Do you have a voucher?</div>
+      <p class="un-voucher-desc">Have a voucher from a discount portal (Skvélé Česko etc.)? Continue to redeem your voucher below.</p>
+      <div style="border-radius:12px;overflow:hidden;">
+        <iframe src="https://app.smartemailing.cz/public/web-forms-v2/display-form/682388-qazca27se2baurgtm47wyvd504oypoebg76fu7dyk0de1s01cu3hvrfv07ny621bc8dhbnycrh0fpmedmuxcml5b53l7t2dxduph"
+          width="100%" height="500" frameborder="0" scrolling="auto"
+          style="display:block;border:none;border-radius:12px;background:transparent;">
+        </iframe>
+      </div>
+    </div>
+
+  </div>
+</div>
