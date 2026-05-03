@@ -1,196 +1,357 @@
 <style>
-.un-catalog {
-  padding: 100px 48px;
-  background: transparent;
-  border-top: 1px solid var(--white-10);
-}
-.un-catalog-header {
-  max-width: 1200px;
-  margin: 0 auto 56px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.un-catalog-grid {
+.un-product { padding-top: 80px; }
+
+.un-product-wrap {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  background: var(--white-10);
-}
-.un-game-card {
-  background: rgba(8,11,8,0.45);
-  backdrop-filter: blur(4px);
-  text-decoration: none;
-  color: inherit;
+  padding: 48px 32px 80px;
   display: flex;
   flex-direction: column;
-  transition: background 0.25s;
-  position: relative;
-  overflow: hidden;
+  gap: 48px;
 }
-.un-game-card:hover { background: rgba(8,11,8,0.65); }
-.un-game-card-img {
-  width: 100%;
-  aspect-ratio: 16/9;
-  object-fit: cover;
-  filter: brightness(0.8) saturate(0.7);
-  transition: filter 0.4s, transform 0.5s;
-}
-.un-game-card:hover .un-game-card-img {
-  filter: brightness(0.95) saturate(1);
-  transform: scale(1.03);
-}
-.un-game-card-img-wrap {
-  overflow: hidden;
-  position: relative;
-}
-.un-game-card-img-placeholder {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: var(--dark-2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 48px;
-  opacity: 0.3;
-}
-.un-game-card-body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-}
-.un-game-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-.un-game-card-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.2;
-}
-.un-game-card-price {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--accent);
-  white-space: nowrap;
-}
-.un-game-card-hook {
-  font-size: 13px;
-  color: var(--white-60);
-  line-height: 1.6;
-  font-weight: 300;
-  font-style: italic;
-}
-.un-game-card-meta {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.un-game-meta-item {
-  font-size: 11px;
-  color: var(--white-30);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  letter-spacing: 0.5px;
-}
-.un-game-meta-item strong { color: var(--white-60); font-weight: 500; }
-.un-game-card-footer {
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid var(--white-10);
-  display: flex;
-  justify-content: flex-end;
-}
-.un-game-card-btn {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: gap 0.2s;
-}
-.un-game-card:hover .un-game-card-btn { gap: 12px; }
 
+/* ========================
+   HERO SEKCE
+======================== */
+.un-product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* OBRÁZEK */
+.un-product-gallery { display: flex; flex-direction: column; gap: 12px; }
+.un-product-main-img {
+  aspect-ratio: 1 / 1;
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; overflow: hidden;
+}
+.un-product-main-img img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+.un-product-main-img:hover img { transform: scale(1.03); }
+
+.un-product-thumbs {
+  display: flex; gap: 10px;
+}
+.un-product-thumb {
+  width: 72px; height: 72px;
+  background: rgba(8,11,8,0.5);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 8px; cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.un-product-thumb:hover { border-color: var(--accent); transform: scale(1.05); }
+.un-product-thumb.active { border-color: var(--accent); }
+.un-product-thumb img { width: 100%; height: 100%; object-fit: contain; border-radius: 4px; }
+
+/* INFO BLOK */
+.un-product-info {
+  background: rgba(8,11,8,0.65);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 96px;
+}
+.un-product-type {
+  font-size: 10px; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); font-weight: 600;
+}
+.un-product-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 800; color: var(--white);
+  line-height: 1.05; letter-spacing: -1px;
+}
+.un-product-tagline {
+  font-size: 15px; color: rgba(240,237,232,0.6);
+  font-weight: 300; line-height: 1.65;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.un-product-price-wrap {
+  display: flex; align-items: baseline; gap: 12px;
+}
+.un-product-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 38px; font-weight: 800; color: var(--white);
+}
+.un-product-price-old {
+  font-size: 20px; color: rgba(240,237,232,0.3);
+  text-decoration: line-through;
+}
+.un-product-qty-row {
+  display: flex; align-items: center; gap: 12px;
+}
+.un-product-qty-label {
+  font-size: 11px; letter-spacing: 1px;
+  text-transform: uppercase; color: rgba(240,237,232,0.4);
+}
+.un-product-qty {
+  width: 60px; padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: var(--white);
+  font-size: 15px; font-family: 'Inter', sans-serif;
+  text-align: center; outline: none;
+  transition: border-color 0.2s;
+}
+.un-product-qty:focus { border-color: var(--accent); }
+.un-product-submit {
+  background: var(--accent); color: #fff;
+  border: none; padding: 17px;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  border-radius: 12px; width: 100%;
+  transition: background 0.2s, transform 0.15s;
+}
+.un-product-submit:hover { background: #ff824d; transform: translateY(-1px); }
+.un-product-submit:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.un-product-notes {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.un-product-note {
+  font-size: 12px; color: rgba(240,237,232,0.35);
+  display: flex; align-items: center; gap: 8px;
+}
+.un-product-note::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+/* ========================
+   INFO KARTY
+======================== */
+.un-product-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.un-product-meta-card {
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 18px 16px;
+  text-align: center;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.un-product-meta-icon { font-size: 22px; }
+.un-product-meta-label {
+  font-size: 9px; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(240,237,232,0.35);
+  font-weight: 500;
+}
+.un-product-meta-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700; color: var(--white);
+}
+
+/* ========================
+   POPIS
+======================== */
+.un-product-desc-box {
+  background: rgba(8,11,8,0.55);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.un-product-desc-section h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px; font-weight: 700;
+  color: var(--accent); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.un-product-desc-section p,
+.un-product-desc-text {
+  font-size: 15px; color: rgba(240,237,232,0.6);
+  line-height: 1.8; font-weight: 300;
+}
+.un-product-desc-text p { margin-bottom: 12px; }
+
+/* ========================
+   CO DOSTANEŠ
+======================== */
+.un-product-includes {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.un-product-include-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 14px; color: rgba(240,237,232,0.7);
+  font-weight: 300;
+}
+.un-product-include-item::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%; background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
-  .un-catalog { padding: 64px 24px; }
-  .un-catalog-grid { grid-template-columns: 1fr; }
+  .un-product-wrap { padding: 32px 20px 100px; gap: 32px; }
+  .un-product-hero { grid-template-columns: 1fr; }
+  .un-product-info { position: static; }
+  .un-product-meta-grid { grid-template-columns: repeat(2, 1fr); }
+  .un-product-desc-box { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Sticky CTA na mobilu */
+  .un-product-submit-sticky {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    padding: 16px 24px;
+    background: rgba(8,11,8,0.95);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 50;
+  }
+}
+@media (min-width: 901px) {
+  .un-product-submit-sticky { display: none; }
 }
 </style>
 
-<section class="un-catalog" id="hry">
-  <div class="un-catalog-header">
-    <div>
-      <span class="section-label">{{ section.settings.label }}</span>
-      <h2 class="section-title" style="margin-bottom:0;">{{ section.settings.title }}</h2>
+<div class="un-product">
+  <div class="un-product-wrap">
+
+    <!-- HERO -->
+    <div class="un-product-hero">
+
+      <!-- Galerie -->
+      <div class="un-product-gallery">
+        <div class="un-product-main-img" id="mainImgWrap">
+          {% if product.featured_image %}
+            <img id="mainImg"
+              src="{{ product.featured_image | img_url: '700x700' }}"
+              alt="{{ product.title | escape }}" />
+          {% else %}
+            <div style="font-size:80px;opacity:0.15;">🗺</div>
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="un-product-thumbs">
+            {% for image in product.images %}
+              <div class="un-product-thumb {% if forloop.first %}active{% endif %}"
+                onclick="document.getElementById('mainImg').src='{{ image | img_url: '700x700' }}'; document.querySelectorAll('.un-product-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');">
+                <img src="{{ image | img_url: '150x150' }}" alt="" />
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Info blok -->
+      <div class="un-product-info">
+        <div class="un-product-type">{{ product.type | default: 'Venkovní hra' }}</div>
+        <h1 class="un-product-title">{{ product.title }}</h1>
+        <p class="un-product-tagline">{{ product.description | strip_html | truncate: 120 }}</p>
+
+        <div class="un-product-price-wrap">
+          <span class="un-product-price">
+            {% if product.price > 0 %}{{ product.price | money }}{% else %}Na vyžádání{% endif %}
+          </span>
+          {% if product.compare_at_price > product.price %}
+            <span class="un-product-price-old">{{ product.compare_at_price | money }}</span>
+          {% endif %}
+        </div>
+
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+          <div class="un-product-qty-row">
+            <span class="un-product-qty-label">Počet</span>
+            <input class="un-product-qty" type="number" name="quantity" value="1" min="1" max="20" />
+          </div>
+          {% if product.available %}
+            <button type="submit" class="un-product-submit">Přidat do košíku</button>
+          {% else %}
+            <button class="un-product-submit" disabled>Vyprodáno</button>
+          {% endif %}
+        {% endform %}
+
+        <div class="un-product-notes">
+          <div class="un-product-note">Voucher přijde e-mailem ihned po platbě</div>
+          <div class="un-product-note">Platnost 12 měsíců od zakoupení</div>
+          <div class="un-product-note">Termín si vybereš sám</div>
+        </div>
+      </div>
     </div>
-    <a href="/collections/all" class="btn-ghost" style="padding:12px 24px;font-size:12px;">Všechny hry →</a>
-  </div>
 
-  <div class="un-catalog-grid">
-    {% assign col = collections[section.settings.collection] %}
-    {% if col and col.products.size > 0 %}
-      {% for product in col.products limit: section.settings.products_count %}
-        <a href="{{ product.url }}" class="un-game-card">
-          <div class="un-game-card-img-wrap">
-            {% if product.featured_image %}
-              <img class="un-game-card-img"
-                src="{{ product.featured_image | img_url: '800x450', crop: 'center' }}"
-                alt="{{ product.title | escape }}"
-                loading="lazy" />
-            {% else %}
-              <div class="un-game-card-img-placeholder">🗺</div>
-            {% endif %}
-          </div>
-          <div class="un-game-card-body">
-            <div class="un-game-card-top">
-              <div class="un-game-card-name">{{ product.title }}</div>
-              <div class="un-game-card-price">{{ product.price | money }}</div>
-            </div>
-            {% if product.description != blank %}
-              <div class="un-game-card-hook">{{ product.description | strip_html | truncate: 80 }}</div>
-            {% endif %}
-            <div class="un-game-card-meta">
-              <span class="un-game-meta-item">👥 <strong>2–8</strong> hráčů</span>
-              <span class="un-game-meta-item">⏱ <strong>90 min</strong></span>
-              {% if product.available %}
-                <span class="badge" style="font-size:9px;">Dostupné</span>
-              {% endif %}
-            </div>
-            <div class="un-game-card-footer">
-              <span class="un-game-card-btn">Koupit voucher →</span>
-            </div>
-          </div>
-        </a>
-      {% endfor %}
-    {% else %}
-      <p style="color:var(--white-30);grid-column:1/-1;padding:48px;text-align:center;">Přidej kolekci v nastavení sekce.</p>
+    <!-- META KARTY -->
+    <div class="un-product-meta-grid">
+      <div class="un-product-meta-card">
+        <div class="un-product-meta-icon">👥</div>
+        <div class="un-product-meta-label">Hráči</div>
+        <div class="un-product-meta-value">2–8 osob</div>
+      </div>
+      <div class="un-product-meta-card">
+        <div class="un-product-meta-icon">⏱</div>
+        <div class="un-product-meta-label">Délka</div>
+        <div class="un-product-meta-value">60–120 min</div>
+      </div>
+      <div class="un-product-meta-card">
+        <div class="un-product-meta-icon">🎯</div>
+        <div class="un-product-meta-label">Obtížnost</div>
+        <div class="un-product-meta-value">Střední</div>
+      </div>
+      <div class="un-product-meta-card">
+        <div class="un-product-meta-icon">📅</div>
+        <div class="un-product-meta-label">Platnost</div>
+        <div class="un-product-meta-value">12 měsíců</div>
+      </div>
+    </div>
+
+    <!-- POPIS + CO DOSTANEŠ -->
+    <div class="un-product-desc-box">
+      <div class="un-product-desc-section">
+        <h3>O hře</h3>
+        <div class="un-product-desc-text">{{ product.description }}</div>
+      </div>
+      <div class="un-product-desc-section">
+        <h3>Co dostaneš</h3>
+        <div class="un-product-includes">
+          <div class="un-product-include-item">PDF voucher s QR kódem (e-mailem)</div>
+          <div class="un-product-include-item">Herní instrukce krok za krokem</div>
+          <div class="un-product-include-item">Mapa lokací a šifer</div>
+          <div class="un-product-include-item">Podpora na telefonu během hry</div>
+          <div class="un-product-include-item">Platnost 12 měsíců</div>
+        </div>
+        <h3 style="margin-top:32px;">Jak to funguje</h3>
+        <div class="un-product-includes">
+          <div class="un-product-include-item">Koupíš voucher online</div>
+          <div class="un-product-include-item">Dostaneš instrukce e-mailem</div>
+          <div class="un-product-include-item">Vyrazíš ven a hraješ</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Sticky CTA mobil -->
+<div class="un-product-submit-sticky">
+  {% form 'product', product %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+    <input type="hidden" name="quantity" value="1" />
+    {% if product.available %}
+      <button type="submit" class="un-product-submit">Koupit — {{ product.price | money }}</button>
     {% endif %}
-  </div>
-</section>
-
-{% schema %}
-{
-  "name": "Katalog her",
-  "settings": [
-    { "type": "text", "id": "label", "label": "Label", "default": "Katalog her" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Vyber svůj příběh" },
-    { "type": "collection", "id": "collection", "label": "Kolekce" },
-    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet her", "default": 6 }
-  ],
-  "presets": [{ "name": "Katalog her" }]
-}
-{% endschema %}
+  {% endform %}
+</div>
