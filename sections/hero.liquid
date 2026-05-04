@@ -1,101 +1,123 @@
 <style>
-.un-hero {
-  min-height: 100vh;
-  max-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.un-how {
+  padding: 100px 48px;
+  background: rgba(8,11,8,0.9);
+  border-top: 1px solid var(--white-10);
+}
+.un-how-inner {
+  max-width: 900px;
+  margin: 0 auto;
   text-align: center;
-  padding: 0 24px;
+}
+.un-how-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 64px;
+}
+.un-how-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
   position: relative;
 }
-.un-hero-content {
-  max-width: 760px;
+.un-how-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(16% + 16px);
+  right: calc(16% + 16px);
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent, var(--accent));
+  opacity: 0.3;
+}
+.un-how-step {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 16px;
+  padding: 0 24px;
 }
-.un-hero-tag {
-  font-size: 11px; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--accent);
-  font-weight: 500; margin-bottom: 28px;
-  display: flex; align-items: center; gap: 12px;
-}
-.un-hero-tag::before, .un-hero-tag::after {
-  content: ''; display: block;
-  width: 28px; height: 1px; background: var(--accent);
-}
-.un-hero-title {
+.un-how-step-num {
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Syne', sans-serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 800; color: var(--white);
-  line-height: 1.0; margin-bottom: 28px; letter-spacing: -1px;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent);
+  background: var(--dark);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
 }
-.un-hero-sub {
-  font-size: 18px; color: var(--white-60);
-  font-weight: 300; line-height: 1.7;
-  margin-bottom: 48px; max-width: 480px;
+.un-how-step-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
 }
-.un-hero-hint { font-size: 12px; color: var(--white-30); letter-spacing: 1px; margin-top: 16px; }
-.un-hero-scroll {
-  position: absolute; bottom: 40px; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  color: var(--white-30); font-size: 10px;
-  letter-spacing: 2px; text-transform: uppercase;
+.un-how-step-desc {
+  font-size: 14px;
+  color: var(--white-60);
+  line-height: 1.65;
+  font-weight: 300;
 }
-.un-scroll-line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: pulse 2s ease-in-out infinite;
+.un-how-cta {
+  margin-top: 64px;
 }
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+@media (max-width: 768px) {
+  .un-how { padding: 64px 24px; }
+  .un-how-steps { grid-template-columns: 1fr; gap: 40px; }
+  .un-how-steps::before { display: none; }
+}
 </style>
 
-<section class="un-hero" id="un-hero">
-  <div class="un-hero-content">
-    <div class="un-hero-tag">{{ section.settings.tag }}</div>
-    <h1 class="un-hero-title">{{ section.settings.title }}</h1>
-    <p class="un-hero-sub">{{ section.settings.subtitle }}</p>
-    <a href="/pages/hry" class="btn-primary" style="font-size:14px;padding:18px 48px;">
-      {{ section.settings.cta_text }}
-    </a>
-    <p class="un-hero-hint">{{ section.settings.hint }}</p>
-  </div>
-  <div class="un-hero-scroll">
-    <div class="un-scroll-line"></div>
-    Scroll
+<section class="un-how" id="jak">
+  <div class="un-how-inner">
+    <h2 class="un-how-title">{{ section.settings.title }}</h2>
+    <div class="un-how-steps">
+      {% for block in section.blocks %}
+        <div class="un-how-step" {{ block.shopify_attributes }}>
+          <div class="un-how-step-num">{{ forloop.index }}</div>
+          <div class="un-how-step-title">{{ block.settings.title }}</div>
+          <p class="un-how-step-desc">{{ block.settings.desc }}</p>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="un-how-cta">
+      <a href="/pages/hry" class="btn-primary">Vybrat hru →</a>
+    </div>
   </div>
 </section>
 
-<script>
-  // Skryj video jakmile hero sekce zmizí z obrazovky
-  var hero = document.getElementById('un-hero');
-  var videobg = document.getElementById('un-videobg');
-  if (hero && videobg) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        videobg.style.opacity = e.isIntersecting ? '1' : '0';
-        videobg.style.transition = 'opacity 0.6s ease';
-      });
-    }, { threshold: 0 });
-    obs.observe(hero);
-  }
-</script>
-
 {% schema %}
 {
-  "name": "Hero",
+  "name": "Jak to funguje",
   "settings": [
-    { "type": "text", "id": "tag", "label": "Tag", "default": "Venkovní únikovky" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Zažij příběh, ve kterém jsi hlavní postava." },
-    { "type": "textarea", "id": "subtitle", "label": "Podnadpis", "default": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času." },
-    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
-    { "type": "url", "id": "cta_url", "label": "CTA odkaz" },
-    { "type": "text", "id": "hint", "label": "Hint", "default": "Voucher dorazí e-mailem ihned po platbě" }
+    { "type": "text", "id": "title", "label": "Nadpis", "default": "Jak to funguje" }
   ],
-  "presets": [{ "name": "Hero" }]
+  "blocks": [
+    {
+      "type": "step", "name": "Krok",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Název" },
+        { "type": "textarea", "id": "desc", "label": "Popis" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Jak to funguje",
+    "blocks": [
+      { "type": "step", "settings": { "title": "Koupíš hru", "desc": "Vyber hru, zaplať online. Hotovo za 2 minuty." } },
+      { "type": "step", "settings": { "title": "Dostaneš instrukce", "desc": "Na mail přijde PDF s QR kódem a vším co potřebuješ." } },
+      { "type": "step", "settings": { "title": "Hraješ", "desc": "Vyraz ven. Řeš šifry, hledej stopy, dokončete příběh." } }
+    ]
+  }]
 }
 {% endschema %}
