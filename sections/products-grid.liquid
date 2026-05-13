@@ -1,11 +1,11 @@
 <style>
 .un-catalog {
   padding: 100px 48px;
-  background: rgba(8,11,8,0.7);
-  border-top: 1px solid var(--white-10);
+  background: rgba(8,11,8,0.75);
+  border-top: 1px solid rgba(240,235,224,0.08);
 }
 .un-catalog-header {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto 56px;
   display: flex;
   justify-content: space-between;
@@ -14,15 +14,15 @@
   flex-wrap: wrap;
 }
 .un-catalog-grid {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
-  background: transparent;
+  gap: 1px;
+  background: rgba(240,235,224,0.08);
 }
 .un-game-card {
-  background: rgba(8,11,8,0.65);
+  background: rgba(8,11,8,0.7);
   backdrop-filter: blur(4px);
   text-decoration: none;
   color: inherit;
@@ -31,22 +31,25 @@
   transition: background 0.25s;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
-.un-game-card:hover { background: rgba(8,11,8,0.85); }
+.un-game-card:hover { background: rgba(8,11,8,0.92); }
+
+.un-game-card-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
 .un-game-card-img {
   width: 100%;
   aspect-ratio: 16/9;
   object-fit: cover;
-  filter: brightness(0.8) saturate(0.7);
-  transition: filter 0.4s, transform 0.5s;
+  filter: brightness(0.75) saturate(0.65);
+  transition: filter 0.45s ease, transform 0.5s ease;
+  display: block;
 }
 .un-game-card:hover .un-game-card-img {
   filter: brightness(0.95) saturate(1);
-  transform: scale(1.03);
-}
-.un-game-card-img-wrap {
-  overflow: hidden;
-  position: relative;
+  transform: scale(1.04);
 }
 .un-game-card-img-placeholder {
   width: 100%;
@@ -55,14 +58,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
-  opacity: 0.3;
 }
+
+/* Badge */
+.un-game-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #080B08;
+  background: var(--accent);
+  padding: 5px 10px;
+  z-index: 2;
+}
+
 .un-game-card-body {
-  padding: 24px;
+  padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   flex: 1;
 }
 .un-game-card-top {
@@ -72,28 +89,29 @@
   gap: 12px;
 }
 .un-game-card-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
 }
 .un-game-card-price {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   color: var(--accent);
   white-space: nowrap;
+  font-family: 'Syne', sans-serif;
 }
 .un-game-card-hook {
   font-size: 13px;
   color: var(--white-60);
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 300;
   font-style: italic;
 }
 .un-game-card-meta {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .un-game-meta-item {
@@ -101,33 +119,56 @@
   color: var(--white-30);
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   letter-spacing: 0.5px;
 }
-.un-game-meta-item strong { color: var(--white-60); font-weight: 500; }
+.un-game-meta-item svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--white-30);
+  flex-shrink: 0;
+}
+.un-game-meta-item strong {
+  color: var(--white-60);
+  font-weight: 500;
+}
 .un-game-card-footer {
   margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid var(--white-10);
+  padding-top: 18px;
+  border-top: 1px solid rgba(240,235,224,0.08);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 }
 .un-game-card-btn {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accent);
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: gap 0.2s;
+  transition: gap 0.2s ease;
 }
-.un-game-card:hover .un-game-card-btn { gap: 12px; }
+.un-game-card:hover .un-game-card-btn { gap: 14px; }
+
+.un-game-avail {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(240,235,224,0.25);
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .un-game-card-img { transition: none; }
+}
 
 @media (max-width: 900px) {
   .un-catalog { padding: 64px 24px; }
   .un-catalog-grid { grid-template-columns: 1fr; }
+  .un-game-card-name { font-size: 20px; }
 }
 </style>
 
@@ -137,7 +178,7 @@
       <span class="section-label">{{ section.settings.label }}</span>
       <h2 class="section-title" style="margin-bottom:0;">{{ section.settings.title }}</h2>
     </div>
-    <a href="/pages/hry" class="btn-ghost" style="padding:12px 24px;font-size:12px;">Všechny hry →</a>
+    <a href="/pages/hry" class="btn-ghost" style="padding:12px 28px;font-size:11px;letter-spacing:2px;">Všechny hry →</a>
   </div>
 
   <div class="un-catalog-grid">
@@ -146,38 +187,56 @@
       {% for product in col.products limit: section.settings.products_count %}
         <a href="{{ product.url }}" class="un-game-card">
           <div class="un-game-card-img-wrap">
+            {% if product.available %}
+              <span class="un-game-badge">Dostupné</span>
+            {% endif %}
             {% if product.featured_image %}
               <img class="un-game-card-img"
-                src="{{ product.featured_image | img_url: '800x450', crop: 'center' }}"
+                src="{{ product.featured_image | img_url: '900x506', crop: 'center' }}"
                 alt="{{ product.title | escape }}"
-                loading="lazy" />
+                loading="lazy"
+                width="900" height="506" />
             {% else %}
-              <div class="un-game-card-img-placeholder">🗺</div>
+              <div class="un-game-card-img-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="opacity:0.15;">
+                  <path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke="rgba(240,235,224,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
             {% endif %}
           </div>
           <div class="un-game-card-body">
             <div class="un-game-card-top">
               <div class="un-game-card-name">{{ product.title }}</div>
-              <div class="un-game-card-price">{% if product.price > 0 %}od {{ product.price | money }}{% else %}Na vyžádání{% endif %}</div>
+              <div class="un-game-card-price">
+                {% if product.price > 0 %}od {{ product.price | money }}{% else %}Na vyžádání{% endif %}
+              </div>
             </div>
             {% if product.description != blank %}
-              <div class="un-game-card-hook">{{ product.description | strip_html | truncate: 80 }}</div>
+              <div class="un-game-card-hook">{{ product.description | strip_html | truncate: 90 }}</div>
             {% endif %}
             <div class="un-game-card-meta">
-              <span class="un-game-meta-item">👥 <strong>2–8</strong> hráčů</span>
-              <span class="un-game-meta-item">⏱ <strong>90 min</strong></span>
-              {% if product.available %}
-                <span class="badge" style="font-size:9px;">Dostupné</span>
-              {% endif %}
+              <span class="un-game-meta-item">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                <strong>2–8</strong> hráčů
+              </span>
+              <span class="un-game-meta-item">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+                <strong>90 min</strong>
+              </span>
             </div>
             <div class="un-game-card-footer">
               <span class="un-game-card-btn">Koupit voucher →</span>
+              {% if product.available %}
+                <span class="un-game-avail">Skladem</span>
+              {% endif %}
             </div>
           </div>
         </a>
       {% endfor %}
     {% else %}
-      <p style="color:var(--white-30);grid-column:1/-1;padding:48px;text-align:center;">Přidej kolekci v nastavení sekce.</p>
+      <p style="color:rgba(240,235,224,0.25);grid-column:1/-1;padding:64px;text-align:center;font-size:13px;letter-spacing:1px;">
+        Přidej kolekci v nastavení sekce.
+      </p>
     {% endif %}
   </div>
 </section>
@@ -189,7 +248,7 @@
     { "type": "text", "id": "label", "label": "Label", "default": "Katalog her" },
     { "type": "text", "id": "title", "label": "Nadpis", "default": "Vyber svůj příběh" },
     { "type": "collection", "id": "collection", "label": "Kolekce" },
-    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet her", "default": 6 }
+    { "type": "range", "id": "products_count", "min": 2, "max": 9, "step": 1, "label": "Počet her", "default": 4 }
   ],
   "presets": [{ "name": "Katalog her" }]
 }

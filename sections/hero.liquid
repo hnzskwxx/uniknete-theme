@@ -1,56 +1,173 @@
 <style>
 .un-hero {
   min-height: 100svh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px 64px 80px;
+  position: relative;
+  gap: 48px;
+}
+
+.un-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.un-hero-tag {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 36px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.un-hero-tag::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.un-hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(44px, 5.5vw, 80px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 32px;
+  letter-spacing: -1px;
+}
+.un-hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.un-hero-sub {
+  font-size: 16px;
+  color: var(--white-60);
+  font-weight: 300;
+  line-height: 1.8;
+  margin-bottom: 52px;
+  max-width: 420px;
+}
+
+.un-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.un-hero-hint {
+  font-size: 11px;
+  color: var(--white-30);
+  letter-spacing: 1px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.un-hero-hint::before {
+  content: '';
+  display: block;
+  width: 12px;
+  height: 1px;
+  background: var(--white-30);
+}
+
+/* Pravá strana — dekorativní blok */
+.un-hero-aside {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 24px 40px;
-  position: relative;
+  align-items: flex-end;
+  gap: 2px;
+  height: 100%;
 }
-.un-hero-content {
-  max-width: 760px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.un-hero-stat-block {
+  width: 100%;
+  max-width: 280px;
+  padding: 28px 32px;
+  border: 1px solid rgba(240,235,224,0.08);
+  background: rgba(8,11,8,0.5);
+  backdrop-filter: blur(8px);
 }
-.un-hero-tag {
-  font-size: 11px; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--accent);
-  font-weight: 500; margin-bottom: 28px;
-  display: flex; align-items: center; gap: 12px;
+
+.un-hero-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
 }
-.un-hero-tag::before, .un-hero-tag::after {
-  content: ''; display: block;
-  width: 28px; height: 1px; background: var(--accent);
+
+.un-hero-stat-label {
+  font-size: 11px;
+  color: var(--white-30);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 400;
 }
-.un-hero-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 800; color: var(--white);
-  line-height: 1.0; margin-bottom: 28px; letter-spacing: -1px;
-}
-.un-hero-sub {
-  font-size: 18px; color: var(--white-60);
-  font-weight: 300; line-height: 1.7;
-  margin-bottom: 48px; max-width: 480px;
-}
-.un-hero-hint { font-size: 12px; color: var(--white-30); letter-spacing: 1px; margin-top: 16px; }
+
+/* Scroll indikátor */
 .un-hero-scroll {
-  position: absolute; bottom: 40px; left: 50%;
-  transform: translateX(-50%);
-  display: flex; flex-direction: column;
-  align-items: center; gap: 8px;
-  color: var(--white-30); font-size: 10px;
-  letter-spacing: 2px; text-transform: uppercase;
+  position: absolute;
+  bottom: 40px;
+  left: 64px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white-30);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 .un-scroll-line {
-  width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: pulse 2s ease-in-out infinite;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+  animation: scrollpulse 2s ease-in-out infinite;
 }
-@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+@keyframes scrollpulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .un-scroll-line { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .un-hero {
+    grid-template-columns: 1fr;
+    padding: 100px 24px 80px;
+    gap: 48px;
+  }
+  .un-hero-aside {
+    flex-direction: row;
+    align-items: stretch;
+    max-width: 100%;
+  }
+  .un-hero-stat-block {
+    flex: 1;
+    max-width: none;
+  }
+  .un-hero-title {
+    font-size: clamp(38px, 8vw, 56px);
+  }
+  .un-hero-scroll {
+    left: 24px;
+  }
+}
 </style>
 
 <section class="un-hero" id="un-hero">
@@ -58,42 +175,48 @@
     <div class="un-hero-tag">{{ section.settings.tag }}</div>
     <h1 class="un-hero-title">{{ section.settings.title }}</h1>
     <p class="un-hero-sub">{{ section.settings.subtitle }}</p>
-    <a href="/pages/hry" class="btn-primary" style="font-size:14px;padding:18px 48px;">
-      {{ section.settings.cta_text }}
-    </a>
+    <div class="un-hero-actions">
+      <a href="{{ section.settings.cta_url | default: '/pages/hry' }}" class="btn-primary" style="padding: 18px 48px;">
+        {{ section.settings.cta_text }}
+      </a>
+      <a href="#hry" class="btn-ghost" style="padding: 18px 32px;">
+        Prohlédnout hry
+      </a>
+    </div>
     <p class="un-hero-hint">{{ section.settings.hint }}</p>
   </div>
+
+  <div class="un-hero-aside">
+    <div class="un-hero-stat-block">
+      <span class="un-hero-stat-num">3 000+</span>
+      <span class="un-hero-stat-label">Spokojených hráčů</span>
+    </div>
+    <div class="un-hero-stat-block">
+      <span class="un-hero-stat-num">4.9</span>
+      <span class="un-hero-stat-label">Průměrné hodnocení</span>
+    </div>
+    <div class="un-hero-stat-block">
+      <span class="un-hero-stat-num">12+</span>
+      <span class="un-hero-stat-label">Unikátních her</span>
+    </div>
+  </div>
+
   <div class="un-hero-scroll">
     <div class="un-scroll-line"></div>
     Scroll
   </div>
 </section>
 
-<script>
-  // Skryj video jakmile hero sekce zmizí z obrazovky
-  var hero = document.getElementById('un-hero');
-  var videobg = document.getElementById('un-videobg');
-  if (hero && videobg) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        videobg.style.opacity = e.isIntersecting ? '1' : '0';
-        videobg.style.transition = 'opacity 0.6s ease';
-      });
-    }, { threshold: 0 });
-    obs.observe(hero);
-  }
-</script>
-
 {% schema %}
 {
   "name": "Hero",
   "settings": [
-    { "type": "text", "id": "tag", "label": "Tag", "default": "Venkovní únikovky" },
-    { "type": "text", "id": "title", "label": "Nadpis", "default": "Zažij příběh, ve kterém jsi hlavní postava." },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Venkovní únikovky · Děčín" },
+    { "type": "text", "id": "title", "label": "Nadpis (použij <em> pro zlatou kurzívu)", "default": "Zažij příběh,\nve kterém jsi\n<em>hlavní postava.</em>" },
     { "type": "textarea", "id": "subtitle", "label": "Podnadpis", "default": "Interaktivní hry v reálném světě. Šifry, záhady, napětí — ty a tvůj tým proti času." },
-    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Začít dobrodružství →" },
     { "type": "url", "id": "cta_url", "label": "CTA odkaz" },
-    { "type": "text", "id": "hint", "label": "Hint", "default": "Voucher dorazí e-mailem ihned po platbě" }
+    { "type": "text", "id": "hint", "label": "Hint pod tlačítkem", "default": "Voucher dorazí e-mailem ihned po platbě" }
   ],
   "presets": [{ "name": "Hero" }]
 }

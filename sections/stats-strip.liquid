@@ -1,46 +1,68 @@
 <style>
 .un-stats {
+  border-top: 1px solid rgba(240,235,224,0.08);
+  border-bottom: 1px solid rgba(240,235,224,0.08);
+  background: rgba(8,11,8,0.6);
+  backdrop-filter: blur(6px);
+}
+.un-stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: var(--dark-3);
-  border-top: 1px solid var(--cream-08);
-  border-bottom: 1px solid var(--cream-08);
 }
 .un-stat {
-  text-align: center;
-  padding: 44px 24px;
-  border-right: 1px solid var(--cream-08);
+  padding: 52px 40px;
+  border-right: 1px solid rgba(240,235,224,0.08);
+  position: relative;
+  transition: background 0.25s;
 }
 .un-stat:last-child { border-right: none; }
+.un-stat:hover { background: rgba(212,168,71,0.04); }
+
 .un-stat-num {
   font-family: 'Playfair Display', serif;
-  font-size: 42px;
-  font-weight: 700;
-  color: var(--gold);
+  font-size: 52px;
+  font-weight: 900;
+  color: var(--accent);
   display: block;
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  letter-spacing: -1px;
 }
 .un-stat-label {
-  font-size: 12px;
-  color: var(--cream-40);
-  letter-spacing: 1px;
+  font-size: 11px;
+  color: rgba(240,235,224,0.35);
+  letter-spacing: 2px;
   text-transform: uppercase;
+  font-weight: 400;
+  display: block;
 }
-@media (max-width: 768px) {
-  .un-stats { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 900px) {
+  .un-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .un-stat:nth-child(2) { border-right: none; }
-  .un-stat { border-bottom: 1px solid var(--cream-08); }
+  .un-stat:nth-child(3) { border-top: 1px solid rgba(240,235,224,0.08); }
+  .un-stat:nth-child(4) {
+    border-top: 1px solid rgba(240,235,224,0.08);
+    border-right: none;
+  }
+  .un-stat { padding: 36px 28px; }
+  .un-stat-num { font-size: 40px; }
 }
 </style>
 
 <div class="un-stats">
-  {% for block in section.blocks %}
-    <div class="un-stat" {{ block.shopify_attributes }}>
-      <span class="un-stat-num">{{ block.settings.number }}</span>
-      <span class="un-stat-label">{{ block.settings.label }}</span>
-    </div>
-  {% endfor %}
+  <div class="un-stats-inner">
+    {% for block in section.blocks %}
+      <div class="un-stat" {{ block.shopify_attributes }}>
+        <span class="un-stat-num">{{ block.settings.number }}</span>
+        <span class="un-stat-label">{{ block.settings.label }}</span>
+      </div>
+    {% endfor %}
+  </div>
 </div>
 
 {% schema %}
