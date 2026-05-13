@@ -9,8 +9,12 @@
   position: relative;
   max-width: 1100px;
   margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+}
+.un-hero-wrap {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .un-hero-content {
@@ -127,6 +131,7 @@
 }
 </style>
 
+<div class="un-hero-wrap">
 <section class="un-hero" id="un-hero">
   <div class="un-hero-content">
     <div class="un-hero-tag">{{ section.settings.tag }}</div>
@@ -148,6 +153,7 @@
     Scroll
   </div>
 </section>
+</div>
 
 {% schema %}
 {
