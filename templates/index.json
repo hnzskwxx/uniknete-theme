@@ -12,46 +12,6 @@
         "hint": "Voucher dorazí e-mailem ihned po platbě"
       }
     },
-    "stats": {
-      "type": "stats-strip",
-      "blocks": {
-        "stat1": {
-          "type": "stat",
-          "settings": {
-            "number": "12+",
-            "label": "Unikátních her"
-          }
-        },
-        "stat2": {
-          "type": "stat",
-          "settings": {
-            "number": "3 000+",
-            "label": "Spokojených hráčů"
-          }
-        },
-        "stat3": {
-          "type": "stat",
-          "settings": {
-            "number": "4.9",
-            "label": "Průměrné hodnocení"
-          }
-        },
-        "stat4": {
-          "type": "stat",
-          "settings": {
-            "number": "Online",
-            "label": "i papírové verze"
-          }
-        }
-      },
-      "block_order": [
-        "stat1",
-        "stat2",
-        "stat3",
-        "stat4"
-      ],
-      "settings": {}
-    },
     "products": {
       "type": "products-grid",
       "settings": {
@@ -70,7 +30,7 @@
             "title": "Děčín",
             "description": "Prozkoumej záhady starého města pod hradem. Šifry, stopy a příběhy ukryté v ulicích Děčína.",
             "button_label": "Zjistit více",
-            "button_url": "/"
+            "button_url": "/products/decin"
           }
         },
         "game2": {
@@ -79,7 +39,7 @@
             "title": "Praha",
             "description": "Vydej se na stopovačku po skrytých zákoutích hlavního města. Praha tě překvapí jinak, než znáš.",
             "button_label": "Zjistit více",
-            "button_url": "/"
+            "button_url": "/products/podivna-praha"
           }
         }
       },
@@ -162,7 +122,6 @@
   },
   "order": [
     "hero",
-    "stats",
     "products",
     "game_videos",
     "how",
