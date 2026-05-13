@@ -1,0 +1,208 @@
+<style>
+.un-game-videos {
+  padding: 100px 48px;
+  background: var(--dark);
+  border-top: 1px solid var(--cream-08);
+}
+.un-game-videos-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.un-game-videos-header {
+  margin-bottom: 64px;
+}
+
+.un-game-videos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--cream-08);
+}
+
+.un-game-video-item {
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.un-game-video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  background: #000;
+}
+
+.un-game-video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.un-game-video-item:hover .un-game-video-wrap video {
+  transform: scale(1.03);
+}
+
+.un-game-video-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+  z-index: 2;
+}
+
+.un-game-video-item:hover .un-game-video-border {
+  border-color: var(--gold);
+}
+
+.un-game-video-info {
+  padding: 32px 32px 40px;
+  border-top: 1px solid var(--cream-08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.un-game-video-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.un-game-video-desc {
+  font-size: 14px;
+  color: var(--cream-40);
+  line-height: 1.75;
+  font-weight: 300;
+  flex: 1;
+}
+
+.un-game-video-cta {
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .un-game-video-wrap video,
+  .un-game-video-border {
+    transition: none;
+  }
+  .un-game-video-item:hover .un-game-video-wrap video {
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .un-game-videos {
+    padding: 64px 24px;
+  }
+  .un-game-videos-grid {
+    grid-template-columns: 1fr;
+  }
+  .un-game-videos-header {
+    margin-bottom: 40px;
+  }
+  .un-game-video-info {
+    padding: 24px 24px 32px;
+  }
+  .un-game-video-title {
+    font-size: 22px;
+  }
+}
+</style>
+
+<section class="un-game-videos" id="hry-video">
+  <div class="un-game-videos-inner">
+
+    <div class="un-game-videos-header">
+      <span class="section-label">{{ section.settings.label }}</span>
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="un-game-videos-grid">
+
+      {% assign video_urls = "https://cdn.shopify.com/videos/c/o/v/74560af9e12d486ab0299d20257dd493.mov,https://cdn.shopify.com/videos/c/o/v/7354b9da53db44b7aa73d7b1b92292a6.mov" | split: "," %}
+
+      {% for block in section.blocks %}
+        <div class="un-game-video-item" {{ block.shopify_attributes }}>
+          <div class="un-game-video-wrap">
+            <video
+              src="{{ video_urls[forloop.index0] }}"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="{{ block.settings.title }}"
+            ></video>
+            <div class="un-game-video-border"></div>
+          </div>
+          <div class="un-game-video-info">
+            <div class="un-game-video-title">{{ block.settings.title }}</div>
+            <p class="un-game-video-desc">{{ block.settings.description }}</p>
+            <div class="un-game-video-cta">
+              <a href="{{ block.settings.button_url }}" class="btn-primary">
+                {{ block.settings.button_label }} →
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Videa her",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label nad nadpisem", "default": "Naše hry" },
+    { "type": "text", "id": "title", "label": "Nadpis sekce", "default": "Vyberte svou hru" }
+  ],
+  "blocks": [
+    {
+      "type": "game",
+      "name": "Hra",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Název hry", "default": "Název hry" },
+        { "type": "textarea", "id": "description", "label": "Popis", "default": "Krátký popis hry — co hráče čeká a proč si ji zahrát." },
+        { "type": "text", "id": "button_label", "label": "Text tlačítka", "default": "Zjistit více" },
+        { "type": "url", "id": "button_url", "label": "Odkaz tlačítka" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Videa her",
+      "blocks": [
+        {
+          "type": "game",
+          "settings": {
+            "title": "Hra 1",
+            "description": "Ponořte se do světa záhad a hledejte stopy po celém městě. Ideální pro rodiny i party.",
+            "button_label": "Zjistit více",
+            "button_url": "/"
+          }
+        },
+        {
+          "type": "game",
+          "settings": {
+            "title": "Hra 2",
+            "description": "Druhá hra plná překvapení a logických hádanek. Otestujte svůj tým pod tlakem.",
+            "button_label": "Zjistit více",
+            "button_url": "/"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2
+}
+{% endschema %}

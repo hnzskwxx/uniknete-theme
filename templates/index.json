@@ -61,6 +61,34 @@
         "products_count": 5
       }
     },
+    "game_videos": {
+      "type": "game-videos",
+      "blocks": {
+        "game1": {
+          "type": "game",
+          "settings": {
+            "title": "Hra 1",
+            "description": "Ponořte se do světa záhad a hledejte stopy po celém městě. Ideální pro rodiny i party.",
+            "button_label": "Zjistit více",
+            "button_url": "/"
+          }
+        },
+        "game2": {
+          "type": "game",
+          "settings": {
+            "title": "Hra 2",
+            "description": "Druhá hra plná překvapení a logických hádanek. Otestujte svůj tým pod tlakem.",
+            "button_label": "Zjistit více",
+            "button_url": "/"
+          }
+        }
+      },
+      "block_order": ["game1", "game2"],
+      "settings": {
+        "label": "Naše hry",
+        "title": "Vyberte svou hru"
+      }
+    },
     "how": {
       "type": "how-it-works",
       "blocks": {
@@ -136,6 +164,7 @@
     "hero",
     "stats",
     "products",
+    "game_videos",
     "how",
     "reviews"
   ]
