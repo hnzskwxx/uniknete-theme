@@ -1,6 +1,17 @@
 <style>
 .un-hry { padding-top: 80px; }
 
+/* Footer skrytý na stránce hry — zobrazí se při scrollu */
+.page-hry .un-footer {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.page-hry .un-footer.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .un-hry-wrap {
   max-width: 1300px;
   margin: 0 auto;
@@ -240,3 +251,24 @@
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  document.body.classList.add('page-hry');
+  var footer = document.querySelector('.un-footer');
+  if (!footer) return;
+
+  function checkScroll() {
+    var scrolled = window.scrollY + window.innerHeight;
+    var total = document.body.scrollHeight;
+    if (scrolled >= total - 120) {
+      footer.classList.add('is-visible');
+    } else {
+      footer.classList.remove('is-visible');
+    }
+  }
+
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
+})();
+</script>
