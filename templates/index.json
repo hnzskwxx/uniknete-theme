@@ -67,8 +67,8 @@
         "game1": {
           "type": "game",
           "settings": {
-            "title": "Hra 1",
-            "description": "Ponořte se do světa záhad a hledejte stopy po celém městě. Ideální pro rodiny i party.",
+            "title": "Děčín",
+            "description": "Prozkoumej záhady starého města pod hradem. Šifry, stopy a příběhy ukryté v ulicích Děčína.",
             "button_label": "Zjistit více",
             "button_url": "/"
           }
@@ -76,8 +76,8 @@
         "game2": {
           "type": "game",
           "settings": {
-            "title": "Hra 2",
-            "description": "Druhá hra plná překvapení a logických hádanek. Otestujte svůj tým pod tlakem.",
+            "title": "Praha",
+            "description": "Vydej se na stopovačku po skrytých zákoutích hlavního města. Praha tě překvapí jinak, než znáš.",
             "button_label": "Zjistit více",
             "button_url": "/"
           }
