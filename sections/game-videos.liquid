@@ -1,6 +1,6 @@
 <style>
 .un-game-videos {
-  padding: 100px 48px;
+  padding: 80px 48px 100px;
   background: rgba(8,11,8,0.75);
   border-top: 1px solid rgba(240,235,224,0.08);
 }
@@ -23,22 +23,27 @@
 .un-game-videos-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: rgba(240,235,224,0.08);
+  gap: 24px;
 }
 
+/* Karta = celý klikatelný blok */
 .un-game-video-item {
-  background: rgba(8,11,8,0.75);
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
+/* Video wrapper v 9:16 */
 .un-game-video-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  overflow: hidden;
   background: #000;
+  overflow: hidden;
 }
 
 .un-game-video-wrap video {
@@ -46,53 +51,106 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
 .un-game-video-item:hover .un-game-video-wrap video {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
-.un-game-video-border {
+/* Gradient overlay zospodu */
+.un-game-video-overlay {
   position: absolute;
   inset: 0;
-  border: 2px solid transparent;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(8,11,8,0.5) 65%,
+    rgba(8,11,8,0.95) 100%
+  );
   pointer-events: none;
-  transition: border-color 0.3s ease;
-  z-index: 2;
+  z-index: 1;
 }
 
-.un-game-video-item:hover .un-game-video-border {
-  border-color: var(--gold, #D4A847);
+/* Obsah v overlayi */
+.un-game-video-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 28px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.un-game-video-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #F0EDE8;
+  line-height: 1.1;
+}
+
+.un-game-video-desc {
+  font-size: 13px;
+  color: rgba(240,235,224,0.7);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.un-game-video-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #F0EDE8;
+  border: 1px solid rgba(240,235,224,0.35);
+  padding: 12px 20px;
+  border-radius: 2px;
+  width: fit-content;
+  transition: background 0.2s, border-color 0.2s;
+  background: rgba(8,11,8,0.4);
+  backdrop-filter: blur(4px);
+}
+
+.un-game-video-item:hover .un-game-video-btn {
+  background: var(--accent, #FF6B35);
+  border-color: var(--accent, #FF6B35);
 }
 
 /* Tlačítko zvuku */
 .un-video-sound-btn {
   position: absolute;
-  bottom: 16px;
+  top: 16px;
   right: 16px;
   z-index: 3;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(8,11,8,0.75);
+  background: rgba(8,11,8,0.6);
   border: 1px solid rgba(240,235,224,0.2);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s, border-color 0.2s;
   backdrop-filter: blur(4px);
 }
 
 .un-video-sound-btn:hover {
-  background: rgba(212,168,71,0.2);
-  border-color: var(--gold, #D4A847);
+  background: rgba(8,11,8,0.9);
+  border-color: rgba(240,235,224,0.5);
 }
 
 .un-video-sound-btn svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: rgba(240,235,224,0.8);
   display: block;
 }
@@ -101,62 +159,29 @@
 .un-video-sound-btn.is-unmuted .icon-muted { display: none; }
 .un-video-sound-btn.is-unmuted .icon-unmuted { display: block; }
 
-.un-game-video-info {
-  padding: 32px 32px 40px;
-  background: rgba(8,11,8,0.75);
-  border-top: 1px solid rgba(240,235,224,0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
+/* Gold hover border */
+.un-game-video-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: border-color 0.3s ease;
+  z-index: 3;
+  border-radius: 4px;
 }
-
-.un-game-video-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--cream, #F0EBE0);
-  line-height: 1.2;
-}
-
-.un-game-video-desc {
-  font-size: 14px;
-  color: rgba(240,235,224,0.65);
-  line-height: 1.75;
-  font-weight: 300;
-  flex: 1;
-}
-
-.un-game-video-cta {
-  margin-top: 8px;
+.un-game-video-item:hover .un-game-video-border {
+  border-color: var(--accent, #FF6B35);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .un-game-video-wrap video,
-  .un-game-video-border {
-    transition: none;
-  }
-  .un-game-video-item:hover .un-game-video-wrap video {
-    transform: none;
-  }
+  .un-game-video-wrap video { transition: none; }
+  .un-game-video-item:hover .un-game-video-wrap video { transform: none; }
 }
 
 @media (max-width: 768px) {
-  .un-game-videos {
-    padding: 64px 24px;
-  }
-  .un-game-videos-grid {
-    grid-template-columns: 1fr;
-  }
-  .un-game-videos-header {
-    margin-bottom: 40px;
-  }
-  .un-game-video-info {
-    padding: 24px 24px 32px;
-  }
-  .un-game-video-title {
-    font-size: 22px;
-  }
+  .un-game-videos { padding: 64px 24px 80px; }
+  .un-game-videos-grid { grid-template-columns: 1fr; gap: 16px; }
+  .un-game-video-title { font-size: 26px; }
 }
 </style>
 
@@ -173,7 +198,7 @@
       {% assign video_urls = "https://cdn.shopify.com/videos/c/o/v/74560af9e12d486ab0299d20257dd493.mov,https://cdn.shopify.com/videos/c/o/v/7354b9da53db44b7aa73d7b1b92292a6.mov" | split: "," %}
 
       {% for block in section.blocks %}
-        <div class="un-game-video-item" {{ block.shopify_attributes }}>
+        <a href="{{ block.settings.button_url }}" class="un-game-video-item" {{ block.shopify_attributes }}>
           <div class="un-game-video-wrap">
             <video
               src="{{ video_urls[forloop.index0] }}"
@@ -184,46 +209,27 @@
               preload="metadata"
               aria-label="{{ block.settings.title }}"
             ></video>
+            <div class="un-game-video-overlay"></div>
 
-            <button class="un-video-sound-btn" aria-label="Zapnout/vypnout zvuk">
-              <!-- ikona ztlumeno -->
-              <svg class="icon-muted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.63 3.63a1 1 0 0 0 0 1.41L7.29 8.7 7 9H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l4.29 3.29A1 1 0 0 0 13 17.58V13.4l4.18 4.18a7 7 0 0 1-1.65.84 1 1 0 0 0 .65 1.9 9 9 0 0 0 2.55-1.3l1.09 1.09a1 1 0 0 0 1.41-1.41L5.05 3.63a1 1 0 0 0-1.42 0zM13 6.41V11l-2.45-2.45zM17 12c0-.36-.04-.72-.1-1.06l1.51 1.51A7 7 0 0 1 11 19.94v-2a5 5 0 0 0 6-4.94zm2.84 1.81A9 9 0 0 0 21 12a9 9 0 0 0-9-9 9 9 0 0 0-1.81.19L11.93 5 12 5a7 7 0 0 1 7 7c0 .34-.03.67-.07 1l1.91 1.81z"/>
-              </svg>
-              <!-- ikona se zvukem -->
-              <svg class="icon-unmuted" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 9v6h4l5 5V4L7 9zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-              </svg>
+            <div class="un-game-video-content">
+              <div class="un-game-video-title">{{ block.settings.title }}</div>
+              <p class="un-game-video-desc">{{ block.settings.description }}</p>
+              <span class="un-game-video-btn">{{ block.settings.button_label }} →</span>
+            </div>
+
+            <button class="un-video-sound-btn" aria-label="Zapnout/vypnout zvuk" onclick="event.preventDefault();event.stopPropagation();var v=this.closest('.un-game-video-wrap').querySelector('video');v.muted=!v.muted;this.classList.toggle('is-unmuted',!v.muted);">
+              <svg class="icon-muted" viewBox="0 0 24 24"><path d="M3.63 3.63a1 1 0 0 0 0 1.41L7.29 8.7 7 9H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3l4.29 3.29A1 1 0 0 0 13 17.58V13.4l4.18 4.18a7 7 0 0 1-1.65.84 1 1 0 0 0 .65 1.9 9 9 0 0 0 2.55-1.3l1.09 1.09a1 1 0 0 0 1.41-1.41L5.05 3.63a1 1 0 0 0-1.42 0zM13 6.41V11l-2.45-2.45zM17 12c0-.36-.04-.72-.1-1.06l1.51 1.51A7 7 0 0 1 11 19.94v-2a5 5 0 0 0 6-4.94zm2.84 1.81A9 9 0 0 0 21 12a9 9 0 0 0-9-9 9 9 0 0 0-1.81.19L11.93 5 12 5a7 7 0 0 1 7 7c0 .34-.03.67-.07 1l1.91 1.81z"/></svg>
+              <svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
             </button>
 
             <div class="un-game-video-border"></div>
           </div>
-          <div class="un-game-video-info">
-            <div class="un-game-video-title">{{ block.settings.title }}</div>
-            <p class="un-game-video-desc">{{ block.settings.description }}</p>
-            <div class="un-game-video-cta">
-              <a href="{{ block.settings.button_url }}" class="btn-primary">
-                {{ block.settings.button_label }} →
-              </a>
-            </div>
-          </div>
-        </div>
+        </a>
       {% endfor %}
 
     </div>
   </div>
 </section>
-
-<script>
-document.querySelectorAll('.un-video-sound-btn').forEach(function(btn) {
-  var video = btn.closest('.un-game-video-wrap').querySelector('video');
-  btn.addEventListener('click', function() {
-    video.muted = !video.muted;
-    btn.classList.toggle('is-unmuted', !video.muted);
-    btn.setAttribute('aria-label', video.muted ? 'Zapnout zvuk' : 'Vypnout zvuk');
-  });
-});
-</script>
 
 {% schema %}
 {
@@ -238,7 +244,7 @@ document.querySelectorAll('.un-video-sound-btn').forEach(function(btn) {
       "name": "Hra",
       "settings": [
         { "type": "text", "id": "title", "label": "Název hry", "default": "Název hry" },
-        { "type": "textarea", "id": "description", "label": "Popis", "default": "Krátký popis hry — co hráče čeká a proč si ji zahrát." },
+        { "type": "textarea", "id": "description", "label": "Popis", "default": "Krátký popis hry." },
         { "type": "text", "id": "button_label", "label": "Text tlačítka", "default": "Zjistit více" },
         { "type": "url", "id": "button_url", "label": "Odkaz tlačítka" }
       ]
@@ -248,24 +254,8 @@ document.querySelectorAll('.un-video-sound-btn').forEach(function(btn) {
     {
       "name": "Videa her",
       "blocks": [
-        {
-          "type": "game",
-          "settings": {
-            "title": "Hra 1",
-            "description": "Ponořte se do světa záhad a hledejte stopy po celém městě. Ideální pro rodiny i party.",
-            "button_label": "Zjistit více",
-            "button_url": "/"
-          }
-        },
-        {
-          "type": "game",
-          "settings": {
-            "title": "Hra 2",
-            "description": "Druhá hra plná překvapení a logických hádanek. Otestujte svůj tým pod tlakem.",
-            "button_label": "Zjistit více",
-            "button_url": "/"
-          }
-        }
+        { "type": "game", "settings": { "title": "Děčín", "description": "Prozkoumej záhady starého města pod hradem. Šifry, stopy a příběhy ukryté v ulicích Děčína.", "button_label": "Zjistit více", "button_url": "/products/decin" } },
+        { "type": "game", "settings": { "title": "Praha", "description": "Vydej se na stopovačku po skrytých zákoutích hlavního města. Praha tě překvapí jinak, než znáš.", "button_label": "Zjistit více", "button_url": "/products/podivna-praha" } }
       ]
     }
   ],
