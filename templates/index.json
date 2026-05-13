@@ -40,40 +40,6 @@
         "title": "Vyberte svou hru"
       }
     },
-    "how": {
-      "type": "how-it-works",
-      "blocks": {
-        "step1": {
-          "type": "step",
-          "settings": {
-            "title": "Vyber a zaplať online",
-            "desc": ""
-          }
-        },
-        "step2": {
-          "type": "step",
-          "settings": {
-            "title": "Dostaneš voucher e-mailem",
-            "desc": ""
-          }
-        },
-        "step3": {
-          "type": "step",
-          "settings": {
-            "title": "Unikni a vyhraj",
-            "desc": ""
-          }
-        }
-      },
-      "block_order": [
-        "step1",
-        "step2",
-        "step3"
-      ],
-      "settings": {
-        "title": "Jak to funguje"
-      }
-    },
     "reviews": {
       "type": "reviews",
       "blocks": {
@@ -114,7 +80,6 @@
   "order": [
     "hero",
     "game_videos",
-    "how",
     "reviews"
   ]
 }
